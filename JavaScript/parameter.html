@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="mainDiv">innerHTML</div>
+    <button onclick="valgfrittNavn()">Test 1</button>
+    <button onclick="valgfrittNavn2()">Test 2</button>
+
+    <script>
+        function valgfrittNavn() {
+            document.getElementById('mainDiv').innerHTML =  /*html*/`
+            <div style="background-color:red; width: 100%; height:100px; "></div>
+            `;
+        }
+         
+        function valgfrittNavn2() {
+            document.getElementById('mainDiv').innerHTML =  /*html*/`
+            <div style="background-color:red; width: 100%; height:100px; "></div>
+            `;
+        }
+    </script>
+
+
+
+        
+    <div id="mainDiv">innerHTML</div>
+    <button onclick="valgfrittNavn('red')">Test 1</button>
+    <button onclick="valgfrittNavn2('blue')">Test 2</button>
+
+    <!-- Her definerer vi fargen rød for "valgfrittNavn" og blå for "valgfrittNavn2", istedet for å definere det i selve funksjonen -->
+
+    <script>
+        function valgfrittNavn(color) {
+            document.getElementById('mainDiv').innerHTML =  /*html*/`
+            <div style="background-color:${color}; width: 100%; height:100px; "></div>
+            `;
+        }
+         
+        function valgfrittNavn2(color) {
+            document.getElementById('mainDiv').innerHTML =  /*html*/`
+            <div style="background-color:${color}; width: 100%; height:100px; "></div>
+            `;
+        }
+
+        //Siden vi allerede har definert fargene i selve <button>, så kan vi her skrive inn "style="background-color:${color};" i <div>. Husk at du må også skrive (color) i parantesene etter valgfrittNavn
+        //Siden begge funksjonene gjør akkurat det samme, så trenger vi egentlig ikke å ha to funksjoner. Vi kan nemlig korte det ned.
+    </script>
+
+
+
+
+    <div id="mainDiv">innerHTML</div>
+    <button onclick="valgfrittNavn('red')">Test 1</button>
+    <button onclick="valgfrittNavn('blue')">Test 2</button>
+
+    <!-- Her definerer vi fargen rød for "valgfrittNavn" og blå for "valgfrittNavn2", istedet for å definere det i selve funksjonen -->
+
+    <script>
+        function valgfrittNavn(color) {
+            document.getElementById('mainDiv').innerHTML =  /*html*/`
+            <div style="background-color:${color}; width: 100%; height:100px; "></div>
+            `;
+        }
+         
+
+        //Siden vi nå skal få begge knappene til å bruke samme funksjon, så trenger vi ikke å ha onlick="valgfrittNavn" og onlick="valgfrittNavn2". Begge skal nå hete onlick="valgfrittNavn",
+        //dvs. at begge knappene kommer til å bruke samme funksjon. Da kan vi slette den andre funksjonen.
+    </script>
+
+
+
+
+    <div id="mainDiv">innerHTML</div>
+    <button onclick="valgfrittNavn('red', 50, 100)">Test 1</button>
+    <button onclick="valgfrittNavn('blue', 75, 200)">Test 2</button>
+
+    <!-- Her kan vi på samme måte som fargene definere både bredde og høyde-->
+
+    <script>
+        function valgfrittNavn(color, width, height) {
+            document.getElementById('mainDiv').innerHTML =  /*html*/`
+            <div style="background-color:${color}; width:${width}%; height:${height}px; "></div>
+            `;
+        }
+         
+
+        //Vi kan også gjøre akkurat det samme med width og height.
+        //Når du ser på fargeboksene som vises når du trykker på knappene, så har de et lite mellomrom både oppe og til venstre. Det skyldes margin og padding.
+        //Hvis du ikke ønsker å ha mellomrommene, så kan du definere margin og padding i style. Se eksempel nedenfor.
+
+    </script>
+
+    <!-- <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+    </style> -->
+</body>
+</html>
