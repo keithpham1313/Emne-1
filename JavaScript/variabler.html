@@ -29,8 +29,53 @@
 
         function setNum47(){
             numToShow = 47;
-            outputDiv.innerHTML = numToShow //Knappen "Set number to 16" har som funksjon å vise tallet 47
+            outputDiv.innerHTML = numToShow //Knappen "Set number to 47" har som funksjon å vise tallet 47
 
+        }
+    </script>
+
+    <!-- 
+    Non-zero value = Dopapir
+    0 = Ingen dopapir, men bare dopapirkjernen er der
+    null = Ikke engang dopapirkjernen er igjen
+    undefined = Ikke engang dopapirholder
+     -->
+
+
+    <div id="output"></div>
+    <button onclick="setNum(16)">Set number to 16</button> 
+    <button onclick="setNum(47)">Set number to 47</button>
+<!-- Vi bruker her istedet et parameter setNum(16), tidligere stod det setNum16() -->
+
+    <button onclick="increaseNum()"> Increase number by one</button>
+    <button onclick="secondNum()"> Add 2</button>
+
+    <script>
+         
+        var outputDiv = document.getElementById('output');
+        var numToShow = 0;                              //hadde vi lagt "var numToShow = 0" i en av funksjonene, så fungerer ikke den andre funksjonen. Her har vi satt numToShow globalt for at begge funksjonene skal få tilgang
+
+        function setNum(selectedNum){                   // selectedNum er et navn du definerer selv
+            numToShow = selectedNum;
+            outputDiv.innerHTML = numToShow;
+        
+        }
+            // Vi har fjernet den ene funksjonen siden de gjør det samme.
+        
+        function increaseNum() {
+            numToShow++;
+            // ++ betyr å legge til en, så det blir følgende: numToShow = numToShow + 1
+            outputDiv.innerHTML = numToShow;
+            
+        }
+
+        function secondNum(){
+            var number2 = 2;
+            outputDiv.innerHTML = numToShow + number2;      
+            //Når man trykker på knappen secondNum(), så vises tallet +2 - men det faktiske verdien er ikke ikke det som vises
+            //F.eks. Hvis numToShow er 30 og du trykker på knappen for secondNum, så vises tallet 32 - men verdien er fremdeles 30. Det kan du se i console.log
+
+            console.log(numToShow, "<- dette er verdien i numToShow -- dette er verdien i number2 ->", number2);
         }
     </script>
 </body>
