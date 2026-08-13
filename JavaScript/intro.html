@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Introduksjon til JavaScript!</h1>
+
+    <ol>
+        <li>Finne fram til en HTML-tag</li>
+        <li>Endre HTML</li>
+        <li>Bruke funksjon i <tt>script</tt></li>
+        <li>Kalle flere funksjoner</li>
+    </ol>
+
+    <!-- <div id="myDiv">(tom)</div> -->
+            <!-- Her gir vi <div> en id som heter myDiv -->
+
+    <!-- <button onclick="document.getElementById('myDiv').innerHTML = 'Halla'">Endre tekst</button> -->
+            <!-- 
+            onclick = på klikket, eller når du trykker på den
+            document = gjelder hele dokumentet
+            getElementById = henter ID'en som du har definert etterfulgt av hva ID'en er i parentes
+            innerHTML = den skal finne HTML-elementet som har ID'en "myDiv" - i dette tilfellet er det (tom) som er definert i ID'en, det er det som er inni i HTML-elementet
+            -->
+
+    <!-- <script>
+        function changeDivText(){
+
+        }
+
+    </script> -->
+            <!-- 
+            <script> er en HTML-tag, men det som er inni den kan ikke være HTML
+            function er bare en funksjon, det som kommer etter function er navnet på funksjonen, som i dette tilfellet er "changeDivText"
+            {} = alt det som er inni disse {} er koden som kommer til å skje når vi kjører kommandoen "changeDivText"
+            
+            -->
+
+    <!-- <div id="myDiv">(tom)</div>
+    <button onclick="changeDivText()">Endre tekst</button>
+
+    <script>
+        function changeDivText(){
+            document.getElementById('myDiv').innerHTML = 'Halla'
+
+            document.getElementById('myDiv').style.backgroundColor = 'red' // Se forklaring nedenfor på punkt 4)
+
+        }
+    </script> -->
+            <!-- 
+            1) Det vi har gjort her er å ta alt det som er i <button onclick="..."> og lagt det i function changeDivText(){...} 
+            2) Vi må deretter sette funksjonsnavnet i <button onclick="..."> - Det vil da se slik ut <button onclick="changeDivText">
+            3) Denne endringen i koden vil fungere på samme måte som da vi hadde  document.getElementById('myDiv').innerHTML = 'Halla' inni <button onclick="...">, dvs. at ingenting er forandret, men vi har bare ryddet koden litt
+
+            4) style.backgroundColor = 'red' - her definerer vi hva bakgrunnsfargen skal være når vi trykker på knappen, det gjør egentlig det samme som når vi brukte <style> i CSS
+            -->
+
+
+    <div id="myDiv">(tom)</div>
+    <button onclick="changeDivText()">Endre tekst</button>
+    <button onclick="changeDivColor()">Endre bakgrunnsfarge</button> 
+    <!-- Se punkt 1) -->
+     <br>
+    <button onclick="restoreDivText()">Tilbakestill tekst</button>
+    <button onclick="restoreDivColor()">Tilbakestill bakgrunnsfarge</button> 
+    <!-- Se punkt 2) -->
+
+    <script>
+        function changeDivText(){
+            document.getElementById('myDiv').innerHTML = 'Halla'
+
+        }
+
+        // function changeDivColor(){
+        //     document.getElementById('myDiv').style.backgroundColor = 'red' //Se punkt 1)
+
+        // }
+    
+        function changeDivColor(){
+            document.getElementById('myDiv').classList.add = 'red' //Se punkt 4)
+        }
+
+        function restoreDivText(){
+            document.getElementById('myDiv').innerHTML = '(tom)' //Se punkt 3)
+
+        }
+
+        function restoreDivColor(){
+            document.getElementById('myDiv').classList.remove = 'red' //Se punkt 5)
+
+        }
+
+    </script>
+        <!-- 
+         1) På dette steget har vi gjort om koden. Vi har lagt til en ny funksjon (changeDivColor) med tilsvarende ny knapp <button onlick="changeDivColor"></button> 
+         2) Vi ønsker å lage to nye knapper hvor vi får muligheten til å tilbakestille innholdet til (tom) uten å måtte oppdatere nettsiden. Vi lager derfor to ny knapper.
+         3) Her endrer vi bare teksten fra "Halla" til "(tom)" når vi trykker på knappen "Tilbakestill tekst"
+
+         4) Når det gjelder å tilbakestille bakgrunnsfargen, så har vi gjort om hvordan vi legger til bakgrunnsfarge. Tidligere har vi brukt .style.backgroundColor, men siden vi skal
+            lage en knapp for å tilbakestille dette har vi valgt å bruke .classList.add for å legge til bakgrunnsfarge
+         5) Her har vi opprettet en ny funksjon som skal fjerne bakgrunnsfargen rød. Merk at vi bruker .classList.remove for å fjerne den røde bakgrunnsfargen
+
+         6) Nå ble det ganske mye JavaScript-koder. Her kan vi lage en egen side for Javascript, f.eks. "intro.js", og deretter ta alt som er skrevet i <script></script> og lime det inn i "intro.js"
+            På <script>-taggen må du da legge til <script src="intro.js"></script> for å skape en forbindelse til intro.js-siden som du har opprettet. 
+         -->
+</body>
+</html>
