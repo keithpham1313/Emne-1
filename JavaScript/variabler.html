@@ -78,5 +78,34 @@
             console.log(numToShow, "<- dette er verdien i numToShow -- dette er verdien i number2 ->", number2);
         }
     </script>
+
+
+
+
+    <script>
+        const test1 = "hei"; //const er en konstant verdi, som ikke kan endres
+        let test2 = "heisann"; //let kan endres - men er kun tilgjengelig i sitt eget område/scope
+        var test3 = "heihå"; //var kan endres - og er tilgjengelig i større scope
+
+        function testScopes(){
+            var hello = "Var Hello";
+            let hello2 = "Let Hello";
+
+            console.log(hello, hello2); //Var Hello og Let Hello
+
+            {
+                var yo = "Var Yo i obj";
+                let yo2 = "Let Yo i obj";
+                console.log (yo, yo2); //Var Yo og Let Yo
+            }
+
+            console.log(yo); //let yo
+            console.log(yo2); //error! let får man bare tak i samme scope, her er den pakket inn i et objekt og er "gjemt bort"
+
+            //Hadde "let yo2 = "Let Yo i obj" vært "var yo2 = "Let Yo i obj" så hadde den funnet den, men i dette tilfellet så er let yo2 gjemt bort i {}
+        }
+
+        testScopes(); //Dette legges til for å kjøre testen, sjekk konsollen for feilmelding!
+    </script>
 </body>
 </html>
