@@ -58,6 +58,12 @@
             4) style.backgroundColor = 'red' - her definerer vi hva bakgrunnsfargen skal være når vi trykker på knappen, det gjør egentlig det samme som når vi brukte <style> i CSS
             -->
 
+    <style>
+        .red{
+            background-color: red;
+        }
+    </style>
+    <!-- Uten klassen .red i style, så vil ikke .classList fungere! -->
 
     <div id="myDiv">(tom)</div>
     <button onclick="changeDivText()">Endre tekst</button>
@@ -80,7 +86,7 @@
         // }
     
         function changeDivColor(){
-            document.getElementById('myDiv').classList.add = 'red' //Se punkt 4)
+            document.getElementById('myDiv').classList.add('red') //Se punkt 4)
         }
 
         function restoreDivText(){
@@ -89,7 +95,7 @@
         }
 
         function restoreDivColor(){
-            document.getElementById('myDiv').classList.remove = 'red' //Se punkt 5)
+            document.getElementById('myDiv').classList.remove('red') //Se punkt 5)
 
         }
 
