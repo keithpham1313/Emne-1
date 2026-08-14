@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<!-- <body>
     <div class="pink box" id="pinkbox" onclick="changeColor()"></div>
     <div class="red box" id="redbox" onclick="changeColorRed()"></div>
     <div class="blue box" id="bluebox" onclick="changeColorBlue()"></div>
@@ -42,7 +42,7 @@
     }
 
 </script> 
-
+ -->
 
 
 
@@ -85,6 +85,9 @@
     // Da skriver vi om klikkeventet onclick="changeColorBlue()" om til onclick="changeColor()". Det samme gjøres også på red.
     // For at boksene skal kunne skifte farge til grønn, må vi også definere hvilken farge den skal endre fra. Da skriver vi onclick="changeColor(pinkbox)"
 
+    function changeColor(elementID) {
+    alert("Funksjonen fungerer!");
+}
 </script>
 
 
