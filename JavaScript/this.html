@@ -6,9 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="pink box" id="pinkbox"></div>
-    <div class="red box" id="redbox"></div>
-    <div class="blue box" id="bluebox"></div>
+    <div class="pink box" id="pinkbox" onclick="changeColor()"></div>
+    <div class="red box" id="redbox" onclick="changeColorRed()"></div>
+    <div class="blue box" id="bluebox" onclick="changeColorBlue()"></div>
 </body>
 
 <style>
@@ -29,4 +29,111 @@
         background-color: blue
     }
 </style>
+
+<script>
+    function changeColor(){
+        document.getElementById("pinkbox").style.backgroundColor = "green"
+    }
+    function changeColorRed(){
+        document.getElementById("redbox").style.backgroundColor = "green"
+    }
+    function changeColorBlue(){
+        document.getElementById("bluebox").style.backgroundColor = "green"
+    }
+
+</script> 
+
+
+
+
+
+
+<body>
+    <div class="pink box" id="pinkbox" onclick="changeColor('pinkbox')"></div>
+    <div class="red box" id="redbox" onclick="changeColor('redbox')"></div>
+    <div class="blue box" id="bluebox" onclick="changeColor('bluebox')"></div>
+</body>
+
+<style>
+    .box{
+        height: 100px;
+        width: 100px;
+    }
+
+    .pink{
+        background-color: pink
+    }
+
+    .red{
+        background-color: red
+    }
+
+    .blue{
+        background-color: blue
+    }
+</style>
+
+<script>
+    function changeColor(elementID){
+        document.getElementById(elementID).style.backgroundColor = "green"
+    }
+    // Istedet for å ha tre funksjoner som gjør akkurat det samme, så kan vi rydde litt i koden og gjøre det om til én enkel funksjon.
+    // Da skriver vi om function changeColorBlue() til function changeColor() - for å gjøre den generell slik at den samme funksjonen fungerer på alle boksene.
+    // Deretter legger vi til elementID i function changeColor(), slik at funksjonen skal bli seende slik ut: function changeColor(elementID)
+    // Det samme gjør vi med document.getElementById("elementID")
+
+    // Da skriver vi om klikkeventet onclick="changeColorBlue()" om til onclick="changeColor()". Det samme gjøres også på red.
+    // For at boksene skal kunne skifte farge til grønn, må vi også definere hvilken farge den skal endre fra. Da skriver vi onclick="changeColor(pinkbox)"
+
+</script>
+
+
+
+
+
+
+
+<body>
+    <div class="pink box" onclick="changeColor('pinkbox')"></div>
+    <div class="red box" onclick="changeColor('redbox')"></div>
+    <div class="blue box" onclick="changeColor('bluebox')"></div>
+</body>
+<!-- 
+
+Istedet for å bruke "id" her, så kan vi fjerne de og heller bruke "this". Koden ser da slik ut:
+    <div class="blue box" onclick="changeColor(this)"></div> 
+    
+-->
+
+<style>
+    .box{
+        height: 100px;
+        width: 100px;
+    }
+
+    .pink{
+        background-color: pink
+    }
+
+    .red{
+        background-color: red
+    }
+
+    .blue{
+        background-color: blue
+    }
+</style>
+
+<script>
+    function changeColor(element){
+        element.style.backgroundColor = "green"
+        element.innerHTML = 'Hei'  // Vi kan også bruke this til å hente andre egenskaper til elementet. Her sier vi at boksen skal også inneholde "Hei" når den samtidig skifter farge når den blir trykket på.
+    }
+
+    // Da er det ikke ID'en til elementet, men selve elementet vi sender med og da trenger vi ikke lenger å hente elementById, fordi vi har elementet.
+    // Vi kan da bytte ut "document.getElementById(elementID)" med kun "element" - blir funksjonen seende slik ut: element.style.backgroundColor = "green"
+    // Vi sender med andre ord <div> inn som et parameter.
+
+   
+    </script>
 </html>
