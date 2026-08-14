@@ -9,8 +9,8 @@
 
     <div>
         <button onclick="startTid()">Start Tid</button>
-        <button onclick="stoppTid()">Stopp Tid</button>
-        <button onclick="resetTid()">Reset</button>
+        <button onclick="registrereTid()">Registrere Tid</button>
+        <button onclick="nullstilleTid()">Nullstille</button>
         <!-- Lager en knapp. Når brukeren klikker på den, kjører funksjonen startTid(). -->
 
         <br>
@@ -40,13 +40,13 @@
             sekunder++;                                             //2) Øker seconds med 1. "sekunder++" er det samme som: sekunder = sekunder + 1;
         }
 
-        function stoppTid(){
+        function registrereTid(){
             rundeTid.innerHTML += `<li>${sekunder-1} sekunder</li>`;//Legger den siste tiden til under Rundetider. += betyr legg til det som allerede finnes. seconds - 1 brukes fordi seconds++ allerede har økt tallet med 1 etter at det ble vist.
             clearInterval(timer);                                   //Stopper intervallet som ble startet med setInterval().
             sekunder = 0;                                           //Setter sekundtelleren tilbake til 0 etter at du har stoppet.
         }
 
-        function resetTid(){
+        function nullstilleTid(){
             location.reload()                                       //Laster inn hele nettsiden på nytt. Det gjør at siden starter på nytt, og alle variablene går tilbake til utgangspunktet.
         }
         
