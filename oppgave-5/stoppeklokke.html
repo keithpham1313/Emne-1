@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <button onclick="startTid()">Start Tid</button>
+        <button onclick="stoppTid()">Stopp Tid</button>
+        <button onclick="resetTid()">Reset</button>
+        <!-- Lager en knapp. Når brukeren klikker på den, kjører funksjonen startTid(). -->
+
+        <br>
+        Stoppeklokke:
+        <div id="app">0</div>
+        <!-- Dette er området hvor antall sekunder skal vises. id="app" gjør at JavaScript kan finne dette elementet. -->
+
+
+        Rundetider:
+        <div id="forrigeRunde"></div>
+        <!-- Her skal de tidligere rundetidene vises. id="forrigeRunde" gjør at JavaScript kan finne elementet. -->
+
+    </div>
+
+    <script>
+        const app = document.getElementById('app');                 //Finner HTML-elementet med id="app" og lagrer det i variabelen app. Da kan vi senere skrive til dette elementet: app.innerHTML = seconds;
+        const rundeTid = document.getElementById('forrigeRunde');   //Finner HTML-elementet med id="forrigeRunde" og lagrer det i rundeTid. Vi trenger det for å kunne skrive rundetidene inn på nettsiden.
+        let sekunder = 0;                                           //Lager en variabel som holder styr på hvor mange sekunder som har gått. Den starter på 0.
+        var timer;                                                  //Lager en variabel som skal brukes til å lagre timeren/intervallet.
+
+        function startTid(){                                        //Lager funksjonen som starter stoppeklokken.
+            setInterval(tellSekunder, 1000);                        //setInterval betyr kjør denne funksjonen gjentatte ganger med et bestemt tidsintervall. 1000 millisekunder = 1 sekund. Så tellSekunder() kjøres én gang hvert sekund.
+        }
+
+        function tellSekunder(){                                    //Her definerer vi hvilken funksjon "tellSekunder" har. Denne funksjonen gjør to ting:
+            app.innerHTML = sekunder;                               //1) Viser verdien til seconds på nettsiden. Hvis sekunder er 5, viser "Stoppeklokke: 5"
+            sekunder++;                                             //2) Øker seconds med 1. "sekunder++" er det samme som: sekunder = sekunder + 1;
+        }
+
+        function stoppTid(){
+            rundeTid.innerHTML += `<li>${sekunder-1} sekunder</li>`;//Legger den siste tiden til under Rundetider. += betyr legg til det som allerede finnes. seconds - 1 brukes fordi seconds++ allerede har økt tallet med 1 etter at det ble vist.
+            clearInterval(timer);                                   //Stopper intervallet som ble startet med setInterval().
+            sekunder = 0;                                           //Setter sekundtelleren tilbake til 0 etter at du har stoppet.
+        }
+
+        function resetTid(){
+            location.reload()                                       //Laster inn hele nettsiden på nytt. Det gjør at siden starter på nytt, og alle variablene går tilbake til utgangspunktet.
+        }
+        
+        // = → erstatt
+        // += → legg til
+        // -= → trekk fra
+        // *= → multipliser
+        // /= → divider
+
+    </script>
+</body>
+</html>
