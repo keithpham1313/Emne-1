@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="pink box" onclick="changeColor(this)"></div>
+    <div class="red box" onclick="changeColor(this)"></div>
+    <div class="blue box" onclick="changeColor(this)"></div>
+</body>
+<!-- 
+
+Istedet for å bruke "id" her, så kan vi fjerne de og heller bruke "this". Koden ser da slik ut:
+    <div class="blue box" onclick="changeColor(this)"></div> 
+    
+-->
+
+<style>
+    .box{
+        height: 100px;
+        width: 100px;
+    }
+
+    .pink{
+        background-color: pink;
+    }
+
+    .red{
+        background-color: red;
+    }
+
+    .blue{
+        background-color: blue;
+    }
+</style>
+
+<script>
+    function changeColor(element){
+        element.style.backgroundColor = "green";
+        element.innerHTML = 'Hei';  // Vi kan også bruke this til å hente andre egenskaper til elementet. Her sier vi at boksen skal også inneholde "Hei" når den samtidig skifter farge når den blir trykket på.
+    }
+
+    // Da er det ikke ID'en til elementet, men selve elementet vi sender med og da trenger vi ikke lenger å hente elementById, fordi vi har elementet.
+    // Vi kan da bytte ut "document.getElementById(elementID)" med kun "element" - blir funksjonen seende slik ut: element.style.backgroundColor = "green"
+    // Vi sender med andre ord <div> inn som et parameter.
+
+   
+</script>
+</html>

@@ -47,7 +47,7 @@
 
 
 
-
+<!-- 
 <body>
     <div class="pink box" id="pinkbox" onclick="changeColor('pinkbox')"></div>
     <div class="red box" id="redbox" onclick="changeColor('redbox')"></div>
@@ -89,7 +89,7 @@
     alert("Funksjonen fungerer!");
 }
 </script>
-
+ -->
 
 
 
@@ -97,9 +97,9 @@
 
 
 <body>
-    <div class="pink box" onclick="changeColor('pinkbox')"></div>
-    <div class="red box" onclick="changeColor('redbox')"></div>
-    <div class="blue box" onclick="changeColor('bluebox')"></div>
+    <div class="pink box" onclick="changeColor(this)"></div>
+    <div class="red box" onclick="changeColor(this)"></div>
+    <div class="blue box" onclick="changeColor(this)"></div>
 </body>
 <!-- 
 
@@ -115,22 +115,22 @@ Istedet for å bruke "id" her, så kan vi fjerne de og heller bruke "this". Kode
     }
 
     .pink{
-        background-color: pink
+        background-color: pink;
     }
 
     .red{
-        background-color: red
+        background-color: red;
     }
 
     .blue{
-        background-color: blue
+        background-color: blue;
     }
 </style>
 
 <script>
     function changeColor(element){
-        element.style.backgroundColor = "green"
-        element.innerHTML = 'Hei'  // Vi kan også bruke this til å hente andre egenskaper til elementet. Her sier vi at boksen skal også inneholde "Hei" når den samtidig skifter farge når den blir trykket på.
+        element.style.backgroundColor = "green";
+        element.innerHTML = 'Hei';  // Vi kan også bruke this til å hente andre egenskaper til elementet. Her sier vi at boksen skal også inneholde "Hei" når den samtidig skifter farge når den blir trykket på.
     }
 
     // Da er det ikke ID'en til elementet, men selve elementet vi sender med og da trenger vi ikke lenger å hente elementById, fordi vi har elementet.
@@ -138,5 +138,6 @@ Istedet for å bruke "id" her, så kan vi fjerne de og heller bruke "this". Kode
     // Vi sender med andre ord <div> inn som et parameter.
 
    
-    </script>
+</script>
+
 </html>
