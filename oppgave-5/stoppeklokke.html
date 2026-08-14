@@ -15,8 +15,8 @@
 
         <br>
         Stoppeklokke:
-        <div id="app">0</div>
-        <!-- Dette er området hvor antall sekunder skal vises. id="app" gjør at JavaScript kan finne dette elementet. -->
+        <div id="viseTid">0</div>
+        <!-- Dette er området hvor antall sekunder skal vises. id="viseTid" gjør at JavaScript kan finne dette elementet. -->
 
 
         Rundetider:
@@ -26,7 +26,7 @@
     </div>
 
     <script>
-        const app = document.getElementById('app');                 //Finner HTML-elementet med id="app" og lagrer det i variabelen app. Da kan vi senere skrive til dette elementet: app.innerHTML = seconds;
+        const viseTid = document.getElementById('viseTid');         //Finner HTML-elementet med id="viseTid" og lagrer det i variabelen viseTid. Da kan vi senere skrive til dette elementet: viseTid.innerHTML = seconds;
         const rundeTid = document.getElementById('forrigeRunde');   //Finner HTML-elementet med id="forrigeRunde" og lagrer det i rundeTid. Vi trenger det for å kunne skrive rundetidene inn på nettsiden.
         let sekunder = 0;                                           //Lager en variabel som holder styr på hvor mange sekunder som har gått. Den starter på 0.
         var timer;                                                  //Lager en variabel som skal brukes til å lagre timeren/intervallet.
@@ -36,7 +36,7 @@
         }
 
         function tellSekunder(){                                    //Her definerer vi hvilken funksjon "tellSekunder" har. Denne funksjonen gjør to ting:
-            app.innerHTML = sekunder;                               //1) Viser verdien til seconds på nettsiden. Hvis sekunder er 5, viser "Stoppeklokke: 5"
+            viseTid.innerHTML = sekunder;                           //1) Viser verdien til seconds på nettsiden. Hvis sekunder er 5, viser "Stoppeklokke: 5"
             sekunder++;                                             //2) Øker seconds med 1. "sekunder++" er det samme som: sekunder = sekunder + 1;
         }
 
