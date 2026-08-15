@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            margin-bottom: 50px;
+            border: 10px;
+            border-color: black;
+            cursor:pointer;
+        }
+        .red{
+            background-color: red;
+
+        }
+        .blue{
+            background-color: blue;
+
+        }
+        .yellow{
+            background-color: yellow;
+
+        }
+
+        
+    </style>
+</head>
+<body id="farge">
+    <div class="red box" onclick="changeColorRed()"></div>
+    <div class="blue box" onclick="changeColorBlue()"></div>
+    <div class="yellow box" onclick="changeColorYellow()"></div>
+
+    <!-- <button onclick="addContent()">Add</button>
+    <button onclick="toggleContent()">Toggle</button>
+    <button onclick="removeContent()">Remove</button> -->
+  
+
+    <script>
+        function changeColorRed(){
+            document.getElementById('farge').classList.toggle('red');
+            // document.getElementById('farge').classList.add('blue');
+            // document.getElementById('farge').classList.add('yellow');
+
+        }
+        function changeColorBlue(){
+            document.getElementById('farge').classList.toggle('blue');
+
+        }
+        
+        function changeColorYellow(){
+            document.getElementById('farge').classList.toggle('yellow');
+
+        }
+
+    // function addContent(){
+    //     // document.getElementById('red').innerHTML="";
+    //     document.getElementById('farge').classList.add('red');
+
+    // }
+
+    // function toggleContent(){
+    //     document.getElementById('farge').classList.toggle('red');
+
+    // }
+
+    // function removeContent(){
+    //     document.getElementById('farge').classList.remove('red');
+
+    // }
+
+    </script>
+</body>
+</html>

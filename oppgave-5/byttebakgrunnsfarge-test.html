@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+
+    <style>
+
+        /* 
+        .box gjelder de store fargeboksene.
+        */
+        .box {
+            height: 100px;
+            width: 100px;
+            margin: 50px;
+            border: 5px solid grey;
+            cursor: pointer;
+        }
+
+
+        /* 
+        Disse klassene bestemmer hvilken farge de store boksene har.
+        */
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+
+        /*
+        .selectBox gjelder de små boksene
+        som vi skal kunne velge og fargelegge.
+        */
+        .selectBox {
+            height: 25px;
+            width: 25px;
+            margin: 50px;
+            border: 5px solid grey;
+            cursor: pointer;
+        }
+
+
+        /*
+        Denne klassen brukes for å vise hvilken boks
+        som er valgt.
+
+        Når JavaScript legger til "selected",
+        blir rammen svart.
+        */
+        .selected {
+            border: 5px solid black;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!--
+    DE STORE FARGEBOKSENE
+
+    "this" sender selve div-en som ble klikket
+    inn i funksjonen.
+
+    'red', 'blue' og 'yellow' sender fargen
+    som ble valgt inn i funksjonen.
+    -->
+
+    <div class="red box" onclick="velgFarge(this, 'red')"></div>
+
+    <div class="blue box" onclick="velgFarge(this, 'blue')"></div>
+
+    <div class="yellow box" onclick="velgFarge(this, 'yellow')"></div>
+
+
+
+    <!--
+    DE SMÅ BOKSENE
+
+    Disse er boksene vi kan velge og gi
+    den fargen vi har valgt ovenfor.
+    -->
+
+    <div class="selectBox" onclick="fargeBoks(this)"></div>
+
+    <div class="selectBox" onclick="fargeBoks(this)"></div>
+
+    <div class="selectBox" onclick="fargeBoks(this)"></div>
+
+
+
+    <!--
+    Denne knappen endrer hele bakgrunnsfargen
+    på nettsiden.
+    -->
+
+    <button onclick="endreBakgrunn()">
+        Endre bakgrunn
+    </button>
+
+
+
+    <script>
+
+        /*
+        valgtFarge husker hvilken farge brukeren
+        har valgt.
+
+        Eksempel:
+        Klikker brukeren på den røde boksen,
+        blir valgtFarge = "red".
+        */
+        let valgtFarge = "";
+
+
+        /*
+        valgtFargeDiv husker hvilken av de STORE
+        fargeboksene som er valgt.
+
+        Dette bruker vi for å kunne vise
+        den svarte rammen rundt valgt farge.
+        */
+        let valgtFargeDiv;
+
+
+        /*
+        valgtDiv husker hvilken av de SMÅ
+        boksene som er valgt.
+        */
+        let valgtDiv;
+
+
+
+        /*
+        FUNKSJON: velgFarge()
+
+        Denne kjører når brukeren klikker
+        på en av de store fargeboksene.
+        */
+
+        function velgFarge(element, farge) {
+
+
+            /*
+            Hvis vi allerede har valgt en fargeboks,
+            fjerner vi "selected"-klassen fra den.
+
+            Dette gjør at den svarte rammen forsvinner
+            når vi velger en annen farge.
+            */
+
+            if (valgtFargeDiv) {
+                valgtFargeDiv.classList.remove("selected");
+            }
+
+
+            /*
+            Vi lagrer fargen brukeren valgte.
+
+            Eksempel:
+            farge = "blue"
+
+            Da blir:
+            valgtFarge = "blue"
+            */
+
+            valgtFarge = farge;
+
+
+            /*
+            Vi lagrer selve fargeboksen som ble klikket.
+            */
+
+            valgtFargeDiv = element;
+
+
+            /*
+            Legger til "selected"-klassen.
+
+            CSS-en til .selected gir boksen
+            en svart ramme.
+            */
+
+            valgtFargeDiv.classList.add("selected");
+
+        }
+
+
+
+        /*
+        FUNKSJON: fargeBoks()
+
+        Denne kjører når brukeren klikker
+        på en av de små boksene.
+        */
+
+        function fargeBoks(element) {
+
+
+            /*
+            Hvis en annen liten boks allerede er valgt,
+            fjerner vi "selected"-klassen fra den.
+
+            Dermed er bare én liten boks valgt
+            om gangen.
+            */
+
+            if (valgtDiv) {
+                valgtDiv.classList.remove("selected");
+            }
+
+
+            /*
+            Vi lagrer den lille boksen som ble klikket.
+            */
+
+            valgtDiv = element;
+
+
+            /*
+            Legger til svart ramme rundt
+            den lille boksen vi nettopp valgte.
+            */
+
+            valgtDiv.classList.add("selected");
+
+
+            /*
+            Her bruker vi variabelen valgtFarge.
+
+            Hvis brukeren tidligere valgte blå,
+            er valgtFarge = "blue".
+
+            Da blir den lille boksen blå.
+            */
+
+            valgtDiv.style.backgroundColor = valgtFarge;
+
+        }
+
+
+
+        /*
+        FUNKSJON: endreBakgrunn()
+
+        Denne kjører når brukeren trykker
+        på knappen "Endre bakgrunn".
+        */
+
+        function endreBakgrunn() {
+
+
+            /*
+            document.body betyr hele <body>-elementet.
+
+            style.backgroundColor endrer bakgrunnsfargen.
+
+            Vi bruker valgtFarge fordi variabelen
+            husker hvilken farge brukeren valgte.
+            */
+
+            document.body.style.backgroundColor = valgtFarge;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

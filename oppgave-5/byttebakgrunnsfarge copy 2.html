@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            margin: 50px;
+            border: 5px solid grey;
+            cursor:pointer;
+        }
+        .red{
+            background-color: red;
+
+        }
+        .blue{
+            background-color: blue;
+
+        }
+        .yellow{
+            background-color: yellow;
+
+        }
+
+        .selectBox{
+            height: 25px;
+            width: 25px;
+            margin: 50px;
+            border: 5px solid grey;
+            cursor:pointer;
+
+        }
+
+        .selected{ 
+            border: 5px solid black;
+            cursor:pointer;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Fargeboksene -->      
+    <div class="red box" onclick="velgFarge(this, 'red')"></div>
+    <div class="blue box" onclick="velgFarge(this, 'blue')"></div>
+    <div class="yellow box" onclick="velgFarge(this, 'yellow')"></div>
+
+    <!-- Boksene som skal få forhåndsvalgte farger -->
+    <div class="selectBox" onclick="fargeBoks(this)"></div>
+    <div class="selectBox" onclick="fargeBoks(this)"></div>
+    <div class="selectBox" onclick="fargeBoks(this)"></div>
+
+    <button onclick="endreBakgrunn()">Endre bakgrunn</button>
+
+    <script>
+        let valgtFarge = "";   
+        let valgtFargeDiv;             //husker hvilken farge du har valgt
+        let valgtDiv;                       //skal huske hvilken div du har valgt
+
+
+        function endreBakgrunn(){
+            document.body.style.backgroundColor = valgtFarge;        
+        }
+
+        function velgFarge(element, farge){
+            if(valgtFargeDiv){
+                valgtFargeDiv.classList.remove("selected");
+            }
+
+            valgtFarge = farge;
+            valgtFargeDiv = element;
+
+            valgtFargeDiv.classList.add("selected");
+        }
+
+        function fargeBoks(element){
+            if(valgtDiv){
+                valgtDiv.classList.remove("selected");
+            }
+            
+            valgtDiv = element;
+
+            valgtDiv.classList.add("selected");
+            valgtDiv.style.backgroundColor = valgtFarge;
+        }
+
+
+    </script>
+</body>
+</html>

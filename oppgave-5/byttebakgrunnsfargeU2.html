@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            margin: 50px;
+            border: 5px solid grey;
+            cursor:pointer;
+        }
+        .red{
+            background-color: red;
+
+        }
+        .blue{
+            background-color: blue;
+
+        }
+        .yellow{
+            background-color: yellow;
+
+        }
+
+        .selected{ 
+            border: 5px solid black;
+            cursor:pointer;
+        }
+        
+    </style>
+</head>
+
+<body id="farge">
+
+    
+    <!-- <div class="red box" onclick="changeColorRed()"></div>
+    <div class="blue box" onclick="changeColorBlue()"></div>
+    <div class="yellow box" onclick="changeColorYellow()"></div> -->
+  
+    <div id="redBox" class="red box" onclick="redDiv()"></div>
+    <div id="blueBox" class="blue box" onclick="blueDiv()"></div>
+    <div id="yellowBox" class="yellow box" onclick="yellowDiv()"></div>
+
+    <div class="selectBox"></div>
+    <div class="selectBox"></div>
+    <div class="selectBox"></div>
+
+    <button onclick="endreBakgrunn()">Endre bakgrunn</button>
+
+    <script>
+        var fargeDiv = document.getElementById('farge');
+        let valgtFarge = "";
+        let valgtDiv;
+
+        function endreBakgrunn(){
+            document.body.style.backgroundColor = valgtFarge;
+            document.getElementById('redBox').classList.remove("selected");
+            document.getElementById('blueBox').classList.remove("selected");
+            document.getElementById('yellowBox').classList.remove("selected");
+        
+        }
+
+        function redDiv(){
+            valgtFarge = 'red';
+            document.getElementById('redBox').classList.add("selected");
+            document.getElementById('blueBox').classList.remove("selected");
+            document.getElementById('yellowBox').classList.remove("selected");
+
+        }
+        function blueDiv(){
+            valgtFarge = 'blue';
+            document.getElementById('blueBox').classList.add("selected");
+            document.getElementById('redBox').classList.remove("selected");
+            document.getElementById('yellowBox').classList.remove("selected");
+
+        }
+        function yellowDiv(){
+            valgtFarge = 'yellow';
+            document.getElementById('yellowBox').classList.add("selected");
+            document.getElementById('blueBox').classList.remove("selected");
+            document.getElementById('redBox').classList.remove("selected");
+
+        }
+
+        // function changeColorRed(){
+        //     bytteFarge.classList.add('red');
+
+        // }
+        // function changeColorBlue(){
+        //     bytteFarge.classList.toggle('blue');
+
+        // }
+        
+        // function changeColorYellow(){
+        //     bytteFarge.classList.toggle('yellow');
+
+        // }
+
+
+    </script>
+</body>
+</html>
