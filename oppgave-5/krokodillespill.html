@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Poeng:<div id="poengTall">0</div>
+    <br>
+
+    Hvilket tall er størst? 
+    <br><br>
+    <div id=tallEn></div>
+    <input id=inputSvar type="text">
+    <div id=tallTo></div>
+    
+    <button onclick="submitKnapp()">Submit</button>
+    <button onclick="resetKnapp()">Reset</button>
+
+    <script>
+        let tallEn = 0;
+        let tallTo = 0;
+        let poeng = 0;
+        let random = Math.random();
+
+        resetKnapp()
+
+        function resetKnapp(){
+            tallEn = hentTilfeldigNummer();
+            tallTo = hentTilfeldigNummer();
+            document.getElementById('tallEn').innerHTML = tallEn;
+            document.getElementById('tallTo').innerHTML = tallTo;
+        }
+
+        function hentTilfeldigNummer(){
+            return Math.floor(Math.random()*10)+1;
+        }
+
+        function submitKnapp(){
+            let svar = document.getElementById('inputSvar').value;
+
+            if(tallEn > tallTo && svar ===">"){
+                poeng++;
+            }
+
+            else if(tallEn < tallTo && svar ==="<"){
+                poeng++;
+            }
+
+            else if(tallEn === tallTo && svar ==="="){
+                poeng++;
+            }
+            
+            else{
+                poeng--;
+            }
+
+            document.getElementById('poengTall').innerHTML = poeng;
+
+        }
+        
+        //Hvis vi ikke bruker "else if", så blir koden superlang:
+
+        //     if (tallEn > tallTo) {
+        //         if (svar === ">") {
+        //             poeng++;
+        //             }
+        //             else {
+        //             poeng--;
+        //             }
+        //         }
+        //     else {
+        //         if (tallEn < tallTo) {
+        //             if (svar === "<") {
+        //             poeng++;
+        //             }
+        //         else {
+        //             poeng--;
+        //             }
+        //         }
+        //     else {
+        //             if (svar === "=") {
+        //             poeng++;
+        //             }
+        //             else {
+        //             poeng--;
+        //             }
+        //         }
+        //     }
+    </script>
+</body>
+</html>
