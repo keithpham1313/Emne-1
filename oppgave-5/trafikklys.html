@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .trafikkLys{
+            height: 150px;
+            width: 150px;
+            margin: 25px;
+            border: 5px solid black;
+            background-color: grey;
+            border-radius: 50%;
+        }
+        .red{
+            background-color: red;
+        }
+
+        .yellow{
+            background-color: yellow;
+        }
+
+        .green{
+            background-color: green;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="trafikkLys" onclick="endreFarge(this, 'red')"></div>
+    <div class="trafikkLys" onclick="endreFarge(this, 'yellow')"></div>
+    <div class="trafikkLys" onclick="endreFarge(this, 'green')"></div>
+    
+    <script>
+
+        function endreFarge(thisElement, farge){
+            thisElement.style.backgroundColor = farge;
+        }
+
+    </script>
+</body>
+</html>
