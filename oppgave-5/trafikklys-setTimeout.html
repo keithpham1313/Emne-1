@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .trafikkLys{
+            height: 150px;
+            width: 150px;
+            margin: 25px;
+            border: 5px solid black;
+            background-color: grey;
+            border-radius: 50%;
+        }
+        .red{
+            background-color: red;
+        }
+
+        .yellow{
+            background-color: yellow;
+        }
+
+        .green{
+            background-color: green;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="redLys" class="trafikkLys"></div>
+    <div id="yellowLys" class="trafikkLys"></div>
+    <div id="greenLys" class="trafikkLys"></div>
+    
+    
+    <script>
+        const redLys=document.getElementById('redLys');
+        const yellowLys=document.getElementById('yellowLys');
+        const greenLys=document.getElementById('greenLys');
+        
+        let lys = 1;
+
+        byttLys();
+
+        function byttLys(){
+
+            if(lys===1){
+                redLys.style.backgroundColor="red";
+                yellowLys.style.backgroundColor="grey";
+                greenLys.style.backgroundColor="grey";
+
+                lys=2;
+                setTimeout(byttLys,5000);
+            }
+        
+            else if(lys===2){
+                redLys.style.backgroundColor="grey";
+                yellowLys.style.backgroundColor="yellow";
+                greenLys.style.backgroundColor="grey";
+
+                lys=3;
+                setTimeout(byttLys,1500);
+            }
+        
+            else if(lys===3){
+                redLys.style.backgroundColor="grey";
+                yellowLys.style.backgroundColor="grey";
+                greenLys.style.backgroundColor="green";
+
+                lys=1;
+                setTimeout(byttLys,5000);
+            }
+        }
+        
+    </script>
+</body>
+</html>
