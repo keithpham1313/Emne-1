@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .group{
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script> //MVC = Model View Controll
+
+        //Modell
+        let name = "..her kommer et navn";
+        let place = "..her kommer et sted<";
+        let food = "..her kommer en matrett";
+
+        //View
+        updateView()
+        
+        function updateView(){
+            let html = `
+            <div class="group">
+             <div>Hei jeg heter</div>
+             <div id="namediv">${name}</div>
+            </div>
+
+            <div class="group">
+             <div>"Jeg bor i"</div>
+             <div id="placediv">${place}</div>
+            </div>
+
+            <div class="group">
+             <div>Min favorittmat er</div>
+             <div id="fooddiv">${food}</div>
+            </div>
+
+            <button onclick="setFields()">Klikke her for å sette verdier</button>
+            <input type="text" onchange="setName(this.value)">
+            <input type="text" onchange="setPlace(this.value)">
+            <input type="text" onchange="setFood(this.value)">
+
+            `
+
+            document.getElementById('app').innerHTML = html;
+            
+            // document.getElementById("namediv").innerHTML = name;
+            // document.getElementById("placediv").innerHTML = place;
+            // document.getElementById("fooddiv").innerHTML = food;
+        }
+
+        //Controller - styrer endring av modellen
+        function setName(nameInput){
+            name = nameInput;
+            updateView()
+        }
+
+        function setPlace(placeInput){
+            place = placeInput;
+            updateView()
+        }
+
+        function setFood(foodInput){
+            food = foodInput;
+            updateView()
+        }
+
+    </script>
+
+
+</body>
+</html>
