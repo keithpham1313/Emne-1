@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+       #inventory{
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            gap: 10px;
+
+
+        }
+
+        .slot{
+            height:100px;
+            border: 2px solid black;
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <h2>Inventory</h2>
+    <div id="inventory">
+        <div id="rute0" class="slot"></div>
+        <div id="rute1" class="slot"></div>
+        <div id="rute2" class="slot"></div>
+        <div id="rute3" class="slot"></div>
+        <div id="rute4" class="slot"></div>
+        <div id="rute5" class="slot"></div>
+    </div>    
+
+    <h2>Meny</h2>
+        <div onclick="leggTilItem('Sverd')">Sverd</div>
+        <div onclick="leggTilItem('Skjold')">Skjold</div>
+        <div onclick="leggTilItem('Potion')">Potion</div>
+
+    <script>
+        let plass = 0;
+        
+        function leggTilItem(item){
+            let aktivRute = document.getElementById('rute'+plass);
+            
+            aktivRute.innerHTML = item;
+
+            plass++;
+
+            
+        }
+
+//         let plass = 0;
+
+//     function leggTilItem(item){
+    
+//     if (plass == 0) {
+//         let rute = document.getElementById('rute0');
+//         rute.innerHTML = item;
+//     } 
+//     else if (plass == 1) {
+//         let rute = document.getElementById('rute1');
+//         rute.innerHTML = item;
+//     } 
+//     else if (plass == 2) {
+//         let rute = document.getElementById('rute2');
+//         rute.innerHTML = item;
+//     } 
+//     else if (plass == 3) {
+//         let rute = document.getElementById('rute3');
+//         rute.innerHTML = item;
+//     } 
+//     else if (plass == 4) {
+//         let rute = document.getElementById('rute4');
+//         rute.innerHTML = item;
+//     } 
+//     else if (plass == 5) {
+//         let rute = document.getElementById('rute5');
+//         rute.innerHTML = item;
+//     }
+
+//     // Øker plass med 1 så neste klikk går til neste rute
+//     plass++; 
+// }
+    </script>
+</body>
+</html>
