@@ -25,14 +25,28 @@
         <button onclick="createAndShowHtml ('yellow', 'GET Academy', 20)"> Test3</button>
 
     <script>
+        // function createAndShowHtml(color, text, fontSize){
+        //     document.getElementById('mainDiv').innerHTML = `
+        //     <div style= "background-color: ${color}; font-size: ${fontSize}px;"> ${text} </div>
+        //     `;
+        //     }
         function createAndShowHtml(color, text, fontSize){
             document.getElementById('mainDiv').innerHTML = `
-            <div style= "background-color: ${color}; font-size: ${fontSize}px;"> ${text} </div>
+            <div ${createStyle(color, fontSize)}> ${text} </div>
             `;
             }
         
             function createStyle(color, fontSize){
-            return `style="background-color: ${color}; font-size: ${fontSize}px;"`} //Returnere bakgrunnsfargen
+                return `style="${createbackgroundColor(color)} ${createFontSize(fontSize)}"`; //Returnere bakgrunnsfargen
+            }
+
+            function createbackgroundColor(color){
+                return `background-color: ${color};`;       //Returnerer verdien til funksjonen "createStyle(color, fontSize)"
+            }
+
+            function createFontSize(fontSize){
+                return `font-size: ${fontSize}px;`;        //Returnerer verdien til funksjonen "createStyle(color, fontSize)"
+            }
         
 
 

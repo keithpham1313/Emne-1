@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .group{
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="group">
+        <div>Hei jeg heter</div>
+        <div id="namediv">..her kommer et navn</div>
+    </div>
+    <div class="group">
+        <div class="Jeg bor i"></div>
+        <div id="placediv">..her kommer et sted</div>
+    </div>
+    <div class="group">
+        <div>Min favorittmat er</div>
+        <div id="fooddiv">..her kommer en matrett</div>
+    </div>
+
+    <button onclick="setFields()">Klikke her for å sette verdier</button>
+    <input type="text" onchange="setName(this.value)">      //Her kan vi endre navnet til noe annet
+
+    <script> //MVC = Model View Controll
+
+        //Modell
+        let name = "Marie";
+        let place = "Tønsberg";
+        let food = "Pizza";
+
+        //View
+        function setFields(){
+            document.getElementById("namediv").innerHTML = name;
+            document.getElementById("placediv").innerHTML = place;
+            document.getElementById("fooddiv").innerHTML = food;
+        }
+
+        //Controller - styrer endring av modellen
+        function setName(nameInput){
+            name = nameInput;           // variabelen "name" er ikke lenger "Marie" dersom vi skriver inn noe annet i "input" og deretter trykker på knappen "Klikke her for å sette verdier"
+            setFields();
+        }
+
+    </script>
+
+
+</body>
+</html>
