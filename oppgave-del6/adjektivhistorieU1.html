@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjektivhistorie</title>
+
+    <style>
+        .group {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script>
+
+        // MODEL
+
+        let colorVar = "_____";
+        let itVar = "_____";
+
+
+        // VIEW
+
+        updateView();
+
+        function updateView() {
+
+            let html = `
+                <div class="group">
+                    <div>Once, there was an</div>
+                    <div>${colorVar} ${itVar}</div>
+                </div>
+
+                <br>
+
+                <button onclick="changeWord('Orange', 1)">Orange</button>
+                <button onclick="changeWord('Black', 1)">Black</button>
+
+                <button onclick="changeWord('Cat', 2)">Cat</button>
+                <button onclick="changeWord('Man', 2)">Man</button>
+            `;
+
+            document.getElementById('app').innerHTML = html;
+        }
+
+
+        // CONTROLLER
+
+        function changeWord(word, place) {
+
+            if (place == 1) {
+                colorVar = word;
+            }
+
+            if (place == 2) {
+                itVar = word;
+            }
+
+            updateView();
+        }
+
+    </script>
+
+</body>
+</html>

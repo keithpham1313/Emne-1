@@ -4,23 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .group{
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+
+
+    </style>
 </head>
+
 <body>
     <div id="app"></div>
-        Once, there was an Orange Cat that Jumped in the Pool - and great things happened. The End.
 
-    <button>Orange</button>
-    <button onclick="changeColor()">Orange</button>
-    <button onclick="changeColor()">Black</button>
-    <button onclick="changeColor()">Cat</button>
-    <button onclick="changeColor()">Man</button>
-    <button onclick="changeColor()">Stared</button>
-    <button onclick="changeColor()">Jumped</button>
-    <button onclick="changeColor()">Pool</button>
-    <button onclick="changeColor()">Man</button>
+
     <script>
 
-        let color1 = "Orange"
+        let colorVar = "_____";
+        let itVar = "_____";
+        let actionVar = "_____";
+        let objVar = "_____";
+
+        updateView()
+
+        function updateView(){
+            let html = `
+            <div class="group">
+             <div>Once, there was an</div>
+             <div>${colorVar} ${itVar}</div>
+             </div>
+
+            <div class="group">
+             <div>that</div>
+             <div>${actionVar}</div>
+             </div>
+
+            <div class="group">
+             <div>in the</div>
+             <div>${objVar}</div>
+             </div>
+            
+             <div class="group">
+             <div> - and great things happened. The End. </div>
+             </div>
+
+                <button class="knapp" onclick="changeWord('Orange',1)">Orange</button>
+                <button class="knapp" onclick="changeWord('Black',1)">Black</button>
+
+                <button class="knapp" onclick="changeWord('Cat',2)">Cat</button>
+                <button class="knapp" onclick="changeWord('Man',2)">Man</button>
+
+                <button class="knapp" onclick="changeWord('Stared',3)">Stared</button>
+                <button class="knapp" onclick="changeWord('Jumped',3)">Jumped</button>
+
+                <button class="knapp" onclick="changeWord('Pool',4)">Pool</button>
+                <button class="knapp" onclick="changeWord('Wall',4)">Wall</button>
+
+
+            `;
+
+            document.getElementById('app').innerHTML = html;
+
+        }
+
+        function changeWord(word, place){
+
+            if(place==1){
+                colorVar = word;
+            }
+            
+            if(place==2){
+                itVar = word;
+            }
+
+            if(place==3){
+                actionVar = word;
+            }
+
+            if(place==4){
+                objVar = word;
+            }
+
+            updateView()
+        }
 
     </script>
 </body>
