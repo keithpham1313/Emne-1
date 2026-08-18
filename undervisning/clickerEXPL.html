@@ -1,0 +1,208 @@
+<!doctype html>                                      <!-- Forteller nettleseren at dette er HTML5 -->
+<html lang="en">                                     <!-- Starter HTML-dokumentet og angir språk -->
+  <head>                                             <!-- Inneholder informasjon OM nettsiden -->
+    <meta charset="UTF-8" />                         <!-- Gjør at æ, ø, å osv. fungerer -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                                                     <!-- Gjør siden tilpasset mobilskjermer -->
+    <title>Clicker-eksempel</title>                  <!-- Teksten som vises i nettleserfanen -->
+  </head>
+
+  <body>                                             <!-- Alt som faktisk vises på nettsiden -->
+
+    <h2 id="points">0</h2>                           <!-- Viser antall points. Starter på 0 -->
+
+    <button onclick="addPoints()">click</button>    <!-- Når knappen trykkes, kjører addPoints() -->
+
+    <div>                                            <!-- Samler upgrade-delen -->
+      <h3>Upgrades!</h3>                             <!-- Overskrift -->
+
+      <span>Price:                                   
+        <span id="upgrade_1_price">10</span>         <!-- Viser prisen på upgrade 1 -->
+      </span>
+
+      <button                                          
+        disabled                                      <!-- Knappen er deaktivert i starten -->
+        id="upgrade_1"                                <!-- Gir knappen en ID -->
+        onclick="addUpgrade(5, 'upgrade_1')"         <!-- Sender 5 og "upgrade_1" til funksjonen -->
+      >
+        +5                                             <!-- Teksten på knappen -->
+      </button>
+
+      <span>Price:
+        <span id="upgrade_2_price">20</span>         <!-- Viser prisen på upgrade 2 -->
+      </span>
+
+      <button
+        disabled                                      <!-- Knappen er deaktivert i starten -->
+        id="upgrade_2"                                <!-- Gir knappen en ID -->
+        onclick="addUpgrade(10, 'upgrade_2')"        <!-- Sender 10 og "upgrade_2" til funksjonen -->
+      >
+        +10                                            <!-- Teksten på knappen -->
+      </button>
+
+    </div>
+
+    <div>
+      Total clicks:
+      <span id="clicks">0</span>                    <!-- Viser hvor mange ganger man har klikket -->
+    </div>
+
+    <div>
+      Upgrades bought:
+      <span id="upgradesBought">0</span>             <!-- Viser antall kjøpte upgrades -->
+    </div>
+
+
+    <script>                                         <!-- Her starter JavaScript -->
+
+      // var number = 1;                             // Eksempel på en variabel med var
+      // let text = "Hei på deg";                    // Eksempel på en variabel med let
+      // const letterA = "A";                        // const kan ikke endres etterpå
+
+      // let isOpen = false;                         // Boolean: enten true eller false
+      // let isLoggedIn;                             // Variabelen starter som undefined
+
+      // console.log(isLoggedIn);                    // Skriver verdien til konsollen
+      // isLoggedIn = true;                          // Setter verdien til true
+      // isLoggedIn = !isLoggedIn;                   // ! betyr "ikke", så true blir false
+      // console.log(isLoggedIn);                    // Skriver den nye verdien
+
+
+      let points = 0;                                // Spilleren starter med 0 points
+
+      let clicks = 0;                               // Teller hvor mange ganger click-knappen trykkes
+
+      let amountToAdd = 1;                          // Hvor mange points man får per klikk
+
+      let upgradesBought = 0;                       // Teller hvor mange upgrades som er kjøpt
+
+      let upgradePrice1 = 10;                       // Prisen på upgrade 1 starter på 10
+
+      let upgradePrice2 = 20;                       // Prisen på upgrade 2 starter på 20
+
+
+      function addPoints() {                         // Funksjon som kjører når click-knappen trykkes
+
+        points += amountToAdd;                       // Øker points med amountToAdd
+
+        clicks++;                                    // Øker clicks med 1
+
+        updateDisplay();                             // Oppdaterer det som vises på nettsiden
+      }
+
+
+      function updateDisplay() {                     // Funksjon som oppdaterer HTML-en
+
+        document.getElementById("points").innerHTML = points;
+                                                     // Finner elementet med id="points"
+                                                     // og setter inn verdien til points
+
+        document.getElementById("clicks").innerHTML = clicks;
+                                                     // Viser antall klikk
+
+        document.getElementById("upgradesBought").innerHTML = upgradesBought;
+                                                     // Viser antall kjøpte upgrades
+
+        document.getElementById("upgrade_1_price").innerHTML = upgradePrice1;
+                                                     // Oppdaterer prisen på upgrade 1
+
+        document.getElementById("upgrade_2_price").innerHTML = upgradePrice2;
+                                                     // Oppdaterer prisen på upgrade 2
+
+        checkUpgradeButtons();                       // Sjekker om upgrade-knappene skal være aktive
+      }
+
+
+      function addUpgrade(amount, buttonId) {        // Funksjon for å kjøpe en upgrade
+                                                     // amount = hvor mye ekstra points per klikk
+                                                     // buttonId = hvilken upgrade-knapp som ble trykket
+
+        upgradesBought++;                            // Øker antall kjøpte upgrades med 1
+
+        amountToAdd += amount;                       // Øker points per klikk
+
+        points -= buttonId == "upgrade_1" ? upgradePrice1 : upgradePrice2;
+                                                     // Trekker riktig pris fra points
+                                                     // ? : er en ternary operator
+                                                     // Hvis buttonId er "upgrade_1":
+                                                     //     bruk upgradePrice1
+                                                     // Ellers:
+                                                     //     bruk upgradePrice2
+
+        upgradePrice1 =
+          buttonId == "upgrade_1"
+            ? upgradePrice1 * 2
+            : upgradePrice1;
+                                                     // Hvis upgrade 1 ble kjøpt,
+                                                     // dobles prisen på upgrade 1
+                                                     // Hvis ikke, beholdes prisen
+
+        upgradePrice2 =
+          buttonId == "upgrade_2"
+            ? upgradePrice2 * 2
+            : upgradePrice2;
+                                                     // Hvis upgrade 2 ble kjøpt,
+                                                     // dobles prisen på upgrade 2
+                                                     // Hvis ikke, beholdes prisen
+
+        updateDisplay();                             // Oppdaterer nettsiden etter kjøpet
+      }
+
+
+      function checkUpgradeButtons() {               // Sjekker om knappene kan trykkes
+
+        document.getElementById("upgrade_1").disabled =
+          points > upgradePrice1 ? false : true;
+                                                     // Finner upgrade 1-knappen
+                                                     // Hvis points > prisen:
+                                                     //     disabled = false (knappen kan trykkes)
+                                                     // Ellers:
+                                                     //     disabled = true (knappen er deaktivert)
+
+        document.getElementById("upgrade_2").disabled =
+          points > upgradePrice2 ? false : true;
+                                                     // Gjør det samme for upgrade 2
+
+      }
+
+
+    </script>                                        <!-- JavaScript slutter -->
+
+
+<!-- 
+                 DU KLIKKER
+                     ↓
+              addPoints()
+                     ↓
+        points += amountToAdd
+        clicks++
+                     ↓
+             updateDisplay()
+                     ↓
+        ┌────────────┼────────────┐
+        ↓            ↓            ↓
+     points        clicks      upgrades
+        ↓            ↓            ↓
+              HTML oppdateres
+
+
+
+                KLIKK PÅ +5
+                    ↓
+        addUpgrade(5, "upgrade_1")
+                    ↓
+            upgradesBought++
+                    ↓
+            amountToAdd += 5
+                    ↓
+            points -= pris
+                    ↓
+            pris × 2
+                    ↓
+            updateDisplay()
+                    ↓
+            checkUpgradeButtons()
+             
+            -->
+  </body>                                            <!-- Body slutter -->
+</html>                                              <!-- HTML-dokumentet slutter -->
