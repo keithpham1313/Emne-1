@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" oninput="inputText(this.value)">         
+    <!-- oninput = skjer i sanntid, altså mens du skriver, mens onchange er at det endrer seg når man klikker ut av feltet -->
+    <div id="textID">Ingenting</div>
+
+    <script>
+        let navn = "";
+        // console.log(navn[0]);
+
+        let bokstaver = "abcdefghijklmnopqrstuvwxyzæøå";
+
+
+        function formatString(){
+            if(bokstaver.includes(navn[0])){                    //hvis vi legger til denne, så vises ikke resultatet når man f.eks. skriver 123terje
+            navn = navn[0].toUpperCase() + navn.slice(1)
+
+            document.getElementById("textID").innerHTML = navn;
+            }
+
+            
+        }
+        
+        function inputText(nameInput){
+           navn = nameInput;
+           formatString();
+        }
+
+
+    </script>
+
+    
+</body>
+</html>

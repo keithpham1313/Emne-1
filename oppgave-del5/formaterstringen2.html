@@ -14,13 +14,17 @@
         let navn = "terje";
         // console.log(navn[0]);
 
-        formatString()
+        let bokstaver = "abcdefghijklmnopqrstuvwxyzæøå";
+
 
         function formatString(){
-            
+            if(bokstaver.includes(navn[0])){                    //hvis vi legger til denne, så vises ikke resultatet når man f.eks. skriver 123terje
             navn = navn[0].toUpperCase() + navn.slice(1)
 
             document.getElementById("textID").innerHTML = navn;
+            }
+
+            
         }
 
         function inputText(nameInput){
@@ -28,32 +32,6 @@
             formatString();
 
         }
-        
-        // Input
-        // ↓
-        // inputText(this.value)
-        // ↓
-        // navn får verdien fra input
-        // ↓
-        // formatString()
-        // ↓
-        // første bokstav gjøres stor
-        // ↓
-        // resultatet vises i <div>
-
-        // navn = navn[0].toUpperCase() + navn.slice(1)
-        
-        // hvis:
-        
-        // navn = "terje"
-
-        // så blir:
-
-        // navn[0]                 → "t"
-        // navn[0].toUpperCase()   → "T"
-        // navn.slice(1)           → "erje"
-
-        // "T" + "erje"            → "Terje"
 
     </script>
 
