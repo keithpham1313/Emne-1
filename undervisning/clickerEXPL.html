@@ -204,5 +204,60 @@
             checkUpgradeButtons()
              
             -->
+
+            1. Trekke riktig pris
+
+            Ternary:
+            points -= buttonId == "upgrade_1" ? upgradePrice1 : upgradePrice2;
+
+            if:
+
+            if (buttonId == "upgrade_1") {
+                    points -= upgradePrice1;
+                } else {
+                    points -= upgradePrice2;
+                }
+
+            2. Øke prisen på upgrade 1
+            
+            Ternary:
+            upgradePrice1 = buttonId == "upgrade_1" ? upgradePrice1 * 2 : upgradePrice1;
+
+            if:
+
+            if (buttonId == "upgrade_1") {
+                    upgradePrice1 = upgradePrice1 * 2;
+                }
+            
+            
+            
+            Hele upgarde() blir seende slik ut:
+
+            function addUpgrade(amount, buttonId) {
+
+            upgradesBought++;
+
+            amountToAdd += amount;
+
+            if (buttonId == "upgrade_1") {
+                points -= upgradePrice1;
+            } else {
+                points -= upgradePrice2;
+            }
+
+            if (buttonId == "upgrade_1") {
+                upgradePrice1 = upgradePrice1 * 2;
+            }
+
+            if (buttonId == "upgrade_2") {
+                upgradePrice2 = upgradePrice2 * 2;
+            }
+
+            updateDisplay();
+            }
+
+
+
+
   </body>                                            <!-- Body slutter -->
 </html>                                              <!-- HTML-dokumentet slutter -->
