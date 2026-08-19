@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="textInput" type="text">
+    <button onclick="printNumbers()">Print numbers</button>
+    <div id="numbers"></div>
+
+    <script>
+        function printNumbers(){
+
+            //Istedet for å skrive alt dette, så kan man skrive det på en enklere måte
+
+            // document.getElementById('numbers').innerHTML += '<li>' + 1 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 2 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 3 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 4 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 5 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 6 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 7 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 8 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 9 + '<li>';
+            // document.getElementById('numbers').innerHTML += '<li>' + 10 + '<li>';
+            
+            //lage startvariabel og sett startverdi
+            //en betingelse for hvor lenge løkken skal kjøre
+            //hva skal skje med startvariabel
+
+            let stopValue = 10;
+
+                for(let counter = 1; counter <= stopValue; counter++){
+                     document.getElementById('numbers').innerHTML += '<li>' + counter + '<li>';
+
+                }
+        }
+    </script>
+</body>
+</html>

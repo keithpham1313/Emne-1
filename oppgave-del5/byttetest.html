@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+.item {
+    height: 50px;
+    width: 150px;
+    margin: 10px;
+    border: 3px solid grey;
+    cursor: pointer;
+}
+
+.inventory {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    gap: 10px;
+}
+
+.inventoryBox {
+    height: 100px;
+    width: 100px;
+    border: 3px solid grey;
+    cursor: pointer;
+}
+
+.selected {
+    border: 3px solid black;
+}
+
+.toggleInventory{
+    display: none;
+}
+
+    </style>
+</head>
+
+
+<body>
+
+<h2>Items</h2>
+
+<div class="item sword" onclick="velgItem(this, 'Sverd')">Sverd</div>
+<div class="item shield" onclick="velgItem(this, 'Skjold')">Skjold</div>
+<div class="item potion" onclick="velgItem(this, 'Potion')">Potion</div>
+
+
+<h2>Inventory</h2>
+
+<button onclick="hideShowInventory()">Hide/Show Inventory</button>
+
+<div id="wholeInventory" class="inventory">
+    <div class="inventoryBox" onclick="velgInventory(this)"></div>
+    <div class="inventoryBox" onclick="velgInventory(this)"></div>
+    <div class="inventoryBox" onclick="velgInventory(this)"></div>
+    <div class="inventoryBox" onclick="velgInventory(this)"></div>
+    <div class="inventoryBox" onclick="velgInventory(this)"></div>
+    <div class="inventoryBox" onclick="velgInventory(this)"></div>
+
+</div>
+
+
+    <script>
+
+        let valgtItem = "";
+        let valgtItemDiv;
+        let valgtInventoryDiv;
+
+
+        function velgItem(element, item){
+
+            // if(valgtItemDiv){
+            //     valgtItemDiv.classList.remove("selected");
+            // }
+
+            valgtItem = item;
+            valgtItemDiv = element;
+
+            // valgtItemDiv.classList.add("selected");
+        }
+
+
+        function velgInventory(element){
+
+            // if(valgtInventoryDiv){
+            //     valgtInventoryDiv.classList.remove("selected");
+            // }
+
+            valgtInventoryDiv = element;
+
+            // valgtInventoryDiv.classList.add("selected");
+
+            valgtInventoryDiv.innerHTML = valgtItem;
+
+            valgtItemDiv.style.display = "none";
+        }
+
+        // function hideShowInventory(){
+        //     document.getElementById('wholeInventory').classList.toggle('toggleInventory');
+
+        // }
+
+
+
+    </script>
+
+        <script src="byttetest.js"></script>
+</body>
+</html>

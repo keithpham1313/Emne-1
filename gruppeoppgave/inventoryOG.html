@@ -30,7 +30,7 @@
     }
 
     .toggleInventory{
-        display: none;
+        
     }
     </style>
 </head>
@@ -41,7 +41,7 @@
     <button onclick="hideShowInv()">Hide/Show Inventory</button>
 
 
-    <div id="myInventory" class="grid-sekk toggleInventory">
+    <div id="myInventory" class="grid-sekk">
         <div id="rute0" class="item"></div>
         <div id="rute1" class="item"></div>
         <div id="rute2" class="item"></div>
@@ -84,47 +84,47 @@ function leggTilItem(item, tomt){
         switch (plass){
             case 0:
                 document.getElementById('rute0').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 1:
                 document.getElementById('rute1').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 2:
                 document.getElementById('rute2').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 3:
                 document.getElementById('rute3').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 4:
                 document.getElementById('rute4').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 5:
                 document.getElementById('rute5').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 6:
                 document.getElementById('rute6').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 7:
                 document.getElementById('rute7').innerHTML = item;
-                tomt.style.display = "none";
+                tomt.innerHTML = "";
                 plass++;
                 break;
             case 8:
                 document.getElementById('rute8').innerHTML = item;
-                tomt.style.display = "none";                            //Det her betyr bare skjul dette elementet (i menyen) når vi legger et item i sekken.
+                tomt.innerHTML = "";
                 plass++;
                 break;
         }
@@ -133,25 +133,27 @@ function leggTilItem(item, tomt){
 }
 
 function tømSekk(){
-    let sekkItems = document.querySelectorAll('#myInventory *');        //Finn alle elementer som ligger inni elementet med id="myInventory".
-        for (let item of sekkItems){                                    //For hver ting som finnes i sekkItems, gjør det som står mellom { }.
-            item.innerHTML = "";                                        //Her sier vi fjern HTML fra denne ruten. Altså hvis <div id="rute0">Kvikklunsj</div>, så blir det <div id="rute0"></div>. Hele teksten blir da tømt.
+    let sekkItems = document.querySelectorAll('#myInventory *');
+        for (let item of sekkItems){
+            item.innerHTML = "";
         }
-
-    let menyItems = document.querySelectorAll('.grid-inv .item');      //Finn alle items i menyen. Her finner vi meny-items, ikke inventory-rutene. '.grid-inv .item' betyr finn alle .item som ligger inni .grid-inv. Dette lagres i variabelen let menyItems.
-
-        for (let item of menyItems){                                    //Gå gjennom alle meny-items, dvs. kvikklunsj, vannflaske, telt osv.
-            item.style.display = "block";                               //Her tilbakestiller vi egentlig det som som tidligere ble skjult når vi trykket på items i menyen.
-        }
-
-        plass = 0;                                                      //Her nullstilles plassen til 0 igjen. Hvis du f.eks. legger til tre ting i sekken, så er plassen = 3, så vi må nullstille denne verdien tilbake til plass = 0. Med andre ord, start på nytt i rute0.
-        }
+    plass = 0;
+}
 
 function hideShowInv(){
     document.getElementById('myInventory').classList.toggle('toggleInventory');
 }
-
 </script>
+<!-- <script>
+    let plass = 0;
+
+    function leggTilItem(item){
+        document.getElementById('rute'+plass).innerHTML = item;
+        plass++;
+    }
+
+
+</script> -->
 
 </body>
 </html>

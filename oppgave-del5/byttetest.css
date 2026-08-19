@@ -1,0 +1,28 @@
+.item {
+    height: 50px;
+    width: 150px;
+    margin: 10px;
+    border: 3px solid grey;
+    cursor: pointer;
+}
+
+.inventory {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    gap: 10px;
+}
+
+.inventoryBox {
+    height: 100px;
+    width: 100px;
+    border: 3px solid grey;
+    cursor: pointer;
+}
+
+.selected {
+    border: 3px solid black;
+}
+
+.toggleInventory{
+    display: none;
+}
