@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="textInput" type="text">
+    <button onclick="vokaler()">Finn vokaler</button>
+    <div>Antall vokaler:</div>
+    <div id="antallVokaler">0</div>
+
+    <script>
+        
+
+        let aCounter = 0;
+        let eCounter = 0;
+        let iCounter = 0;
+        let oCounter = 0;
+        let uCounter = 0;
+        let yCounter = 0;
+        let æCounter = 0;
+        let øCounter = 0;
+        let åCounter = 0;
+
+        function vokaler(){
+            let tekst = document.getElementById('textInput').value;
+            for(let counter = 0; counter < tekst.length; counter++){
+
+                if(tekst[counter] === "a"){
+                    aCounter++;
+                }
+                if(tekst[counter] === "e"){
+                    eCounter++;
+                }
+                if(tekst[counter] === "i"){
+                    iCounter++;
+                }
+                if(tekst[counter] === "o"){
+                    oCounter++;
+                }
+                if(tekst[counter] === "u"){
+                    uCounter++;
+                }
+                if(tekst[counter] === "y"){
+                    yCounter++;
+                }
+                if(tekst[counter] === "æ"){
+                    æCounter++;
+                }
+                if(tekst[counter] === "ø"){
+                    øCounter++;
+                }
+                if(tekst[counter] === "å"){
+                    åCounter++;
+                }
+
+            }
+                document.getElementById('antallVokaler').innerHTML =
+                aCounter + eCounter + iCounter + oCounter + uCounter + 
+                yCounter + æCounter +øCounter + åCounter
+
+        }
+    </script>
+</body>
+</html>
