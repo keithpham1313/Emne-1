@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>numbers
+        <div id="display"></div>
+        <button onclick="multiplyBy2()">Multiply By 2</button>
+        <div id="text">Bjarne liker alfabetet</div>
+        <buttion onclick="getFirstWord()">Get First Word</buttion>
+    </div>
+    
+    <script>
+        function multiplyBy2(){
+            let number = 2;
+            // document.getElementById("display").innerHTML += number + ' ';
+
+            while(number <= 100){
+                number = number *2;
+                document.getElementById("display").innerHTML += number + ' ';
+
+            }
+        }
+
+        function getFirstWord(){
+            // let textContainA = true;
+            let text = 'Bjarne liker alfabetet';
+            let seperator = '';
+            let firstWord = '';
+            let index = 0;
+
+            while(seperator !== ' '){
+                if(text.charAt(index)) === ' '{
+                    seperatoer = ' ';
+                }
+                firstWord += text.charAt(index);
+                index++;
+                document.getElementById("text").innerHTML += firstWord + ' ';
+
+
+            }
+
+
+        }
+    </script>
+</body>
+</html>
