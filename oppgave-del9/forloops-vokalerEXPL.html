@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--
+        Et input-felt hvor brukeren kan skrive inn tekst.
+        id brukes slik at JavaScript kan finne dette elementet senere.
+    -->
+    <input id="textInput" type="text">
+
+
+    <!--
+        En knapp.
+        Når brukeren klikker på knappen, kjører funksjonen vokaler().
+    -->
+    <button onclick="vokaler()">Finn vokaler</button>
+
+
+    <!--
+        Vanlig tekst som forteller brukeren hva tallet under betyr.
+    -->
+    <div>Antall vokaler:</div>
+
+
+    <!--
+        Denne div-en viser resultatet.
+        Den starter med 0.
+        JavaScript endrer innholdet senere.
+    -->
+    <div id="antallVokaler">0</div>
+
+
+    <script>
+
+        /*
+            Vi lager én variabel for hver vokal.
+
+            Disse brukes som tellere.
+            Hver gang programmet finner en bestemt vokal,
+            øker den aktuelle telleren med 1.
+        */
+
+        let aCounter = 0;
+        let eCounter = 0;
+        let iCounter = 0;
+        let oCounter = 0;
+        let uCounter = 0;
+        let yCounter = 0;
+        let æCounter = 0;
+        let øCounter = 0;
+        let åCounter = 0;
+
+
+        /*
+            Denne funksjonen kjøres når brukeren trykker
+            på knappen "Finn vokaler".
+        */
+        function vokaler(){
+
+
+            /*
+                Her finner vi input-feltet ved hjelp av id-en
+                "textInput".
+
+                .value henter det brukeren har skrevet inn.
+            */
+            let tekst = document.getElementById('textInput').value;
+
+
+            /*
+                Dette er en for-løkke.
+
+                counter starter på 0.
+
+                counter < tekst.length betyr:
+                "Fortsett så lenge counter er mindre enn
+                lengden på teksten."
+
+                counter++ betyr at counter økes med 1
+                for hver runde.
+            */
+            for(let counter = 0; counter < tekst.length; counter++){
+
+
+                /*
+                    tekst[counter] henter bokstaven på den
+                    plassen vi befinner oss på.
+
+                    Hvis bokstaven er "a", øker vi aCounter med 1.
+                */
+                if(tekst[counter] === "a"){
+                    aCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "e", øker vi eCounter med 1.
+                */
+                if(tekst[counter] === "e"){
+                    eCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "i", øker vi iCounter med 1.
+                */
+                if(tekst[counter] === "i"){
+                    iCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "o", øker vi oCounter med 1.
+                */
+                if(tekst[counter] === "o"){
+                    oCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "u", øker vi uCounter med 1.
+                */
+                if(tekst[counter] === "u"){
+                    uCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "y", øker vi yCounter med 1.
+                */
+                if(tekst[counter] === "y"){
+                    yCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "æ", øker vi æCounter med 1.
+                */
+                if(tekst[counter] === "æ"){
+                    æCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "ø", øker vi øCounter med 1.
+                */
+                if(tekst[counter] === "ø"){
+                    øCounter++;
+                }
+
+
+                /*
+                    Hvis bokstaven er "å", øker vi åCounter med 1.
+                */
+                if(tekst[counter] === "å"){
+                    åCounter++;
+                }
+
+            }
+
+
+            /*
+                Når for-løkken er ferdig, legger vi sammen
+                alle tellerne.
+
+                Eksempel:
+
+                aCounter = 2
+                eCounter = 1
+                iCounter = 0
+                osv.
+
+                Da får vi det totale antallet vokaler.
+            */
+            document.getElementById('antallVokaler').innerHTML =
+                aCounter + eCounter + iCounter + oCounter +
+                uCounter + yCounter + æCounter + øCounter + åCounter;
+
+        }
+
+    </script>
+
+</body>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Er tallene like?
+    <div id="visSvar"></div>
+    <div id="tallEn"></div>
+    <div id="tallTo"></div>
+
+    <button onclick="randomTall()">Generer tilfeldig tall</button>
+
+    <script>
+        let tallEn = -1;
+        let tallTo = 0;
+
+        function randomTall(){
+
+            while(tallEn !== tallTo){                           //Mens tallEn ikke er lik tallTo, fortsett å gjøre dette.
+
+            tallEn = hentTilfeldigNummer();
+            tallTo = hentTilfeldigNummer();
+
+            console.log(tallEn, tallTo);
+            }
+
+            document.getElementById('tallEn').innerHTML = tallEn;
+            document.getElementById('tallTo').innerHTML = tallTo;
+
+            let svar = document.getElementById('visSvar').innerHTML = "Equal Numbers Found";
+        }
+
+        function hentTilfeldigNummer(){
+            return Math.floor(Math.random()*10)+1;
+        }
+
+    </script>
+</body>
+</html>

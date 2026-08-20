@@ -10,7 +10,7 @@
         <div id="display"></div>
         <button onclick="multiplyBy2()">Multiply By 2</button>
         <div id="text">Bjarne liker alfabetet</div>
-        <buttion onclick="getFirstWord()">Get First Word</buttion>
+        <button onclick="getFirstWord()">Get First Word</button>
     </div>
     
     <script>
@@ -18,7 +18,7 @@
             let number = 2;
             // document.getElementById("display").innerHTML += number + ' ';
 
-            while(number <= 100){
+            while(number <= 100){                                                       //En liten ting å være klar over er at den går til 128, selv om betingelsen sier <= 100. Det skyldes at du dobler tallet før du skriver det ut.
                 number = number *2;
                 document.getElementById("display").innerHTML += number + ' ';
 
@@ -33,8 +33,8 @@
             let index = 0;
 
             while(seperator !== ' '){
-                if(text.charAt(index)) === ' '{
-                    seperatoer = ' ';
+                if(text.charAt(index) === ' '){
+                    seperator = ' ';
                 }
                 firstWord += text.charAt(index);
                 index++;
