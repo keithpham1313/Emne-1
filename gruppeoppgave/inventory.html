@@ -5,60 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lars Monsen Inventory</title>
     <link rel="stylesheet" href="style-grid-backpack.css"/>
-    <link rel="stylesheet" href="style-grid-available-items.css"/>
 
-    <style>
-        .grid-sekk{
-    margin-top: 2%;
-    margin-left: 10%;
-    display: grid;
-    grid-template-columns: 100px 100px 100px;
-    grid-template-rows: 100px 100px 100px;
-    gap: 8px;
-    }
-
-    .grid-inv{
-        display: grid;
-        grid-template-columns: repeat(8, 100px);
-        grid-template-rows: 100px 100px 100px;
-        gap: 8px;
-    }
-
-    .item{
-        border: solid black;
-        text-align: center;
-    }
-
-    .toggleInventory{
-        display: none;
-    }
-
-    .melding {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 500px;
-    padding: 30px;
-
-    background-color: white;
-    border: 5px solid black;
-    text-align: center;
-
-    font-size: 24px;
-    }
-    </style>
+    
 </head>
-
 <body>
-    <h1 style="">Ta med på tur!</h1>
-    <button onclick="tømSekk()">Destroy items in bag</button>
-    <button onclick="hideShowInv()">Hide/Show Inventory</button>
-    <button id="klar" style="background-color: #5cbb5c;" onclick="erDuKlar()">Klar for tur!</button>
 
-    <div id="myInventory" class="grid-sekk toggleInventory">
+    <h1 style="margin-top: 60px;"><span id="overskrift" class="overskrifter"><u>Pakk sekken til Lars!</u></span></h1>
+    
+    
+    <div id="myInventory" class="grid-sekk">
         <div id="rute0" class="item"></div>
         <div id="rute1" class="item"></div>
         <div id="rute2" class="item"></div>
@@ -68,136 +23,71 @@
         <div id="rute6" class="item"></div>
         <div id="rute7" class="item"></div>
         <div id="rute8" class="item"></div>
-
+        
     </div>
 
-    <h2> Meny </h2>
-
+    <button id="tøm" style="background-color: #f75260;" onclick="tømSekk()">Tøm sekken</button>
+    <button id="klar" style="background-color: #5cbb5c;" onclick="erDuKlar()">Klar for tur!</button>
+    <br>
+    <h2><span  class="overskrifter"> <u>Hva burde Lars ha med seg ut i villmarka?</u></span> </h2>
+    
     <div class="grid-inv">
-        <div class="item" id="kvikklunsj" onclick="leggTilItem('Kvikklunsj', this)"><span class="tooltiptext">Kvikklunsj</span></div>
-        <div class="item" id="vannflaske" onclick="leggTilItem('Vannflaske', this)">Vannflaske</div>
-        <div class="item" id="monsenbilde" onclick="leggTilItem('Bilde av Lars Monsen', this)">Bilde av Lars Monsen</div>        
-        <div class="item" id="kartkompass" onclick="leggTilItem('Kart og kompass', this)">Kart og kompass</div>
-        <div class="item" id="myggspray" onclick="leggTilItem('Myggspray', this)">Myggspray</div>
-        <div class="item" id="sovepose" onclick="leggTilItem('Sovepose', this)">Sovepose</div>
-        <div class="item" id="telt" onclick="leggTilItem('Telt', this)">Telt</div>
-        <div class="item" id="solkrem" onclick="leggTilItem('Solkrem', this)">Solkrem</div>
-        <div class="item" id="førstehjelp" onclick="leggTilItem('Førstehjelp', this)">Førstehjelp</div>
-        <div class="item" id="lommelykt" onclick="leggTilItem('Lommelykt', this)">Lommelykt</div>
-        <div class="item" id="batteri" onclick="leggTilItem('Batteri', this)">Batteri</div>
-        <div class="item" id="lighter" onclick="leggTilItem('Lighter', this)">Lighter</div>
-        <div class="item" id="ved" onclick="leggTilItem('Ved', this)">Ved</div>
-        <div class="item" id="kniv" onclick="leggTilItem('Kniv', this)">Kniv</div>
-        <div class="item" id="grillspyd" onclick="leggTilItem('Grillspyd', this)">Grillspyd</div>
-        <div class="item" id="sko" onclick="leggTilItem('Ekstra sko', this)">Ekstra sko</div>
+        <div class="item" id="kvikklunsj" onclick="leggTilItem('Kvikklunsj', this)"
+            >Kvikklunsj<span class="tooltiptext"><p>Kvikklunsj er digg sjokkis med kjeks som knaser godt i tanna.</p><p>10+ HP -5 Stamina</p></span>
+        </div>
+        <div class="item" id="vannflaske" onclick="leggTilItem('Vannflaske', this)"
+            >Vannflaske<span class="tooltiptext"><p>Det er vann i springen, men ikke på tur.</p><p>15+ HP. +10 Stamina.</p></span>
+        </div>
+        <div class="item" id="monsenbilde" onclick="leggTilItem('Bilde av Lars Monsen', this)"
+            >Bilde av Lars Monsen<span class="tooltiptext"><p>Ikke alltid Lars husker å ta med speil, da duger en analog selfie.</p><p>+999 Motivasjon.</p></span>
+        </div>        
+        <div class="item" id="kartkompass" onclick="leggTilItem('Kart og kompass', this)"
+            >Kart og kompass<span class="tooltiptext"><p>Analog GPS sånn som farfar brukte når han gikk til skolen.</p><p>360° Retningsans.</p></span>
+        </div>
+        <div class="item" id="myggspray" onclick="leggTilItem('Myggspray', this)"
+            >Myggspray<span class="tooltiptext"><p>Skremmer bort mygga.</p><p>+60 Resistans mot myggstikk.</p></span>
+        </div>
+        <div class="item" id="sovepose" onclick="leggTilItem('Sovepose', this)"
+            >Sovepose<span class="tooltiptext"><p>Trengs for at Monsen skal få sove.</p><p>+100 HP. +Stamina. Lover's embrace med turkamerat.</p></span>
+        </div>
+        <div class="item" id="telt" onclick="leggTilItem('Telt', this)"
+            >Telt<span class="tooltiptext"><p>Beskytter mot elementene ved uvær.</p><p>+100 Regn resistans. +50 Vind og kulde resistans.</p></span>
+        </div>
+        <div class="item" id="solkrem" onclick="leggTilItem('Solkrem', this)"
+            >Solkrem<span class="tooltiptext"><p>Beskytter huden til Monsen fra UV stråler.</p><p>+50 UV beskyttelse.</p></span>
+        </div>
+        <div class="item" id="førstehjelp" onclick="leggTilItem('Førstehjelp', this)"
+            >Førstehjelp<span class="tooltiptext"><p>Stopper blødning og helbreder brukne ben.</p><p>+80 HP. Stopper Blødning debuff.</p></span>
+        </div>
+        <div class="item" id="lommelykt" onclick="leggTilItem('Lommelykt', this)"
+            >Lommelykt<span class="tooltiptext"><p>Monsen kan se i mørket med denne sånn at han ikke blir mørkeredd.</p><p>+50 Night vision.</p></span>
+        </div>
+        <div class="item" id="batteri" onclick="leggTilItem('Batteri', this)"
+            >Batteri<span class="tooltiptext"><p>Batteri til lommelykten</p><p>100% Ladning.</p></span>
+        </div>
+        <div class="item" id="lighter" onclick="leggTilItem('Lighter', this)"
+            >Lighter<span class="tooltiptext"><p>Bruker til å tenne ved for å lage bål</p><p>1+ Fire damage.</p></span>
+        </div>
+        <div class="item" id="ved" onclick="leggTilItem('Ved', this)"
+            >Ved<span class="tooltiptext"><p>Kjekt å ha med om man ikke gidder hogge trær. Veier mye</p><p>-50 Stamina.</p></span>
+        </div>
+        <div class="item" id="kniv" onclick="leggTilItem('Kniv', this)"
+            >Kniv<span class="tooltiptext"><p>Brukes til å spikke. Kan brukes som tannpirker og våpen.</p><p>250 Melee damage.</p></span>
+        </div>
+        <div class="item" id="grillspyd" onclick="leggTilItem('Grillspyd', this)"
+            >Grillspyd<span class="tooltiptext"><p>Trengs for å steke Grillpølse på bål.</p><p>50 Melee Damage.</p></span>
+        </div>
+        <div class="item" id="pølse" onclick="leggTilItem('Grillpølse', this)"
+            >Grillpølse<span class="tooltiptext"><p>Deilig grillpølse er et must have når man er på tur. Kan også nytes kald.</p><p>+40 HP grillet. +20 HP kald. +10 Stamina</p></span>
+        </div>
+
 
         <div id="melding" class="melding">
         <h2 id="meldingTekst"></h2>
-        <button onclick="lukkMelding()">OK</button>
-
-</div>
+        <button onclick="lukkMelding()" style="padding: 10px 20px">OK</button>
     </div>
 
-<script>
-    let plass = 0;
-
-function leggTilItem(item, tomt){
-    if (tomt.innerHTML !== ""){
-        switch (plass){
-            case 0:
-                document.getElementById('rute0').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 1:
-                document.getElementById('rute1').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 2:
-                document.getElementById('rute2').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 3:
-                document.getElementById('rute3').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 4:
-                document.getElementById('rute4').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 5:
-                document.getElementById('rute5').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 6:
-                document.getElementById('rute6').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 7:
-                document.getElementById('rute7').innerHTML = item;
-                tomt.style.display = "none";
-                plass++;
-                break;
-            case 8:
-                document.getElementById('rute8').innerHTML = item;
-                tomt.style.display = "none";                            //Det her betyr bare skjul dette elementet (i menyen) når vi legger et item i sekken. Det betyr hvis vi har <div id="kvikklunsj">Kvikklunsj</div>, så skal du kjøre tomt.style.display = "none"; Merk at HTML'en eksisterer fortsatt, men den blir bare skjult. Det ville ha sett slik ut i HTML'en <div id="kvikklunsj" style="display: none;">Kvikklunsj</div>
-                //tomt.innerHTML = "";                                  //Tidligere brukte vi tomt.innerHTML = ""; som bare sletter innholdet inni elementet, som i dette tilfellet er HTML'en. Dvs. hvis HTML'en er <div id="kvikklunsj">Kvikklunsj</div>, så skal funksjonen fjerne innholdet i elementet, som i dette tilfellet er Kvikklunsj. Da blir resultatet <div id="kvikklunsj"></div>.
-                plass++;
-                break;
-        }
-    }
-    
-}
-
-function tømSekk(){
-    let sekkItems = document.querySelectorAll('#myInventory *');        //Finn alle elementer med id="myInventory" og alle elementer som ligger inni #myInventory, dvs. * = alle elementer som ligger i #myInventory f.eks. rute0, rute1, rute2 osv.
-        for (let item of sekkItems){                                    //For hver ting som finnes i sekkItems, gjør det som står mellom { }.
-            item.innerHTML = "";                                        //Her sier vi fjern HTML fra denne ruten. Altså hvis <div id="rute0">Kvikklunsj</div>, så blir det <div id="rute0"></div>. Hele teksten blir da tømt.
-        }
-
-    let menyItems = document.querySelectorAll('.grid-inv .item');      //Finn alle items i menyen. Her finner vi meny-items, ikke inventory-rutene. '.grid-inv .item' betyr finn alle .item som ligger inni .grid-inv. Dette lagres i variabelen let menyItems. Merk at her finner vi klasser og ikke ID'er. Vi brukte ID'er da vi skulle finne alle elementer med ID'en #inventory (parent), og alt av "child-elementer", dvs. (* = child).
-
-        for (let item of menyItems){                                    //Gå gjennom alle elementer i menyitems én etter én, dvs. item = kvikklunsj, item = vannflaske, item = telt osv.
-            item.style.display = "";                                    //Her tilbakestiller vi egentlig det som som tidligere ble skjult når vi trykket på items i menyen. item.style.display = ""; betyr å sette dette tilbake til utgangspunktet (som var display = grid) eller fjern display-verdien som Javascript har satt som er "none", mens tomt.style.display = "none"; betyr at elementet ikke skal være med i layouten i det hele tatt, altså skjul. Hvis vi hadde brukt tomt.innerHTML = "";, så hadde innholdet i elementet (altså det som er mellom <div></div>) blitt slettet og vi hadde ikke fått muligheten til å hente den tilbake.
-        }
-
-        plass = 0;                                                      //Her nullstilles plassen til 0 igjen. Hvis du f.eks. legger til tre ting i sekken, så er plassen = 3 (se leggTilItem-funksjonen), så vi må nullstille denne verdien tilbake til plass = 0. Med andre ord, start på nytt i rute0. 
-        }
-
-function hideShowInv(){
-    document.getElementById('myInventory').classList.toggle('toggleInventory');
-}
-
-function erDuKlar(){
-
-    let melding = document.getElementById("melding");
-    let meldingTekst = document.getElementById("meldingTekst");
-    let kvikklunsj = document.getElementById("kvikklunsj");
-
-    if (kvikklunsj.style.display !== "none"){
-        alert("Du har glemt Kvikklunsjen! Lars Monsen nekter å dra uten!");
-    }
-
-    else if (plass < 9){
-        alert("Du trodde du var klar for villmarka? Sekken er ikke engang full!");
-    }
-
-    else {
-        alert("Sekken er full! Lars nikker fornøyd. Nå er du endelig klar for villmarka!");
-    }
-}
-
-
-function lukkMelding(){
-    document.getElementById("melding").style.display = "none";
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

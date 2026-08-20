@@ -1,0 +1,102 @@
+body{
+    background-color: black;
+    background-image:url("inventoryBG.png");
+    background-repeat: no-repeat;
+}
+
+.grid-sekk{
+    margin-top: 70px;
+    margin-left: 850px;
+    display: grid;
+    grid-template-columns: 120px 120px 120px;
+    grid-template-rows: 120px 120px 120px;
+    gap: 8px;
+}
+
+.grid-inv{
+    margin-left: 850px;
+    display: grid;
+    grid-template-columns: repeat(8, 120px);
+    grid-template-rows: 120px 120px 120px;
+    gap: 8px;
+}
+
+#overskrift{
+    margin-top: 55px;
+    margin-left: 850px;
+    color: #24211d; 
+    font-size: 50px;
+}
+
+.overskrifter{
+    margin-left: 850px;
+    background-color: #dde4ebaf;
+    color: rgb(58, 48, 29); 
+    font-size: 40px;
+}
+
+.item{
+    background-color: #b4ad93b2;
+    border: solid #474439 4px;
+    font-size: 18px;
+    text-align: center;
+    color: #270e00;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#tøm{
+    margin-top: 50px;
+    margin-left: 850px;
+    padding: 15px;
+    border: solid #500505;
+    border-width: 4px;
+    font-size: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+#klar{
+    margin-top: 50px;
+    margin-left: 70px;
+    padding: 15px;
+    border: solid #123f0c;
+    border-width: 4px;
+    font-size: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.melding {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 500px;
+    padding: 30px;
+
+    background-color: #2e3022;
+    color: #ffffff;
+    border: 5px solid black;
+    text-align: center;
+
+    font-size: 24px;
+}
+
+.tooltiptext{
+    visibility: hidden;
+    width: 400px;
+    height: auto;
+    background-color: #2e3022;
+    color: #ffffff;
+    border: 2px solid black;
+    padding: 25px;
+    position:absolute;
+    z-index: 1;
+}
+
+.item:hover .tooltiptext{
+    visibility: visible;
+}
