@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const app = document.getElementById('app');
+        const pocketStuff = ['Hat', 'Pencil', 'Dinosaurs', 'Showercap', 'Piece of Tape']
+
+        view();
+
+        function view(){;
+        let html = ``;
+        html += `<button onclick="seeWhatsInPockets()">
+            See Contents of Pockets!
+            </button>
+
+            `;
+
+            // for(let i = 0; i < pocketStuff.length; i++;){
+            //     hteml += `<div>${pocketStuff[i]}</div>`;
+            // }
+
+            app.innerHTML = html;
+        }
+
+        function seeWhatsInPockets(){
+
+            let html = "";
+
+            for(let i = 0; i < pocketStuff.length; i++){
+                // html += `<div>${pocketStuff[i]}</div>`
+                html += `<div>På runde ${i} i loopen så ser jeg: ${pocketStuff[i]}</div>`
+
+
+                console.log(`På runde ${i} i loopen så ser jeg: ${pocketStuff[i]}`)
+            }
+
+            app.innerHTML += html;
+
+        }
+
+
+
+    </script>
+    
+</body>
+</html>

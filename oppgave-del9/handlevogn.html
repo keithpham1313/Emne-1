@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const app = document.getElementById('app');
+
+        let shoppingCart = []                                         //Arrayet starter tomt, fordi vi ikke vet hva brukeren kommer til å skrive.
+
+        view();
+
+        function view(){;
+        let html = ``;
+        html += `
+            <input id="tekstFelt" placeholder="Hva vil du kjøpe?"/>
+
+            <button onclick="addToCart()">Add to cart</button>
+
+            `;
+
+            html += `<h2>Handlevogn:</h2>`
+
+            for (let i = 0; i < shoppingCart.length; i++){          //For loopen går gjennom arrayet én etter én, f.eks. i = 0 → shoppingCart[0] → Melk, og legger det inn i HTML'en.
+                html += `<div>${shoppingCart[i]}</div>`;
+            }
+
+            app.innerHTML = html;
+        }
+
+        function addToCart(){
+
+            const input = document.getElementById('tekstFelt');
+
+            shoppingCart.push(input.value);                         //push brukes når man skal legge til noe (mot slutten av arrayet), input.value betyr det brukeren skrev. I dette tilfellet betyr push(input.value) legg til det brukeres skrev. F.eks. brukeren skriver inn "Melk", da blir koden shoppingCart.push(Melk);. Arrayet blir da ['Melk']. Og så legger vi til brød shoppingCart.push(Brød);, da blir arrayet ['Melk', 'Brød']
+
+            view();                                                 //Vi har view() mot slutten for å kunne vise det vi har skrevet i tekstfeltet.
+                                                                    //Først oppdaterer du dataen (arrayet) og deretter oppdaterer du visningen (view()). Prossessen er da slik: Bruker skriver → addToCart() → .push() → view() → listen vises på nytt
+            }
+
+
+        
+
+
+
+    </script>
+    
+</body>
+</html>

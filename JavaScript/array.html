@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        var cats = [
+            "Snowball I",
+            "Snowball II",
+            "Snowball III",
+            "Coltrane",
+            "Snowball IV",          //Du kan hente frem denen i console-vinduet ved å skrive cats[4], eller 
+            "Ny Katt",              //Du kan enten skrive cats[5] eller cats[cats.length - 1] for å hente frem denne verdien
+        ];
+
+        var numbers = [5,4,3];
+
+        //Endre et element
+        // cats[cats.length - 1] = "En gammel katt";            //Her endrer vi "Ny Katt" til "En gammel katt"
+
+        // //Legge til nytt element
+        cats.push("Kitten");        //Hvis du skriver inn cats[cats.length] = "Ny katt"; og deretter logger cat (skrive inn katt og trykker på enter), så skal du kunne se at "Ny katt" blir lagt til
+
+        // //Fjerne et element
+        // cats.splice(0, 1);       //Når vi skriver cats.splice(0, 1); så sletter vi bare den første i indeksen. I dette tilfellet er det "Snowball I". Hvis vi skriver cats.splice(0, 2);, så vil den slette fra 0 til og med 1, da blir både "Snowball I" og "Snowball II" bli slettet fra array.
+
+        console.log(cats);          
+    </script>
+    
+</body>
+</html>
