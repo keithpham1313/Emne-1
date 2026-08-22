@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="svarHer"></div>
+    
+    <script>
+        //Vi starter med array'et
+        let svar = [
+            "Ja!",
+            "Nei",
+            "Kanskje...",
+            "Absolutt!",
+            "Det ser lovende ut.",
+            "Ikke spør meg."
+            ];
+
+        let svarID = document.getElementById('svarHer');
+
+        view();
+
+        function view(){
+            let html = ``;
+            html += `
+            <input id="sporsmal" type="text">
+            <button onclick="magicBall()">Spør Magic 8 Ball</button>
+           
+            `;
+
+            svarID.innerHTML = html;
+        }
+
+        function magicBall(){
+            //Vi ønsker å generere et tilfeldig tall, length forteller hvor mange elementer array'et har, hvis array'et har 6 svar er svar.length -> 6. Denne linjen gir dermed et tilfeldig tall mellom 0-5.
+            let tilfeldig = Math.floor(Math.random() * svar.length);
+
+            // Bruker det tilfeldige tallet til å hente et svar fra arrayet.
+            svarID.innerHTML += `<p>${svar[tilfeldig]}</p>`;
+
+
+
+
+        }
+
+        
+
+
+
+    </script>
+    
+</body>
+</html>
