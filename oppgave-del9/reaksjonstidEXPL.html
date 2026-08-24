@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        .container{
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            grid-template-rows: repeat(5, 50px);
+            gap: 20px;
+
+        }
+
+        .sirkel{
+            height: 50px;
+            width: 50px;
+            background-color: grey;
+            border-radius: 50%;
+            border: 5px solid black;
+        }
+
+
+        /* Hadde denne før .sirkel. Det var derfor den ikke fungerte!!! FML!!! */ 
+        .lightOn{
+            background-color: yellow;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!--
+        Vi lager en div som skal inneholde alle sirklene.
+        id="sirkelBoks" gjør at vi kan finne denne div-en
+        senere i JavaScript.
+        
+        class="container" brukes til CSS-styling av boksen.
+    -->
+    <div id="sirkelBoks" class="container"></div>
+
+
+    <script>
+
+        // =========================
+        // MODELLEN
+        // =========================
+
+        // Denne variabelen skal huske hvilken sirkel
+        // som er valgt.
+        //
+        // Vi starter med verdien 0 fordi den første
+        // sirkelen i en for-loop har index 0.
+        let selectedLampIndex = 0;
+
+
+        // Vi kjører funksjonen med én gang siden vi
+        // ønsker å velge en tilfeldig lampe når siden starter.
+        selectRandomLamp();
+
+
+        
+        // =========================
+        // KONTROLLEREN
+        // =========================
+
+        // Denne funksjonen bestemmer hvilken lampe
+        // som skal være valgt.
+        function selectRandomLamp(){
+
+            // Math.random() lager et tilfeldig desimaltall
+            // mellom 0 og 1.
+            //
+            // * 25 gjør tallet til et tall mellom 0 og
+            // nesten 25.
+            //
+            // Math.floor() runder ned til et heltall.
+            //
+            // Dermed får vi et tilfeldig heltall fra 0 til 24.
+            //
+            // Dette passer fordi vi skal lage 25 sirkler.
+            selectedLampIndex = Math.floor(Math.random() * 25);
+
+
+            // Etter at vi har valgt hvilken lampe som skal
+            // lyse, må vi oppdatere HTML-en på siden.
+            updateView();
+        }
+
+
+        
+        // =========================
+        // VIEWET
+        // =========================
+
+        // Denne funksjonen lager HTML-en som skal vises
+        // på nettsiden.
+        function updateView(){
+
+            // Vi lager en tom string.
+            //
+            // Etter hvert skal vi legge HTML-koden for
+            // sirklene inn i denne variabelen.
+            let html = '';
+
+
+            // Loopen skal kjøre 25 ganger.
+            //
+            // i starter på 0.
+            //
+            // Så lenge i er mindre enn 25, fortsetter loopen.
+            //
+            // i++ betyr at i økes med 1 etter hver runde.
+            for(let i = 0; i < 25; i++){
+
+
+                // Her sjekker vi om nummeret på sirkelen
+                // vi lager akkurat nå er det samme som
+                // nummeret vi valgte tidligere.
+                //
+                // selectedLampIndex inneholder den tilfeldige
+                // plasseringen til lampen som skal lyse.
+                if(i === selectedLampIndex){
+
+                    // Hvis dette er den valgte sirkelen,
+                    // legger vi til en div med både:
+                    //
+                    // class="sirkel"
+                    // class="lightOn"
+                    //
+                    // lightOn gjør at denne sirkelen blir gul.
+                    html += `<div class ="sirkel lightOn"></div>`;
+                }
+
+
+                // Hvis sirkelen IKKE er den valgte sirkelen:
+                else{
+
+                    // Da lager vi bare en vanlig sirkel.
+                    //
+                    // Den får class="sirkel",
+                    // men ikke "lightOn".
+                    //
+                    // Derfor blir den grå.
+                    html += `<div class ="sirkel"></div>`;
+                }
+            }
+
+
+            // Til slutt finner vi div-en med id="sirkelBoks"
+            // som vi laget i HTML.
+            //
+            // innerHTML erstatter innholdet i denne div-en
+            // med HTML-en vi har bygget opp i variabelen html.
+            //
+            // Dermed dukker de 25 sirklene opp på nettsiden.
+            document.getElementById('sirkelBoks').innerHTML = html;
+
+        }
+
+
+        // 1. Velg et tilfeldig tall mellom 0 og 24
+        //             ↓
+        // 2. Lag 25 sirkler
+        //             ↓
+        // 3. Sjekk hver sirkel:
+        //             ↓
+        //  Er nummeret mitt lik det tilfeldige tallet?
+        //             ↓
+        //     JA              NEI
+        //     ↓                ↓
+        // Gul sirkel       Grå sirkel
+    </script>
+
+</body>
+</html>
