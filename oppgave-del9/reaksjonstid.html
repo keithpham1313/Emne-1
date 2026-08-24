@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .lightOn{
+            background-color: yellow;
+        }
+
+        .container{
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            grid-template-rows: repeat(5, 50px);
+            gap: 20px;
+
+        }
+
+        .sirkel{
+            height: 50px;
+            width: 50px;
+            background-color: grey;
+            border-radius: 50%;
+            border: 5px solid black;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="sirkelBoks" class="container"></div>
+
+    <script>
+        //Modellen
+        let selectedLampIndex = 0;
+
+        selectRandomLamp();
+        
+        //Kontrolleren
+        function selectRandomLamp(){
+            selectedLampIndex = Math.floor(Math.random()*25);
+            updateView();
+        }
+        
+        //Viewet
+        function updateView(){
+            let html = '';
+
+            for(let i = 0; i < 25; i++){
+                if(i === selectedLampIndex){
+                    html += `<div class ="sirkel lightOn"></div>`;
+                }
+                else{
+                    html += `<div class ="sirkel"></div>`;
+                }
+            }
+
+            document.getElementById('sirkelBoks').innerHTML = html;
+
+        }
+    </script>
+    
+</body>
+</html>

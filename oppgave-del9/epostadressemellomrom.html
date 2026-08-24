@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input oninput="epostInput(this.value)" type="text">
+    <button onclick="console.log(sjekkEpost()); ">Sjekk Epost</button>
+    <div id="statusCheck"></div>
+
+    <script>
+        let epost = "";
+
+        function sjekkEpost(){
+            console.log(epost);
+
+            if(!epost.includes("@")){
+                return false;
+            }
+
+            if(epost.includes(" ")){
+                return false;
+            }
+
+            let fantAt = false;
+
+            for (let i = 0; i < epost.length; i++){
+             
+
+                if(epost[i] == "@"){
+                    fantAt = true;
+                }
+
+                if(fantAt && epost[i] == "."){
+                    return true;
+                }
+
+            }
+
+            return false;
+        }
+         
+
+        function epostInput(epostPara){
+            epost = epostPara;
+        }
+
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input oninput="epostInput(this.value)" type="text">
+    <button onclick="loggInn()">Logg inn</button>
+    <div id="statusCheck"></div>
+
+    <script>
+        let alfaTegn = "@";
+        let alfaCheck = "";
+
+        function loggInn(){
+            if(alfaCheck.includes(alfaTegn)){
+                document.getElementById("statusCheck").innerHTML = "Dette er en epostadresse";
+            }
+            else{
+                document.getElementById("statusCheck").innerHTML = "Dette er ikke en epostadresse";
+            }
+
+        }
+
+        function epostInput(epostPara){
+            alfaCheck = epostPara;
+            loggInn();
+        }
+
+    </script>
+
+    
+</body>
+</html>
