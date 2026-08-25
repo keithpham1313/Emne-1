@@ -33,34 +33,59 @@
 </head>
 <body>
     <div id="sirkelBoks" class="container"></div>
+    <br> <br> <br> <br> <br>
+    <h2>Løpende tid:</h2>
+    <h3 id="visTid">0</h3>
+    <h2>Din reaksjonstid:</h2>
+    <div id="visReaksjonsTid"></div>
 
     <script>
         //Modellen
         let selectedLampIndex = 0;
+            // var startTime = new Date().getTime();
+            // var finishTime = new Date().getTime();
+            // var spentMilliseconds = Math.floor(finishTime - startTime);
+            // var spentSeconds = spentMilliseconds / 1000;
+            var timer;
+            let spentSeconds = 0;
 
         selectRandomLamp();
         
         //Kontrolleren
         function selectRandomLamp(){
             selectedLampIndex = Math.floor(Math.random()*25);
+            timer = setInterval(tellSekunder, 1000);
             updateView();
         }
         
         //Viewet
         function updateView(){
-            let html = '';
+            let sirkelTilstand = '';
 
             for(let i = 0; i < 25; i++){
                 if(i === selectedLampIndex){
-                    html += `<div class ="sirkel lightOn" onclick="selectRandomLamp()"></div>`;
+                    sirkelTilstand += `<div class ="sirkel lightOn" onclick="selectRandomLamp(); reaksjonsTid()"></div>`;
                 }
                 else{
-                    html += `<div class ="sirkel"></div>`;
+                    sirkelTilstand += `<div class ="sirkel"></div>`;
                 }
             }
 
-            document.getElementById('sirkelBoks').innerHTML = html;
+            document.getElementById('sirkelBoks').innerHTML = sirkelTilstand;
 
+        }
+
+        function tellSekunder(){
+            document.getElementById('visTid').innerHTML = spentSeconds;
+            spentSeconds++;
+
+        }
+
+        function reaksjonsTid(){
+            document.getElementById('visReaksjonsTid').innerHTML += 
+            `<li>${spentSeconds-1} sekunder</li>`;
+            clearInterval(timer);
+            spentSeconds = 0;
         }
     </script>
     

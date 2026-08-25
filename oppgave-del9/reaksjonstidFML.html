@@ -32,35 +32,65 @@
     </style>
 </head>
 <body>
+    <h1>Please, don't touch my yellow spots!</h1>
     <div id="sirkelBoks" class="container"></div>
+    <br> <br> <br> <br> <br>
+    <h2>Løpende tid:</h2>
+    <h3 id="visTid">0 </h3> <b>I'm going to the F-ing MOON! WEEEEHEEEE!</b>
+    <h2>Din reaksjonstid:</h2>
+    <div id="visReaksjonsTid"></div>
 
     <script>
         //Modellen
         let selectedLampIndex = 0;
+            let startTime
+            let finishTime
 
         selectRandomLamp();
         
         //Kontrolleren
         function selectRandomLamp(){
             selectedLampIndex = Math.floor(Math.random()*25);
+            startTime = new Date().getTime();
+            timer = setInterval(tellSekunder, 10);
             updateView();
         }
         
         //Viewet
         function updateView(){
-            let html = '';
+            let sirkelTilstand = '';
 
             for(let i = 0; i < 25; i++){
                 if(i === selectedLampIndex){
-                    html += `<div class ="sirkel lightOn" onclick="selectRandomLamp()"></div>`;
+                    sirkelTilstand += `<div class ="sirkel lightOn" onclick="reaksjonsTid(); selectRandomLamp()"></div>`;
                 }
                 else{
-                    html += `<div class ="sirkel"></div>`;
+                    sirkelTilstand += `<div class ="sirkel"></div>`;
                 }
             }
 
-            document.getElementById('sirkelBoks').innerHTML = html;
+            document.getElementById('sirkelBoks').innerHTML = sirkelTilstand;
 
+        }
+
+        function tellSekunder(){
+            naTid = new Date().getTime();
+            lopendeTid = naTid - startTime;
+            document.getElementById('visTid').innerHTML = lopendeTid;
+
+        }
+
+        function reaksjonsTid(){
+            finishTime = new Date().getTime();
+
+            let reaksjonsTime = Math.floor(finishTime - startTime);
+
+            document.getElementById('visReaksjonsTid').innerHTML += 
+            `<li>${reaksjonsTime} millisekunder</li>`;
+
+            clearInterval(timer);
+
+            document.getElementById('visTid').innerHTML = 0;
         }
     </script>
     

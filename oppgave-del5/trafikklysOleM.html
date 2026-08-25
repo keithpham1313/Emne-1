@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Trafikklys</title>
+
+    <style>
+        .h3h3 {
+  color: rgb(179, 35, 35);
+}
+
+.lightcircle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #242424;
+  border: double 9px black;
+}
+
+#activeredlightcircle {
+  background-color: red;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+    </style>
+  </head>
+  <body>
+    <h3 class="h3h3">Trafikklys</h3>
+    <div id="maindiv">
+      <div
+        class="lightcircle"
+        id="redLight"
+        onclick="changeColor('red', '#242424', '#242424')"
+      ></div>
+      <div
+        class="lightcircle"
+        id="yellowLight"
+        onclick="changeColor('#242424', 'yellow', '#242424')"
+      ></div>
+      <div
+        class="lightcircle"
+        id="greenLight"
+        onclick="changeColor('#242424', '#242424', 'green')"
+      ></div>
+    </div>
+
+    <div>
+      <button onclick="autoChangeSystem('red', 'yellow', 'green')">
+        auto lys her
+      </button>
+    </div>
+
+    <script>
+
+        let autoChange = 1;
+
+function changeColor(color1, color2, color3) {
+  document.getElementById("redLight").style.backgroundColor = color1;
+  document.getElementById("yellowLight").style.backgroundColor = color2;
+  document.getElementById("greenLight").style.backgroundColor = color3;
+}
+
+function autoChangeSystem(color1, color2, color3) {
+  if (autoChange === 1) {
+    document.getElementById("redLight").style.backgroundColor = color1;
+    document.getElementById("yellowLight").style.backgroundColor = "#242424";
+    document.getElementById("greenLight").style.backgroundColor = "#242424";
+    autoChange = 2;
+    setTimeout(autoChangeSystem, 1000);
+  } else if (autoChange === 2) {
+    document.getElementById("redLight").style.backgroundColor = color1;
+    document.getElementById("yellowLight").style.backgroundColor = color2;
+    document.getElementById("greenLight").style.backgroundColor = "#242424";
+    autoChange = 3;
+    setTimeout(autoChangeSystem, 1000);
+  } else {
+    document.getElementById("redLight").style.backgroundColor = "#242424";
+    document.getElementById("yellowLight").style.backgroundColor = "#242424";
+    document.getElementById("greenLight").style.backgroundColor = color3;
+    autoChange = 1;
+    setTimeout(autoChangeSystem, 1000);
+  }
+}
+
+//Problemet er parameterne. Det er altfor mange, så det blir bare rot.
+    </script>
+  </body>
+</html>
