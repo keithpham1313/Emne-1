@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto+Condensed:wght@700&display=swap");
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 98vh;
+  width: 98vw;
+  font-family: "Orbitron", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 32px;
+}
+
+.opposingPokemon {
+  margin-left: 50%;
+}
+
+button {
+  height: 100px;
+  width: 100px;
+}
+
+.buttonContainer {
+  width: 200px;
+  display: flex;
+  margin-bottom: 22px;
+  margin-left: 50%;
+}
+
+img {
+  width: auto;
+  height: 250px;
+}
+
+.bottomScreen {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.caughtContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.pokemonPartyContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 220px);
+}
+
+.pokemonBoxDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border: 3px solid rgb(107, 222, 115);
+  background-image: linear-gradient(rgb(0, 107, 33), rgb(49, 222, 82));
+  margin: 10px;
+  padding: 5px;
+}
+
+.partyImg {
+  width: 40px;
+  height: 40px;
+}
+    .oversiktCSS {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 500px;
+    padding: 30px;
+
+    background-color: white;
+    border: 5px solid black;
+    text-align: center;
+
+    font-size: 24px;
+    }
+
+    </style>
+</head>
+
+
+<body>
+<div id="app"></div>
+
+
+    <script>
+//     let mariusSinLommebok = {
+//     kort: ["Visa", "Mastercard", "Førerkort", "Kundeklubb"],
+//     mynter: 82,
+//     sedler: 50,
+//     pictures: ["kattepus1.png", "kattepus2.png"],
+//     isBroke: true,
+//     };
+
+// // Variabler:
+//     let pikachuName = "Pikachu";
+//     let pikachuHealth = 45;
+//     let pikachuImage = "/Images/pikachu.png";
+//     let pikachuSound = "/Audio/pikachu.mp3";
+//     let pikachuLevel = 8;
+
+// //  Objekt:
+//     let pikachu = {
+//     health: 45,
+//     image: "/Images/pikachu.png",
+//     sound: "/Audio/pikachu.mp3",
+//     level: 8,
+//     };
+
+
+
+let pikachuName = "Pikachu"
+
+let pikachu = {
+  name: "Pikachu",
+  health: 45,
+  image: "Images/pikachu.png",
+  level: 8,
+};
+
+let bulbasaur = {
+  name: "Bulbasaur",
+  health: 70,
+  image: "Images/bulbasaur.png",
+  level: 12,
+};
+
+let oranguru = {
+  name: "Oranguru",
+  health: 170,
+  image: "Images/oranguru.png",
+  level: 45,
+};
+
+let drowzee = {
+  name: "Drowzee",
+  health: 90,
+  image: "Images/drowzee.png",
+  level: 33,
+};
+
+let possiblePokemon = [pikachu, bulbasaur, oranguru, drowzee];
+let randomPokemon = null;
+
+// let playerName = "Bjarne";
+// let playerImage = "/Images/pokemonTrainerIdle.png";
+// let playerPokemon = [];
+
+let player = {
+    name: "Bjarne",
+    image: "Images/pokemonTrainerIdle.png",
+    pokemon: [],
+}
+
+let app = document.getElementById("app");
+
+updateView();
+
+function updateView() {
+  getRandomPokemon()
+  app.innerHTML = /*HTML*/ `
+  <div class="container">
+    <div class="opposingPokemon">
+        <div>${randomPokemon.name}</div> 
+        <div>lvl: ${randomPokemon.level}</div>
+        <img src="${randomPokemon.image}">
+    </div>
+    
+    <div class="bottomScreen">
+        <div class="player">
+            <img src="${player.image}">
+            <div>${player.name}</div>
+        </div>
+
+        <div class="buttonContainer">
+            <button onclick="catchPokemon()">Fang</button>    
+            <button onclick="updateView()">Finn en annen</button>
+            <button onclick="showPokemon()">Vis dine pokemon</button>       
+        </div>
+
+    </div>
+  </div>
+  `;
+}
+
+function caughtPokemonView(){
+  app.innerHTML = /*HTML*/`
+  <div class="caughtContainer">
+    <h1>Du fanget ${player.pokemon[player.pokemon.length - 1].name}</h1>
+    <div class="buttonContainer">
+              <button onclick="updateView()">Finn en annen</button>
+              <button onclick="showPokemon()">Vis dine pokemon</button>
+          </div>
+  </div>
+  `;
+}
+
+function catchPokemon(){
+  player.pokemon.push(randomPokemon);
+  caughtPokemonView();
+}
+
+function showPokemon(){
+  app.innerHTML = `
+    <div id="oversikt" class="oversiktCSS">
+    <h2 id="oversiktTekst"></h2>
+    <button onclick="lukkOversikt()" style="padding: 10px 20px">OK</button>
+  `;
+
+  let oversiktVar = document.getElementById("oversikt");
+  let oversiktTekstVar = document.getElementById("oversiktTekst");
+
+  oversiktVar.style.display = "block";
+
+  oversiktTekstVar.innerHTML = player.pokemon;
+
+  console.log(player.pokemon);
+}
+
+function lukkOversikt(){
+  document.getElementById("oversikt").style.display = "none";
+}
+
+function getRandomPokemon(){
+  let randomNum = Math.floor(Math.random() * possiblePokemon.length);
+  randomPokemon = possiblePokemon[randomNum];
+}
+    </script>
+    
+</body>
+</html>
