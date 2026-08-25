@@ -36,15 +36,15 @@
     <div id="sirkelBoks" class="container"></div>
     <br> <br> <br> <br> <br>
     <h2>Løpende tid:</h2>
-    <h3 id="visTid">0 </h3> <b>I'm going to the F-ing MOON! WEEEEHEEEE!</b>
+    <h3 id="visTid">0 </h3> <b>I'm going to the F'ing MOON! WEEEEHEEEE!</b>
     <h2>Din reaksjonstid:</h2>
     <div id="visReaksjonsTid"></div>
 
     <script>
         //Modellen
         let selectedLampIndex = 0;
-            let startTime
-            let finishTime
+        let startTime
+        let finishTime
 
         selectRandomLamp();
         
@@ -52,7 +52,7 @@
         function selectRandomLamp(){
             selectedLampIndex = Math.floor(Math.random()*25);
             startTime = new Date().getTime();
-            timer = setInterval(tellSekunder, 10);
+            timer = setInterval(tellSekunder, 10);                       //Denne er ikke helt presis. Brukte trial and error.                        
             updateView();
         }
         
@@ -62,7 +62,8 @@
 
             for(let i = 0; i < 25; i++){
                 if(i === selectedLampIndex){
-                    sirkelTilstand += `<div class ="sirkel lightOn" onclick="reaksjonsTid(); selectRandomLamp()"></div>`;
+                    sirkelTilstand += 
+                    `<div class ="sirkel lightOn" onclick="reaksjonsTid(); selectRandomLamp()"></div>`;
                 }
                 else{
                     sirkelTilstand += `<div class ="sirkel"></div>`;
@@ -85,8 +86,22 @@
 
             let reaksjonsTime = Math.floor(finishTime - startTime);
 
-            document.getElementById('visReaksjonsTid').innerHTML += 
-            `<li>${reaksjonsTime} millisekunder</li>`;
+            if(reaksjonsTime < 1500){
+                document.getElementById('visReaksjonsTid').innerHTML += 
+                `<li>${reaksjonsTime} millisekunder</li>`;
+            }
+            else if(reaksjonsTime > 4000 && reaksjonsTime < 8000){
+                document.getElementById('visReaksjonsTid').innerHTML += 
+                `<li>${reaksjonsTime} millisekunder (KEEP IT UP, UNC! LMAO)</li>`;
+            }
+            else if(reaksjonsTime > 8000){
+                document.getElementById('visReaksjonsTid').innerHTML += 
+                `<li>${reaksjonsTime} millisekunder (DO SOMETHING ELSE! YOU SUCK ASS!)</li>`;
+            }            
+            else{
+                document.getElementById('visReaksjonsTid').innerHTML += 
+                `<li>${reaksjonsTime} millisekunder (WOW, SO SLOW!! KEKW)</li>`;
+            }            
 
             clearInterval(timer);
 
