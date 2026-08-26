@@ -78,22 +78,6 @@ img {
   width: 40px;
   height: 40px;
 }
-    .oversiktCSS {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 500px;
-    padding: 30px;
-
-    background-color: white;
-    border: 5px solid black;
-    text-align: center;
-
-    font-size: 24px;
-    }
 
     </style>
 </head>
@@ -195,29 +179,36 @@ function catchPokemon(){
 }
 
 function showPokemon(){
-  let leggTil = ``;
+  let minePokemon = `
+  <div class="caughtContainer">
+    <h1>Mine Pokemon</h1>
+    <div class="pokemonPartyContainer">
+  `;
 
-  for(let i = 0; i <= possiblePokemon.length; i++){
-  leggTil += `
+  for(let i = 0; i < player.pokemon.length; i++){
+
+  minePokemon += `
     <div class="pokemonBoxDisplay">
 
-      <div id="oversikt" class="oversiktCSS">
-      <h2 id="oversiktTekst"></h2>
-      <button onclick="lukkOversikt()" style="padding: 10px 20px">OK</button>
-
       <div>${player.pokemon[i].name}</div>
-      <div>${player.pokemon[i].health}</div>
-
-      document.getElementById('app').innerHTML = leggTil;
+      <div>Level:${player.pokemon[i].level}</div>
+      <img class="partyImg" src="${player.pokemon[i].image}">
 
     </div>
     `;
   }
-}
 
-function lukkOversikt(){
-  document.getElementById("oversikt").style.display = "none";
-}
+  minePokemon += `
+    <div>
+      <button onclick="updateView()">Tilbake</button>
+    </div>
+  `;
+  
+
+    document.getElementById('app').innerHTML = minePokemon;
+  }
+
+
 
 function getRandomPokemon(){
   let randomNum = Math.floor(Math.random() * possiblePokemon.length);
