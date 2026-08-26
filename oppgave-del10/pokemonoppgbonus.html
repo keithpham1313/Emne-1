@@ -199,12 +199,13 @@ function showPokemon(){
 
   for(let i = 0; i <= possiblePokemon.length; i++){
   leggTil += `
-  <div class="pokemonBoxDisplay">
+    <div class="pokemonBoxDisplay">
 
-    <div id="oversikt" class="oversiktCSS">
-    <h2 id="oversiktTekst"></h2>
-    <button onclick="lukkOversikt()" style="padding: 10px 20px">OK</button>
-  
+      <div id="oversikt" class="oversiktCSS">
+      <h2 id="oversiktTekst"></h2>
+      <button onclick="lukkOversikt()" style="padding: 10px 20px">OK</button>
+
+      <div>${player.pokemon[i].name}</div>
     </div>
     `;
   }

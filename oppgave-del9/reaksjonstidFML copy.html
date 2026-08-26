@@ -56,6 +56,20 @@
     <h2>Registrert tid ved bruk av getTime()):</h2>
     <div id="visReaksjonsTid" class="tidenDetTar"></div>
 
+Tallene du får ut av å bruke setinterval med variabler som endrer verdi, contra Date, er forskjellig. Dette er fordi sekunder plusser et bestemt tall for hver frekvens, og tar det tallet det lander på og dermed printer det ut. 
+Med Date så lager du et nytt Date objekt "finishTime", som da er uavhengig av hva som vises på skjermen. 
+Det som da blir mer nøyaktig er timestamps med Date, siden den er ikke avhengig av at setinterval skal være nøyaktig. 
+<br>
+I hovedsak kjører setinterval den siden den har fått satt (i dette tilfelle, 10), så fort den klarer, men det kan bli delay ifht hva som oppdateres på skjermen, hvor mye den på rendre av html, etc. Er flere faktorer her som kan være årsaken, noe som gjør at vi ikke kan bruke setinterval som en "fasit" ifht nøyaktig tid.
+
+<br><br>
+Jeg tror jeg bare er litt opphengt i dette fordi vi brukte setInterval() når vi skulle løse stoppeklokke-oppgaven. 😅  Hadde det vært bedre å bruke Date().getTime() for å løse den oppgaven?
+<br><br>
+En kombinasjon er det beste. Bruke Date for å vise den riktige tiden, men bruke setinterval for å oppdatere og vise det på skjermen. Den første oppgaven er kun for å lære å bruke det. 
+<br>
+Setinterval har ingenting med telling å gjøre. Den sin jobb er å kjøre en funksjon så ofte som man sier den skal. Den er kun for å vise dataen på skjermen. Selve tellinga skjer da med enten bruk av variabler som teller opp (slik med sekunder-variablen), eller Date. Mer presis er å bruke Date, men setinterval er uansett det man må bruke for å få det til å synes 😉
+<br>
+så i hovedsak er det ikke setinterval som skal "erstattes", det er variabler med egendefinerte tall VS Date sin verdi som timestamp
     <script>
         //Modellen
         let selectedLampIndex = 0;
@@ -122,8 +136,8 @@
         /* setInterval()*/
 
         function tellSekunder1(){          
-            viseTid.innerHTML = sekunder;  
-            sekunder += 10;                                
+            sekunder += 10; 
+            viseTid.innerHTML = sekunder;     
         }
 
         function registrereTid(){
