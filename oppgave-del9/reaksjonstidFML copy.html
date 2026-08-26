@@ -29,24 +29,41 @@
             background-color: yellow;
         }
 
+        .tidenDetTar{
+            font-size: 25px;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
-    <h1>Please, don't touch my yellow spots!</h1>
+    <h1>En liten sammenligning på setInterval() og getTime()</h1>
     <div id="sirkelBoks" class="container"></div>
     <br> <br> <br> <br> <br>
-    <h2>Løpende tid:</h2>
-    <h3 id="visTid">0 </h3> <b>I'm going to the F'ing MOON! WEEEEHEEEE!</b>
-    <h2>Din reaksjonstid:</h2>
-    <div id="visReaksjonsTid"></div>
+
+    <!-- setInterval() -->
+        <br>
+        <h2>"Tid" i setInterval():</h2>
+        <div id="viseTidStopp">0</div>
+
+        <h2>Registrert "tid" i setInterval():</h2>
+        <div id="forrigeRunde" class="tidenDetTar"></div>
+
+
+
+    <h2>Løpende tid (Det samme som setInterval()):</h2>
+    <div id="visTid">0 </div>
+    <h2>Registrert tid ved bruk av getTime()):</h2>
+    <div id="visReaksjonsTid" class="tidenDetTar"></div>
 
     <script>
         //Modellen
         let selectedLampIndex = 0;
         let startTime;
         let finishTime;
+        let timerTid;
 
-        const viseTid = document.getElementById('viseTid');         //Finner HTML-elementet med id="viseTid" og lagrer det i variabelen viseTid. Da kan vi senere skrive til dette elementet: viseTid.innerHTML = seconds;
+        const viseTid = document.getElementById('viseTidStopp');         //Finner HTML-elementet med id="viseTid" og lagrer det i variabelen viseTid. Da kan vi senere skrive til dette elementet: viseTid.innerHTML = seconds;
         const rundeTid = document.getElementById('forrigeRunde');   //Finner HTML-elementet med id="forrigeRunde" og lagrer det i rundeTid. Vi trenger det for å kunne skrive rundetidene inn på nettsiden.
         let sekunder = 0;
         let timer;
@@ -57,7 +74,10 @@
         function selectRandomLamp(){
             selectedLampIndex = Math.floor(Math.random()*25);
             startTime = new Date().getTime();
-            timer = setInterval(tellSekunder, 10);                       //Denne er ikke helt presis. Brukte trial and error.                        
+
+            timerTid = setInterval(tellSekunder, 10);                       //Denne er ikke helt presis. Brukte trial and error.                        
+            timer = setInterval(tellSekunder1, 10);                        //setInterval betyr kjør denne funksjonen gjentatte ganger med et bestemt tidsintervall. 1000 millisekunder = 1 sekund. Så tellSekunder() kjøres én gang hvert sekund.
+
             updateView();
         }
         
@@ -68,7 +88,7 @@
             for(let i = 0; i < 25; i++){
                 if(i === selectedLampIndex){
                     sirkelTilstand += 
-                    `<div class ="sirkel lightOn" onclick="reaksjonsTid(); selectRandomLamp()"></div>`;
+                    `<div class ="sirkel lightOn" onclick="reaksjonsTid(); registrereTid(); selectRandomLamp()"></div>`;
                 }
                 else{
                     sirkelTilstand += `<div class ="sirkel"></div>`;
@@ -91,27 +111,27 @@
 
             let reaksjonsTime = Math.floor(finishTime - startTime);
 
-            if(reaksjonsTime < 1500){
                 document.getElementById('visReaksjonsTid').innerHTML += 
                 `<li>${reaksjonsTime} millisekunder</li>`;
-            }
-            else if(reaksjonsTime > 4000 && reaksjonsTime < 8000){
-                document.getElementById('visReaksjonsTid').innerHTML += 
-                `<li>${reaksjonsTime} millisekunder (KEEP IT UP, UNC! LMAO)</li>`;
-            }
-            else if(reaksjonsTime > 8000){
-                document.getElementById('visReaksjonsTid').innerHTML += 
-                `<li>${reaksjonsTime} millisekunder (DO SOMETHING ELSE! YOU SUCK ASS!)</li>`;
-            }            
-            else{
-                document.getElementById('visReaksjonsTid').innerHTML += 
-                `<li>${reaksjonsTime} millisekunder (WOW, SO SLOW!! KEKW)</li>`;
-            }            
 
-            clearInterval(timer);
+            clearInterval(timerTid);
 
             document.getElementById('visTid').innerHTML = 0;
         }
+
+        /* setInterval()*/
+
+        function tellSekunder1(){          
+            viseTid.innerHTML = sekunder;  
+            sekunder += 10;                                
+        }
+
+        function registrereTid(){
+            rundeTid.innerHTML += `<li>${sekunder} millisekunder</li>`;
+            clearInterval(timer);                                  
+            sekunder = 0;
+        }
+
     </script>
     
 </body>
