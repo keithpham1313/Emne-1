@@ -206,6 +206,10 @@ function showPokemon(){
       <button onclick="lukkOversikt()" style="padding: 10px 20px">OK</button>
 
       <div>${player.pokemon[i].name}</div>
+      <div>${player.pokemon[i].health}</div>
+
+      document.getElementById('app').innerHTML = leggTil;
+
     </div>
     `;
   }
