@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body class="darkmode">
+
+    <h2>OPPGAVE 1</h2>
+
+    <input onchange="mittInputFelt(this.value)" type="text">
+    <button onclick="kallerFunk()">Kaller en funksjon</button>
+    <p id="viseTekst"></p>
+
+    <script>
+        let lagreMinVar = "";
+
+        function kallerFunk(){
+
+            document.getElementById('viseTekst').innerHTML = lagreMinVar;
+        }
+
+        function mittInputFelt(inputString){
+            
+            lagreMinVar = inputString;
+        }
+
+
+    </script>
+
+</body>
+</html>
