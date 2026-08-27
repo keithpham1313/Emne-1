@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>OPPGAVE 1</h2>
+
+    <input onchange="mittInputFelt(this.value)" type="text">
+    <button onclick="kallerFunk()">Kaller en funksjon</button>
+    <p id="viseTekst"></p>
+
+    <script>
+        let lagreMinVar = "";
+
+        function kallerFunk(){
+
+            document.getElementById('viseTekst').innerHTML = lagreMinVar;
+        }
+
+        function mittInputFelt(inputString){
+            
+            lagreMinVar = inputString;
+        }
+
+
+    </script>
+    
+    <h2>OPPGAVE 2</h2>
+
+    <input onchange="tallEn(this.value)" type="number">
+    <input onchange="tallTo(this.value)" type="number">
+    <button onclick="regnUt()">Regn ut</button>
+    <p id="visResultat"></p>
+
+    <script>
+        let tallEnVar;
+        let tallToVar;
+        let resultatVar;
+
+        function tallEn(inputEn){
+            tallEnVar = Number(inputEn);
+
+        }
+
+        function tallTo(inputTo){
+            tallToVar = Number(inputTo);
+
+        }
+
+        function regnUt(){
+
+            resultatVar = tallEnVar + tallToVar;
+
+            document.getElementById('visResultat').innerHTML = resultatVar;
+        }
+    </script>
+</body>
+</html>

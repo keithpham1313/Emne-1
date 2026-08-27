@@ -124,6 +124,8 @@ Oppgaver
 
                             <td><input onchange="changeIsDone(this, ${i})" type="checkbox" ${checkedHtml} /></td>
 
+                            <td></td>
+
                             <td>
                                 <button onclick="updateTask(${i})">Lagre</button>
                             </td>
@@ -135,8 +137,9 @@ Oppgaver
         tasks[index].isDone = checkbox.checked;
 
         if(checkbox.checked){
-            task.doneDate = new Date();
+            tasks[index].doneDate = new Date();
         }
+
         show();
     }
 
