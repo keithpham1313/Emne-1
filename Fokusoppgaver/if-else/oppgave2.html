@@ -24,39 +24,34 @@
 
 
     <p><b>Hva fikk du på prøven?</b></p>
-    <input onchange="tempInput(this.value)" type="number">
+    <input onchange="lagreKarakter=this.value" type="number">
     <button onclick="karakterKnapp()">Gi meg karakter</button>
 
-    <p id="visTemp"></p>
+    <p id="visKarakter"></p>
 
     <script>
-        let lagreTemp;
+        let lagreKarakter;
 
-        function tempInput(tempPara){
-            lagreTemp = Number(tempPara);
-
-        }
-
-        function sendKnapp(){
-            if(lagreTemp > 20){
-                document.getElementById('visTemp').innerHTML = "Det er varmt ute!";
+        function karakterKnapp(){
+            if(lagreKarakter >= 90 && lagreKarakter <= 100){
+                document.getElementById('visKarakter').innerHTML = "Karakter A";
             }
-            else if(lagreTemp > 5 && lagreTemp <= 20){
-                document.getElementById('visTemp').innerHTML = "Det er passe temperatur.";
+            else if(lagreKarakter >= 80 && lagreKarakter <= 89){
+                document.getElementById('visKarakter').innerHTML = "Karakter B";
             }
-            else if(lagreTemp <= 5){
-                document.getElementById('visTemp').innerHTML = "Det er kaldt ute!";
+            else if(lagreKarakter >= 70 && lagreKarakter <= 79){
+                document.getElementById('visKarakter').innerHTML = "Karakter C";
+            }
+            else if(lagreKarakter >= 60 && lagreKarakter <= 69){
+                document.getElementById('visKarakter').innerHTML = "Karakter D";
+            }
+            else if(lagreKarakter >= 0 && lagreKarakter <= 59){
+                document.getElementById('visKarakter').innerHTML = "Karakter F";
             }
         }
 
 
     </script>
-    
-
-    
-
-    
-
 
 </body>
 </html>
