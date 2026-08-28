@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+<body>
+    
+    <h2>OPPGAVE 3</h2>
+
+    <div>
+        <h4>Kvikklunsj 6-pk</h4>
+        <h3>100 kr</h3>
+        <button onclick="kvikklunsjPris(100)">Kjøp</button>
+    </div>
+
+    <div>
+        <h4>Risgrøt 970g, Fjordland</h4>
+        <h3>55 kr</h3>
+        <button onclick="risgrøtPris(55)">Kjøp</button>
+    </div>
+    
+    <p>
+    <button onclick="rabatt10()">10% rabatt</button>
+    <button onclick="rabatt20()">20% rabatt</button>
+    </p>
+    
+    <p id="nyPris"></p>
+
+    <script>
+        let lagreProduktPris;
+        let tilbudPris;
+
+
+        function kvikklunsjPris(pris1){
+            lagreProduktPris = (pris1);
+
+        }
+        
+        function risgrøtPris(pris1){
+            lagreProduktPris = (pris1);
+
+        }
+
+        function rabatt10(){
+            tilbudPris = lagreProduktPris / 100 * 90;
+
+            document.getElementById('nyPris').innerHTML = `Ny pris: ${tilbudPris} kr`;
+        }
+
+        function rabatt20(){
+            tilbudPris = lagreProduktPris / 100 * 80;
+
+            document.getElementById('nyPris').innerHTML = `Ny pris: ${tilbudPris} kr`;
+        }
+    </script>
+
+    
+
+
+</body>
+</html>

@@ -16,8 +16,8 @@
 <body>
     <h2>OPPGAVE 2</h2>
 
-    <input onchange="tallEn(this.value)" type="number">
-    <input onchange="tallTo(this.value)" type="number">
+    <input onchange="tallEnVar=this.value" type="number">
+    <input onchange="tallToVar=this.value" type="number">
     <button onclick="regnUt()">Regn ut</button>
     <p id="visResultat"></p>
 
@@ -26,21 +26,21 @@
         let tallToVar;
         let resultatVar;
 
-        function tallEn(inputEn){
-            tallEnVar = Number(inputEn);
+        // function tallEn(inputEn){
+        //     tallEnVar = Number(inputEn);
 
-        }
+        // }
 
-        function tallTo(inputTo){
-            tallToVar = Number(inputTo);
+        // function tallTo(inputTo){
+        //     tallToVar = Number(inputTo);
 
-        }
+        // }
 
         function regnUt(){
 
-            resultatVar = tallEnVar + tallToVar;
+            // resultatVar = tallEnVar + tallToVar;
 
-            document.getElementById('visResultat').innerHTML = resultatVar;
+            document.getElementById('visResultat').innerHTML = `${Number(tallEnVar) + Number(tallToVar)}`;
         }
     </script>
     
