@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+
+        .knapp {
+            background-color: red;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 5</h2>
+
+
+    <p><b>Sjekk hvilken dag det er! Tast inn et tall mellom 1-7:</b></p>
+    <input onchange="dagVar = Number(this.value)" type="number">
+    <!-- hadde onchange="dagVar = this.value" til å begynne med men den tar bare imot en string, derfor fungerte det ikke i if-setningen når jeg skrev dagVar === 6. -->
+
+    <button onclick = "sjekkDag()">Sjekk Dag</button>
+    <p id = "visMelding"></p>
+
+    <script>
+        let dagVar;
+        let meldingVar = document.getElementById('visMelding');
+
+        function sjekkDag(){
+
+        
+        if(dagVar >= 1 && dagVar <= 5){
+            meldingVar.innerHTML = "Det er en ukedag.";
+        }
+        else if(dagVar === 6 || dagVar === 7){
+            meldingVar.innerHTML = "Det er helg!";
+        }
+        else{
+            meldingVar.innerHTML = "Dette tallet er ikke gyldig!";
+            }
+        }
+    </script>
+
+</body>
+</html>
