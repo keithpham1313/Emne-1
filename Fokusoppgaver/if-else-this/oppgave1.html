@@ -24,48 +24,54 @@
 <body id="bakgrunn" class="darkmode">
     
     <h2>OPPGAVE 1</h2>
+    
+    <b>Tekst 1: </b><input onchange="lagreInputVar1 = (this.value)">
+    <b>Farge 1:</b><input onchange="fargeInput1 = (this.value)">
+    <br>
+    <b>Tekst 2: </b><input onchange="lagreInputVar2 = (this.value)">
+    <b>Farge 2:</b><input onchange="fargeInput2 = (this.value)">
 
     <div id="knappID">
     <button class="knapp" onclick="thisKnapp(this)">THIS?</button>
     </div>
+    <p id="visKlonetKnapp"></p>
 
     <script>
         let knappTilstand = 0;
-        let kloneKnapp;
+        let kloneKnappVar;
+        
+        let lagreInputVar1 = "NEIN THIS?";
+        let lagreInputVar2 = "THIS?";
 
-        // function thisKnapp(farge){
+        let fargeInput1;
+        let fargeInput2;
 
-        //     knappTilstand = (farge);
-
-        //     if(knappTilstand === "THIS?"){
-        //         document.getElementById('visKnapp').innerHTML = "NEIN THIS!";
-        //         // document.getElementById('visKnapp').style.backgroundColor(green);
-
-        //     }
-        //     else{
-        //         document.getElementById('visKnapp').innerHTML = "THIS?";
-        //     }
-
-        // }
 
         function thisKnapp(meinKnapp){
 
             if(knappTilstand === 0){
-                meinKnapp.innerHTML = "NEIN THIS!";
-                meinKnapp.style.backgroundColor = "green"; 
+                meinKnapp.innerHTML = `${lagreInputVar1}`;
+                meinKnapp.style.backgroundColor = `${fargeInput1}`; 
 
                 knappTilstand = 1;
+
+                kloneFunk();
                 }
             else if(knappTilstand === 1){
-                meinKnapp.innerHTML = "THIS?";
-                meinKnapp.style.backgroundColor = "red"; 
+                meinKnapp.innerHTML = `${lagreInputVar2}`;
+                meinKnapp.style.backgroundColor = `${fargeInput2}`;
                 
                 knappTilstand = 0;
-                }
 
-                kloneKnapp = document.getElementById('knappID').innerHTML;
-                document.getElementById('knappID').innerHTML += kloneKnapp;
-            }
+                kloneFunk();
+                }          
+        }
+
+        function kloneFunk(){
+                kloneKnappVar = document.getElementById('knappID').innerHTML;
+                document.getElementById('visKlonetKnapp').innerHTML += kloneKnappVar;
+
+        }
 
     </script>
 
