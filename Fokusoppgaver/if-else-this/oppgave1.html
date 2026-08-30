@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+
+        .knapp {
+            background-color: red;
+            color: white;
+        }
+        .knappGr {
+            background-color: green;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 1</h2>
+
+    <div id="knappID">
+    <button class="knapp" onclick="thisKnapp(this)">THIS?</button>
+    </div>
+
+    <script>
+        let knappTilstand = 0;
+        let kloneKnapp;
+
+        // function thisKnapp(farge){
+
+        //     knappTilstand = (farge);
+
+        //     if(knappTilstand === "THIS?"){
+        //         document.getElementById('visKnapp').innerHTML = "NEIN THIS!";
+        //         // document.getElementById('visKnapp').style.backgroundColor(green);
+
+        //     }
+        //     else{
+        //         document.getElementById('visKnapp').innerHTML = "THIS?";
+        //     }
+
+        // }
+
+        function thisKnapp(meinKnapp){
+
+            if(knappTilstand === 0){
+                meinKnapp.innerHTML = "NEIN THIS!";
+                meinKnapp.style.backgroundColor = "green"; 
+
+                knappTilstand = 1;
+                }
+            else if(knappTilstand === 1){
+                meinKnapp.innerHTML = "THIS?";
+                meinKnapp.style.backgroundColor = "red"; 
+                
+                knappTilstand = 0;
+                }
+
+                kloneKnapp = document.getElementById('knappID').innerHTML;
+                document.getElementById('knappID').innerHTML += kloneKnapp;
+            }
+
+    </script>
+
+
+</body>
+</html>
