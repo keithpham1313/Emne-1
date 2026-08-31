@@ -161,6 +161,8 @@ Lag en funksjon sjekkTemperatur(temp) som tar inn en temperatur som parameter og
 - 5–20 → "Det er passe temperatur."
 - Under 5 → "Det er kaldt ute!"
 
+>>>[Skjønner ikke hvorfor man skal bruke return her. XD]
+
 **Oppgave 2: Karaktersystem**
 Lag en funksjon giKarakter(poeng) som returnerer karakteren basert på poeng:
 - 90–100: "A"
@@ -184,6 +186,8 @@ Lag en funksjon som tar inn et parameter og som returnerer prisen på billetten:
 Lag en funksjon som tar inn et parameter og som tar et tall 1–7 og returnerer:
 - 6 eller 7 → "Det er helg!"
 - Ellers → "Det er en ukedag."
+
+>>>[Glemte Number i Number(this.value) igjen!!!]
 
 # setInterval
 

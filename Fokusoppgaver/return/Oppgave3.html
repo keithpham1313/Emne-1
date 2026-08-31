@@ -23,34 +23,27 @@
 </head>
 <body id="bakgrunn" class="darkmode">
     
-    <h2>OPPGAVE 1</h2>
+    <h2>OPPGAVE 3</h2>
 
-    <input onchange="tempInput = (this.value)">
-    <button onclick="visTemperatur()">Sjekk</button>
+    <input onchange="passordInput = (this.value)">
+    <button onclick="sjekkPassord()">Sjekk</button>
     <p id="visMelding"></p>
 
 
     <script>
-        let tempInput;
-
-        function visTemperatur(){
-            let melding = sjekkTemp(tempInput)
+        function sjekkPassord(){
+            let melding = returPassord(passordInput);
             document.getElementById('visMelding').innerHTML = melding;
-
         }
 
-        function sjekkTemp(temp){
-            if(temp > 20){
-                return "Det er varmt ute!";
+        function returPassord(passord){
+            if(passord === "hemmelighet123"){
+                return "Riktig passord, velkommen inn!"
             }
-            else if(temp >= 5 && temp <= 20){
-                return "Det er passe temperatur."
-            }
-            else if(temp < 5){
-                return "Det er kaldt ute!"
+            else{
+                return "Feil passord, prøv igjen."
             }
         }
-
 
     </script>
 

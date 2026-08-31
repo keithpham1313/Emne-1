@@ -23,34 +23,30 @@
 </head>
 <body id="bakgrunn" class="darkmode">
     
-    <h2>OPPGAVE 1</h2>
+    <h2>OPPGAVE 4</h2>
 
-    <input onchange="tempInput = (this.value)">
-    <button onclick="visTemperatur()">Sjekk</button>
-    <p id="visMelding"></p>
+    <input onchange="alderInput = (this.value)">
+    <button onclick="sjekkPris()">Sjekk</button>
+    <p id="visPris"></p>
 
 
     <script>
-        let tempInput;
-
-        function visTemperatur(){
-            let melding = sjekkTemp(tempInput)
-            document.getElementById('visMelding').innerHTML = melding;
-
+        function sjekkPris(){
+            let meldingVar = returPris(alderInput);
+            document.getElementById('visPris').innerHTML = meldingVar;
         }
 
-        function sjekkTemp(temp){
-            if(temp > 20){
-                return "Det er varmt ute!";
+        function returPris(alder){
+            if(alder < 3){
+                return "Pris 0 kr";
             }
-            else if(temp >= 5 && temp <= 20){
-                return "Det er passe temperatur."
+            else if(alder >= 3 && alder < 12){
+                return "Pris 50 kr";
             }
-            else if(temp < 5){
-                return "Det er kaldt ute!"
+            else if(alder >= 12){
+                return "Pris 100 kr";
             }
         }
-
 
     </script>
 

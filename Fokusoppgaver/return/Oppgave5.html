@@ -23,31 +23,28 @@
 </head>
 <body id="bakgrunn" class="darkmode">
     
-    <h2>OPPGAVE 1</h2>
+    <h2>OPPGAVE 5</h2>
 
-    <input onchange="tempInput = (this.value)">
-    <button onclick="visTemperatur()">Sjekk</button>
-    <p id="visMelding"></p>
+    <input onchange="dagInput = Number(this.value)">
+    <button onclick="sjekkDag()">Sjekk</button>
+    <p id="visDag"></p>
 
 
     <script>
-        let tempInput;
-
-        function visTemperatur(){
-            let melding = sjekkTemp(tempInput)
-            document.getElementById('visMelding').innerHTML = melding;
-
+        function sjekkDag(){
+            let meldingVar = returDag(dagInput);
+            document.getElementById('visDag').innerHTML = meldingVar;
         }
 
-        function sjekkTemp(temp){
-            if(temp > 20){
-                return "Det er varmt ute!";
+        function returDag(dag){
+            if(dag === 6 || dag === 7){
+                return "Det er helg!"
             }
-            else if(temp >= 5 && temp <= 20){
-                return "Det er passe temperatur."
+            else if(dag >= 1 && dag <= 5){
+                return "Det er en ukedag."
             }
-            else if(temp < 5){
-                return "Det er kaldt ute!"
+            else{
+                return "Ugyldig tall. Prøv igjen."
             }
         }
 

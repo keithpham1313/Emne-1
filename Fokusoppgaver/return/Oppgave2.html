@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+
+        .knapp {
+            background-color: red;
+            color: white;
+        }
+        .knappGr {
+            background-color: green;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 2</h2>
+
+    <input onchange="poengInput = (this.value)">
+    <button onclick="sjekkKarakter()">Sjekk</button>
+    <p id="visKarakter"></p>
+
+
+    <script>
+
+        function sjekkKarakter(){
+            let melding = returKarakter(poengInput);
+            document.getElementById('visKarakter').innerHTML = melding;
+
+        }
+
+        function returKarakter(poeng){
+            if(poeng >= 90 && poeng <= 100){
+                return "A";
+            }
+            else if(poeng >= 80 && poeng <= 89){
+                return "B";
+            }
+            else if(poeng >= 70 && poeng <= 79){
+                return "C";
+            }
+            else if(poeng >= 60 && poeng <= 69){
+                return "D";
+            }
+            else if(poeng >= 0 && poeng <= 59){
+                return "F";
+            }
+            else{
+                return "Ugyldig tall. Prøv igjen.";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
