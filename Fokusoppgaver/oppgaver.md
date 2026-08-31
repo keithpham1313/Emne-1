@@ -124,6 +124,8 @@ Be brukeren skrive inn et tall fra 1 til 7, der 1 = mandag og 7 = søndag.
 - Hvis tallet er 6 eller 7, skriv: "Det er helg!"
 - Ellers skriv: "Det er en ukedag."
 
+>>> [hadde onchange="dagVar = this.value" til å begynne med men den tar bare imot en string, derfor fungerte det ikke i if-setningen når jeg skrev dagVar === 6. ]
+
 
 # If / else + this
 **Oppgave 1: Dynamisk knapp med tilstand**
@@ -142,12 +144,15 @@ Legg til en metode endreSaldo(beløp) som:
 - bruker if/else til å sjekke om saldoen blir negativ: hvis ja, vis advarsel; hvis nei, oppdater saldoen
 - vis resultatet på siden
 
+>>> [Glemte å skrive "= 0" etter variabelen, så ingenting fungerte]
+
 **Oppgave 3: Dynamisk meny**
 Lag flere knapper (eller ul - li) som representerer menyvalg.
 Lag en funksjon som:
 - bruker this til å hente knappens navn
 - bruker if/else for å vise ulik melding basert på hvilken knapp som ble trykket (“Valgt: Hjem”, “Valgt: Om oss”, etc.)
 
+>>> [Jeg skjønte ikke hvordan jeg kunne bruke en parameter i stedet for to]
 
 # return
 **Oppgave 1: Temperaturkontroll**
@@ -179,6 +184,7 @@ Lag en funksjon som tar inn et parameter og som returnerer prisen på billetten:
 Lag en funksjon som tar inn et parameter og som tar et tall 1–7 og returnerer:
 - 6 eller 7 → "Det er helg!"
 - Ellers → "Det er en ukedag."
+
 # setInterval
 
 **Oppgave 1: Nedtelling med varsler**
