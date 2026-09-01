@@ -199,6 +199,8 @@ Programmet skal:
 - Reagere når det er mindre enn 10 sekunder igjen
 - Gi en tydelig beskjed når nedtellingen er ferdig
 
+>>> [Slet med å huske hvordan man satte opp setInterval() - måtte se i notater]
+
 Bonus
 - Endre farge på teksten når tiden begynner å bli lav
 - Gi brukeren mulighet til å pause nedtellingen

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+
+        .knapp {
+            background-color: red;
+            color: white;
+        }
+        .knappGr {
+            background-color: green;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 1</h2>
+
+    <input onchange="sekunderInput = Number(this.value)" type="number">
+    <button onclick="startClick()">Start Nedtelling</button>
+    <p id="visTid"></p>
+    <p id="visMelding"></p>
+
+    <script>
+        let sekunderInput;
+
+        function startClick(){
+            setInterval(nedtelling, 1000);
+        }
+
+        function nedtelling(){
+            let melding = returMelding(sekunderInput);
+            sekunderInput --;
+
+            document.getElementById('visTid').innerHTML = sekunderInput;
+            document.getElementById('visMelding').innerHTML = melding;
+        }
+
+        function returMelding(returTid){
+            if(returTid === 10){
+                return "Det er 10 sekunder igjen!";
+            }
+            else if(returTid === 0){
+                return "Nedtellingen er ferdig!";
+            }
+
+
+        }
+    </script>
+
+
+
+</body>
+</html>
