@@ -203,8 +203,11 @@ Programmet skal:
 
 Bonus
 - Endre farge på teksten når tiden begynner å bli lav
-- Gi brukeren mulighet til å pause nedtellingen
+- Gi brukeren mulighet til å pause nedtellingen 
 - Spill av en lyd når tiden er ute
+
+>>>[Null peiling på å sette setInterval() på pause]
+>>>[Aldri lagt til en lyd-fil, måtte google]
 
 **Oppgave 2: Temperatur-overvåker**
 Lag en applikasjon som simulerer temperaturmålinger. Temperaturen skal oppdateres automatisk med jevne mellomrom, og verdien kan for eksempel genereres tilfeldig.
@@ -214,6 +217,8 @@ Eksempler på status:
 - Normal temperatur
 - For varmt
 Temperaturen skal oppdateres kontinuerlig, og visningen skal endres dersom temperaturen går over eller under bestemte grenser.
+
+>>>[Måtte se på noen tidligere oppgaver]
 
 Bonus
 - Vis historikk over temperaturmålinger
