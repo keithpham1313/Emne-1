@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+
+        .knapp {
+            background-color: red;
+            color: white;
+        }
+        .knappGr {
+            background-color: green;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 1</h2>
+
+    <ul id="visNumber"></ul>
+
+    <script>
+
+        let numberVar = 0;
+
+        lagTallListe();
+
+        function lagTallListe(){
+            
+            let antallLister = '';
+            let erPartall = false;
+
+            for(let i = 1; i <= 10; i++){
+
+                if(erPartall === true){
+                    antallLister += `<li>${i} er partall</li>`;
+                }
+                else{
+                    antallLister += `<li>${i} er oddetall</li>`;
+                }
+                erPartall = !erPartall;
+
+
+                
+            }
+            document.getElementById('visNumber').innerHTML = antallLister;
+        }
+
+        /*
+        Runde 1 
+        
+        (i = 1): erPartall er false. 
+        Koden går i else og skriver "1 er oddetall". 
+        Til slutt endres erPartall til true.
+        
+        Runde 2 
+        
+        (i = 2): erPartall er nå true. 
+        Koden går i if og skriver "2 er partall". 
+        Til slutt endres erPartall tilbake til false.
+        
+        Slik fortsetter den å hoppe frem og tilbake for hvert eneste tall!
+        Utropstegnet (!erPartall) betyr bare "det motsatte av". 
+        Så hvis den er false, gjør utropstegnet den om til true.
+        */
+    </script>
+
+
+
+</body>
+</html>

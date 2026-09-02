@@ -244,7 +244,7 @@ Bonus
 - Lag en stopp-knapp som avbryter bryggingen
 - Vis statusmeldinger underveis
 
-
+>>>[No chance, kekw]
 
 
 # Loops
@@ -267,6 +267,8 @@ Lag en array med varer (for eksempel melk, brød, ost, egg). Lag en funksjon som
 Ekstra:
 - legg til en knapp som legger til en ny vare i arrayen og oppdaterer visningen
 
+>>>[Glemte "" i array...]
+>>> Forvirret over hvordan jeg skulle få farge på arrayene.
 
 **Oppgave 3: Gjett tallet**
 Lag et lite spill der brukeren skal gjette et tilfeldig tall. Programmet skal:
