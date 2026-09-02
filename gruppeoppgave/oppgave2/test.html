@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lars Monsen Inventory</title>
+    <link rel="stylesheet" href="style-grid-backpack.css"/>
+    <link rel="stylesheet" href="style-grid-available-items.css"/>
+
+    <style>
+        .grid-sekk{
+    margin-top: 2%;
+    margin-left: 10%;
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px;
+    gap: 8px;
+    }
+
+    .grid-inv{
+        display: grid;
+        grid-template-columns: repeat(8, 100px);
+        grid-template-rows: 100px 100px 100px;
+        gap: 8px;
+    }
+
+    .item{
+        border: solid black;
+        text-align: center;
+    }
+
+    .toggleInventory{
+        display: none;
+    }
+
+    .melding {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 500px;
+        padding: 30px;
+
+        background-color: white;
+        border: 5px solid black;
+        text-align: center;
+
+        font-size: 24px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div id=app></div>
+
+<script>
+let larsStats = {
+    sult: 100,
+    tørst: 100,
+    hygiene: 100,
+    komfort: 100,
+    humør: 100,
+};
+
+let gameIsOver = false;
+
+// -------------------------
+// Starter spillet
+// -------------------------
+updateView();
+statTimer();
+
+
+// -------------------------
+// OPPDATERER SKJERMEN
+// -------------------------
+
+function updateView() {
+
+    let html = /*HTML*/ `
+        <h2>Tamamonsen Larsagochi</h2>
+
+        <button onclick="itemFeed('Kvikklunsj')">🍫 Kvikklunsj</button>
+        <button onclick="itemFeed('Vann')">💧 Vann</button>
+        <button onclick="itemFeed('Våtserviett')">🧻 Våtserviett</button>
+        <button onclick="itemFeed('Hund')">🐕 Hund</button>
+        <button onclick="itemFeed('Bål')">🔥 Bål</button>
+
+        <br><br>
+
+        <div>Sult: ${larsStats.sult}</div>
+        <div>Tørst: ${larsStats.tørst}</div>
+        <div>Hygiene: ${larsStats.hygiene}</div>
+        <div>Komfort: ${larsStats.komfort}</div>
+        <div>Humør: ${larsStats.humør}</div>
+
+        <div id="melding" class="melding">
+            <h2 id="meldingTekst"></h2>
+            <button id="okKnapp" onclick="lukkMelding()" style="padding: 10px 20px">
+                OK
+            </button>
+        </div>
+    `;
+
+    document.getElementById('app').innerHTML = html;
+}
+
+
+// -------------------------
+// BRUKE ITEMS
+// -------------------------
+
+function itemFeed(item) {
+
+    if (gameIsOver) return;
+
+    switch (item) {
+
+        case 'Kvikklunsj':
+            larsStats.sult += 20;
+            visMelding(
+                "🍫 Kvikklunsj. Turens viktigste næringskilde."
+            );
+            break;
+
+        case 'Vann':
+            larsStats.tørst += 20;
+            visMelding(
+                "💧 Lars drikker vann. Villmarka er reddet."
+            );
+            break;
+
+        case 'Våtserviett':
+            larsStats.hygiene += 20;
+            visMelding(
+                "🧻 En våtserviett senere, og Lars føler seg nesten sivilisert."
+            );
+            break;
+
+        case 'Bål':
+            larsStats.komfort += 20;
+            visMelding(
+                "🔥 Lars har sluttet å kjenne tærne. På tide med ved."
+            );
+            break;
+
+        case 'Hund':
+            larsStats.humør += 20;
+            visMelding(
+                "🐕 Lars har begynt å svare med enstavelsesord. Hunden hjelper."
+            );
+            break;
+    }
+
+    // Hindrer verdiene i å gå over 100
+    begrensStats();
+
+    updateView();
+}
+
+
+// -------------------------
+// MELDING
+// -------------------------
+
+function visMelding(tekst) {
+
+    // Vent litt slik at updateView rekker å lage elementet
+    setTimeout(function() {
+
+        let melding = document.getElementById("melding");
+        let meldingTekst = document.getElementById("meldingTekst");
+
+        meldingTekst.innerHTML = tekst;
+        melding.style.display = "block";
+
+    }, 10);
+}
+
+
+function lukkMelding() {
+    document.getElementById("melding").style.display = "none";
+}
+
+
+// -------------------------
+// TIMER
+// -------------------------
+
+function statTimer() {
+
+    setInterval(function() {
+
+        if (gameIsOver) return;
+
+        larsStats.sult -= 5;
+        larsStats.tørst -= 5;
+        larsStats.hygiene -= 2;
+        larsStats.komfort -= 3;
+        larsStats.humør -= 2;
+
+        begrensStats();
+
+        updateView();
+        
+        // Sjekker om Lars har fått det for dårlig
+        sjekkTilstand();
+
+
+
+    }, 1000);
+}
+
+
+// -------------------------
+// BEGRENSER STATS
+// -------------------------
+
+function begrensStats() {
+
+    if (larsStats.sult < 0) larsStats.sult = 0;
+    if (larsStats.tørst < 0) larsStats.tørst = 0;
+    if (larsStats.hygiene < 0) larsStats.hygiene = 0;
+    if (larsStats.komfort < 0) larsStats.komfort = 0;
+    if (larsStats.humør < 0) larsStats.humør = 0;
+
+    if (larsStats.sult > 100) larsStats.sult = 100;
+    if (larsStats.tørst > 100) larsStats.tørst = 100;
+    if (larsStats.hygiene > 100) larsStats.hygiene = 100;
+    if (larsStats.komfort > 100) larsStats.komfort = 100;
+    if (larsStats.humør > 100) larsStats.humør = 100;
+}
+
+
+// -------------------------
+// SJEKKER OM LARS GIR OPP
+// -------------------------
+
+function sjekkTilstand() {
+
+    if (
+        larsStats.sult <= 0 ||
+        larsStats.tørst <= 0 ||
+        larsStats.hygiene <= 0 ||
+        larsStats.komfort <= 0 ||
+        larsStats.humør <= 0
+    ) {
+
+        gameOver();
+    }
+}
+
+
+// -------------------------
+// GAME OVER
+// -------------------------
+
+function gameOver() {
+
+    gameIsOver = true;
+
+    let melding = document.getElementById("melding");
+    let meldingTekst = document.getElementById("meldingTekst");
+    let okKnapp = document.getElementById("okKnapp");
+
+    meldingTekst.innerHTML = `
+        🎒 LARS HAR FÅTT NOK.
+        <br><br>
+
+        Han pakker sekken, ser skuffet på deg
+        og går sin vei.
+        <br><br>
+
+        <i>«Dette kunne vært gjort bedre.»</i>
+        <br><br>
+
+        <button onclick="restartGame()">
+            🔄 START PÅ NYTT
+        </button>
+    `;
+
+    okKnapp.style.display = "none";
+    melding.style.display = "block";
+}
+
+
+// -------------------------
+// RESTART
+// -------------------------
+
+function restartGame() {
+
+    larsStats = {
+        sult: 100,
+        tørst: 100,
+        hygiene: 100,
+        komfort: 100,
+        humør: 100,
+    };
+
+    gameIsOver = false;
+
+    updateView();
+}
+</script>
+
+</body>
+</html>
