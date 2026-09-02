@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamamonsen Larsagochi</title>
+
+    <style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Hele spillet */
+#app {
+    width: 600px;
+    margin: 20px auto;
+}
+
+/* Spillskjermen */
+.skjerm {
+    position: relative;
+
+    width: 600px;
+    height: 400px;
+
+    background-image: url("naturbg.png");
+    background-size: cover;
+    background-position: center;
+
+    border: 3px solid black;
+}
+
+/* Lars */
+#lars {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+/* --------------------
+   ITEMS PÅ TOPPEN
+   -------------------- */
+
+.items {
+    position: absolute;
+
+    top: 10px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.knapp {
+    padding: 8px 10px;
+
+    background: #dab333;
+    color: black;
+
+    border: 2px solid black;
+    border-radius: 15px;
+
+    cursor: pointer;
+}
+
+/* --------------------
+   STATS NEDERST
+   -------------------- */
+
+.stats {
+    position: absolute;
+
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+
+    display: flex;
+    justify-content: space-around;
+
+    padding: 8px;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    border: 2px solid black;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* --------------------
+   MELDING
+   -------------------- */
+
+#visMeldingId {
+    width: 600px;
+
+    margin-top: 10px;
+    padding: 12px;
+
+    background-color: white;
+
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: "Press Start 2P", cursive;
+}
+
+#meldingTekstId {
+    margin: 0;
+
+    font-size: 18px;
+}
+    </style>
+</head>
+
+<body onload="statTimer()">
+
+    <div id="app"></div>
+
+    <!-- Meldingen ligger UTENFOR app -->
+    <div id="visMeldingId">
+        <h2 id="meldingTekstId"></h2>
+    </div>
+
+
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+
+
+
+    <script>
+
+    //MODEL
+
+        const larsStats = {
+    sult: 100,
+    tørst: 100,
+    hygiene: 100,
+    komfort: 100,
+    humør: 100,
+};
+
+const minNum = 0;
+const maxNum = 100;
+
+let intervall = {
+    sultIntervall: null,
+    tørstIntervall: null
+};
+
+const sultBeskjed = "Lars er sulten!";
+const tørstBeskjed = "Lars er tørst!";
+
+//VIEW
+
+updateView();
+
+function updateView() {
+
+let html = /*HTML*/ `
+    <h2>Tamamonsen Larsagochi</h2>
+
+    <div class="skjerm">
+
+        <div class="items">
+
+            <button class="knapp"
+                onclick="itemFeed('Kvikklunsj')">
+                🍫 Kvikklunsj
+            </button>
+
+            <button class="knapp"
+                onclick="itemFeed('Vann')">
+                💧 Vann
+            </button>
+
+            <button class="knapp"
+                onclick="itemFeed('Våtserviett')">
+                🧻 Våtserviett
+            </button>
+
+            <button class="knapp"
+                onclick="itemFeed('Hund')">
+                🐕 Hund
+            </button>
+
+            <button class="knapp"
+                onclick="itemFeed('Bål')">
+                🔥 Bål
+            </button>
+
+        </div>
+
+
+        <div class="stats">
+            <div>🍫 ${larsStats.sult}</div>
+            <div>💧 ${larsStats.tørst}</div>
+            <div>🧼 ${larsStats.hygiene}</div>
+            <div>🔥 ${larsStats.komfort}</div>
+            <div>❤️ ${larsStats.humør}</div>
+        </div>
+
+    </div>
+`;
+
+    document.getElementById('app').innerHTML = html;
+}
+
+//Controller
+
+function visMelding(tekst) {
+
+    let visMeldingVar =
+        document.getElementById('visMeldingId');
+
+    let visMeldingTekstVar =
+        document.getElementById('meldingTekstId');
+
+    visMeldingVar.style.display = "block";
+    visMeldingTekstVar.innerHTML = tekst;
+}
+
+
+function itemFeed(item) {
+
+    switch (item) {
+
+        case 'Kvikklunsj':
+            larsStats.sult += 20;
+
+            visMelding(
+                "🍫 Kvikklunsj. Turens viktigste næringskilde."
+            );
+            break;
+
+
+        case 'Vann':
+            larsStats.tørst += 20;
+
+            visMelding(
+                "💧 Lars drikker vann. Villmarka er reddet."
+            );
+            break;
+
+
+        case 'Våtserviett':
+            larsStats.hygiene += 20;
+
+            visMelding(
+                "🧻 En våtserviett senere, og Lars føler seg nesten sivilisert."
+            );
+            break;
+
+
+        case 'Hund':
+            larsStats.humør += 20;
+
+            visMelding(
+                "🐕 Lars har begynt å svare med enstavelsesord. Hunden hjelper."
+            );
+            break;
+
+
+        case 'Bål':
+            larsStats.komfort += 20;
+
+            visMelding(
+                "🔥 Lars har sluttet å kjenne tærne. På tide med ved."
+            );
+            break;
+    }
+
+    updateView();
+}
+
+
+function statTimer() {
+
+    intervall.sultIntervall =
+        setInterval(sultTimer, 600);
+
+    intervall.tørstIntervall =
+        setInterval(tørstTimer, 600);
+}
+
+
+function sultTimer() {
+
+    larsStats.sult -= 20;
+
+    if (larsStats.sult < minNum) {
+        larsStats.sult = minNum;
+    }
+
+    if (larsStats.sult === maxNum * 0.2) {
+        visMelding(sultBeskjed);
+    }
+
+    updateView();
+}
+
+
+function tørstTimer() {
+
+    larsStats.tørst -= 8;
+
+    if (larsStats.tørst < minNum) {
+        larsStats.tørst = minNum;
+    }
+
+    if (larsStats.tørst === maxNum * 0.2) {
+        visMelding(tørstBeskjed);
+    }
+
+    updateView();
+}
+    </script>
+
+</body>
+</html>

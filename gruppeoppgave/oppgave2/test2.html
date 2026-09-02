@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+.skjerm {
+  position: relative;
+  width: 420px;
+  height: 380px;
+  margin: 20px auto;
+  background-image: url("naturbg.png");
+  background-size: cover;
+}
+
+#lars {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stats {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.knapp {
+  position: absolute;
+  background: #dab333;
+  color: black;
+  border: 0;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.k1 { top: 10px; left: 10px; }
+.k2 { top: 10px; right: 120px; }
+.k3 { top: 10px; right: 10px; }
+.k4 { top: 20px; left: 40px; }
+.k5 { top: 20px; left: 160px; }
+
+  
+    </style>
+<body onload="statTimer()"> 
+    <div id="app">
+     
+
+    
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+
+    <script>
+        
+const larsStats = {
+    sult: 100,
+    tørst: 100,
+    hygiene: 100,
+    komfort: 100,
+    humør: 100,
+}
+
+const minNum = 0;
+const maxNum = 100;
+let intervall = null;
+
+const sultBeskjed = "Lars er sulten!"
+const tørstBeskjed = "Lars er tørst!"
+
+updateView()
+
+function updateView(){
+    let html = /*HTML*/ `
+    <h2>Tamamonsen Larsagochi</h2>
+
+    <div class="skjerm">
+    <button  class="knapp k1" onclick="itemFeed('Kvikklunsj')">🍫 Kvikklunsj</button>
+    <button  class="knapp k2" onclick="itemFeed('vann')">💧 Vann</button>
+    <button  class="knapp k3" onclick="itemFeed()">🧻 Våtserviett</button>
+    <button  class="knapp k4" onclick="itemFeed()">🐕 Hund</button>
+    <button  class="knapp k5" onclick="itemFeed()">🔥 Bål</button>
+    </div>
+
+    
+    <div class="stats">
+    <div>Sult: ${larsStats.sult}</div>
+    <div>Tørst: ${larsStats.tørst}</div>
+    <div>Hygiene: ${larsStats.hygiene}</div>
+    <div>Komfort: ${larsStats.komfort}</div>
+    <div>Humør: ${larsStats.humør}</div>
+    </div>
+    
+
+    <div id="visMeldingId">
+        <h2 id="meldingTekstId"></h2>
+        <button onclick=""> OK <button>
+
+    </div>
+
+    <div id="sult"></div>
+    <div id="komfort"></div>
+    <div id="humør"></div>
+    <div id="hygiene"></div>
+    <div id="tørst"></div>
+
+
+
+    `;
+    
+    document.getElementById('app').innerHTML = html;
+    
+}
+
+
+
+function visMelding(tekst){
+    let visMeldingVar = document.getElementById('visMeldingId');
+    let visMeldingTekstVar = document.getElementById('meldingTekstId');
+
+    visMeldingVar.style.display = "";
+    visMeldingTekstVar.innerHTML = tekst;
+
+}
+
+
+
+
+function itemFeed(item){
+    switch (item){
+        case 'Kvikklunsj':
+            larsStats.sult += 20;
+            visMelding("🍫 Kvikklunsj. Turens viktigste næringskilde.");
+            break;
+        case 'Vann':
+            larsStats.tørst += 20;
+            visMelding("💧 Lars drikker vann. Villmarka er reddet.");
+            break;
+    }
+    
+
+}
+
+function statTimer(){
+    // intervall = [setInterval(sultTimer, 600),
+    //     setInterval(tørstTimer, 600), setInterval(hygieneTimer, 600),
+    //     setInterval(komfortTimer, 600), setInterval(humørTimer, 600)
+    // ]
+    intervall.sultIntervall = setInterval(sultTimer, 600)
+    intervall.tørstIntervall = setInterval(tørstTimer, 600)
+}
+
+
+function sultTimer(){
+    larsStats.sult -= 20;
+    if (larsStats.sult < minNum){
+        return clearInterval(intervall)
+    } else if (larsStats.sult === maxNum * 0.2){
+        document.getElementById('sult').innerHTML = `${sultBeskjed}`;
+    }
+    updateView();
+}
+    
+function tørstTimer(){
+    larsStats.tørst -= 8;
+    if (larsStats.tørst < minNum){
+        return clearInterval(intervall)
+    } else if (larsStats.sult === maxNum * 0.2){
+        document.getElementById('sult').innerHTML = `${tørstBeskjed}`;
+    }
+    updateView();
+}
+
+
+    // function hygieneTimer(){
+    //     larsStats.hygiene -= 8;
+    //     if (larsStats.hygiene < minNum){
+    //         return clearInterval(intervall)
+    //     } //else if (larsStats.hygiene === maxNum * 0.2){}
+    //     updateView();
+    // }
+    // function komfortTimer(){
+    //     larsStats.komfort -= 8;
+    //     if (larsStats.komfort < minNum){
+    //         return clearInterval(intervall)
+    //     } //else if (larsStats.komfort === maxNum * 0.2){}
+    //     updateView();
+    // }
+    // function humørTimer(){
+    //     larsStats.humør -= 8;
+    //     if (larsStats.humør < minNum){
+    //         return clearInterval(intervall)
+    //     } //else if (larsStats.humør === maxNum * 0.2){
+    //        // let humørBeskjed = /*HTML*/`
+    //        // <div></div>`;
+    //     //}
+    // }
+//}
+    
+ 
+
+    </script>
+</body>
+</html>
