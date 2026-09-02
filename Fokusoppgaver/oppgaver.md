@@ -225,6 +225,8 @@ Bonus
 - Vis høyeste og laveste temperatur
 - La brukeren velge temperaturgrenser selv
 
+>>>[Måtte Google ]
+
 **Oppgave 3: Kaffetrakter-simulator**
 Du skal lage en nettside som simulerer en kaffetrakter. Når brukeren starter bryggingen, skal kaffemaskinen bruke tid på å lage kaffe. Under bryggeprosessen skal kaffemengden gradvis øke.
 Når kaffetrakteren er ferdig, skal bryggingen stoppe automatisk.

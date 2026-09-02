@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+
+        .knapp {
+            background-color: red;
+            color: white;
+        }
+        .knappGr {
+            background-color: green;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 3</h2>
+
+    <button onclick="startKaffe()">Start Brygging</button>
+    <button onclick="pauseKaffe()">Pause Brygging</button>
+    <p id="visMengde">Kaffemaskin 0 %</p>
+    <span>Status:</span><p id="visVarsel"></p>
+
+
+    <script>
+        let mengdeKaffe = 0;
+        let stoppTid = null;
+
+        function startKaffe(){
+            if(!stoppTid){
+            stoppTid = setInterval(kaffeFyll, 1000);
+            }
+        }
+
+
+        function kaffeFyll(){
+
+            document.getElementById('visMengde').innerHTML = `Kaffemaskin ${mengdeKaffe} %`;
+            mengdeKaffe++;
+
+            if(mengdeKaffe == 25){
+                document.getElementById('visVarsel').innerHTML = "Kaffen er 25% ferdig.";
+            }
+            else if(mengdeKaffe == 50){
+                document.getElementById('visVarsel').innerHTML = "Kaffen er 50% ferdig.";
+            }
+            else if(mengdeKaffe == 75){
+                document.getElementById('visVarsel').innerHTML = "Kaffen er 75% ferdig.";
+            }
+            else if(mengdeKaffe == 101){
+                pauseKaffe();
+                document.getElementById('visVarsel').innerHTML = "Kaffen er ferdig! Ta ut kaffen!";
+            }
+            
+        }
+
+        function pauseKaffe(){
+            clearInterval(stoppTid);
+            stoppTid = null;
+        }
+        /////////////////////////////
+        //Hvorfor stoppTid = null;?
+        /////////////////////////////
+        
+        /*
+        Start
+          ↓
+        stoppTid = timer-ID
+          ↓
+        Timer kjører
+          ↓
+        Pause
+          ↓
+        clearInterval(stoppTid)   ← stopper timeren
+          ↓
+        stoppTid = null           ← forteller programmet at timeren er borte
+          ↓
+        Start kan brukes igjen
+        
+        Hvis vi ikke hadde stoppTid = null, så hadde vi ikke klart å starte timeren igjen.
+        Dette er på grunn av:
+
+        function startKaffe(){
+            if(!stoppTid) 
+
+        I utgangspunktet er variabelen satt til dette:
+            let stoppTid = null;
+        
+        Her sjekker funksjonen om stoppTid ikke har en aktiv timer-ID.
+        Hvis stoppTid er null, kan vi starte en ny timer.
+
+        stoppTid	!stoppTid	if kjører?
+
+        null	    true	    ✅ Ja
+        
+        timer-ID	false	    ❌ Nei
+
+
+
+        
+        */
+
+    </script>
+
+
+
+</body>
+</html>
