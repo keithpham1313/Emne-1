@@ -278,6 +278,8 @@ Lag et lite spill der brukeren skal gjette et tilfeldig tall. Programmet skal:
 - telle antall forsøk
 - vise antall forsøk når brukeren gjetter riktig
 
+>>>[Husket ikke hvordan man skrev Math.floor(Math.random()*10) +1;]
+
 
 **Oppgave 4: Dynamiske knapper**
 Lag flere knapper ved hjelp av en loop. Programmet skal:

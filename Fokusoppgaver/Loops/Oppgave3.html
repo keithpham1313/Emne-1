@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 3</h2>
+
+    <div id="app"></div>
+
+    <script>
+        let appView = document.getElementById('app');
+
+        let tilfeldigTall = rngFunk();
+        let inputSvar;
+
+        updateView()
+
+        function updateView(){
+            let htmlVar = '';
+            
+            htmlVar += /*HTML*/ `
+                <input onchange="inputSvar = (this.value)" type="number">
+                <button onclick="gjettSvar()">Gjett</button>
+
+                <div id="visMelding"></div>
+
+
+            `;
+
+            appView.innerHTML = htmlVar;
+        }
+
+        function gjettSvar(){
+            let visMeldingVar = document.getElementById('visMelding');
+            
+            tilfeldigTall = rngFunk();
+
+            if(Number(inputSvar) == tilfeldigTall){
+                visMeldingVar.innerHTML = "Rikitg svar!";
+            }
+            else{
+                visMeldingVar.innerHTML = "Feil svar!";
+            }
+
+            console.log(tilfeldigTall);
+        }
+
+
+
+            
+
+        function rngFunk(){
+            return Math.floor(Math.random()*10) +1;
+        }
+
+        console.log(rngFunk());
+
+    </script>
+
+
+
+
+</body>
+</html>
