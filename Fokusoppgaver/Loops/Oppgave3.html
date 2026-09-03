@@ -21,8 +21,9 @@
     <script>
         let appView = document.getElementById('app');
 
-        let tilfeldigTall = rngFunk();
-        let inputSvar;
+        let tilfeldigTall = Math.floor(Math.random()*10) +1;
+        let inputSvar = 0;
+        let antallForsøk = 0;
 
         updateView()
 
@@ -30,7 +31,8 @@
             let htmlVar = '';
             
             htmlVar += /*HTML*/ `
-                <input onchange="inputSvar = (this.value)" type="number">
+                <p>Trykk på knappen for å starte spillet. Gjett et tall mellom 1 og 10!</p>
+                <input onchange="inputSvar = Number(this.value)" type="number">
                 <button onclick="gjettSvar()">Gjett</button>
 
                 <div id="visMelding"></div>
@@ -44,22 +46,42 @@
         function gjettSvar(){
             let visMeldingVar = document.getElementById('visMelding');
             
-            tilfeldigTall = rngFunk();
 
-            if(Number(inputSvar) == tilfeldigTall){
-                visMeldingVar.innerHTML = "Rikitg svar!";
+            //while-loop kjører helt til riktig tall er gjettet
+            while(Number(inputSvar) !== tilfeldigTall){
+                
+                antallForsøk++;
+
+            if(Number(inputSvar) < tilfeldigTall){
+                visMeldingVar.innerHTML = "For lavt! Prøv igjen!";
             }
-            else{
-                visMeldingVar.innerHTML = "Feil svar!";
+            else if(Number(inputSvar) > tilfeldigTall){
+                visMeldingVar.innerHTML = "For høyt! Prøv igjen!";
+                }
+                break;
             }
 
-            console.log(tilfeldigTall);
+            if(Number(inputSvar) === tilfeldigTall){
+                
+                antallForsøk++
+
+                visMeldingVar.innerHTML = `
+                Riktig svar! Det hemmelige tallet var ${tilfeldigTall}. 
+                <br> 
+                Du brukte ${antallForsøk} forsøk!`
+
+                //Nullstiller spillet
+                tilfeldigTall = rngFunk();
+                antallForsøk = 0;
+
+                console.log(tilfeldigTall);
+            }
         }
 
 
 
             
-
+        //Lager et tilfeldig tall mellom 1 og 10
         function rngFunk(){
             return Math.floor(Math.random()*10) +1;
         }

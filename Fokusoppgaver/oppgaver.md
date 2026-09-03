@@ -289,6 +289,7 @@ Lag flere knapper ved hjelp av en loop. Programmet skal:
 - bruke if/else til å vise ulik melding basert på hvilken knapp som ble trykket
 - vise melding på siden (for eksempel “Du trykket på Knapp 2”)
 
+>>>[Vel...]
 
 **Oppgave 5: Tall i en array**
 Lag en array med tall (for eksempel 5, 12, 8, 20, 3). Lag en funksjon som:
@@ -298,7 +299,7 @@ Lag en array med tall (for eksempel 5, 12, 8, 20, 3). Lag en funksjon som:
 - viser melding på siden: “Summen er X”
 - viser i tillegg “Over 30” eller “30 eller mindre”
 
-
+>>> [skrev visMelding.innerHTML = "Summen er over 30";, når man skal skrive visMelding = "Summen er over 30";]
 
 
 # Objekter, loops og arrays 

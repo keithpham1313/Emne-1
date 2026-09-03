@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 4</h2>
+
+    <div id="app"></div>
+
+    <script>
+        let appView = document.getElementById('app');
+        let meldingTekst = "";
+
+
+        updateView();
+
+        function updateView(){
+            let html = /*HTML*/`
+            
+            Melding: ${meldingTekst}
+            <br><br>
+            `;
+
+
+            for(let i = 0; i < 3; i++){
+                
+                html += /*HTML*/ `
+
+                    <button onclick="minKnapp(this)">Knapp ${i}</button>
+                    
+            
+                `;
+            }
+
+            appView.innerHTML = html;
+        }
+
+        function minKnapp(paraKnapp){
+            if(paraKnapp.innerHTML === "Knapp 0"){
+                meldingTekst = "Dette er knapp 0";
+            }
+            else if(paraKnapp.innerHTML === "Knapp 1"){
+                meldingTekst = "Dette er knapp 1";
+            }
+            else if(paraKnapp.innerHTML === "Knapp 2"){
+                meldingTekst = "Dette er knapp 2";
+            }
+            
+            updateView();
+
+        }
+    </script>
+
+
+
+
+
+</body>
+</html>
