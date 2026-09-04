@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 1</h2>
+
+    <div id="app"></div>
+
+    <script>
+        let monster = [
+
+            {
+                Name: "Moblin",
+                Health: 100,
+                Strength: 100,
+            },
+
+            {
+                Name: "Deku Baba",
+                Health: 20,
+                Strength: 10,
+            },
+
+            {
+                Name: "Skulltula",
+                Health: 20,
+                Strength: 15,
+            },
+            
+            {
+                Name: "Stalfos",
+                Health: 75,
+                Strength: 50,
+            },
+
+            {
+                Name: "Wolfos",
+                Health: 50,
+                Strength: 30,
+            },
+
+        ];
+
+
+        let viewApp = document.getElementById('app');
+
+        function updateView(){
+            let html = /*HTML*/ `
+                <button onclick="strengthBoost()">Power Up!</button>
+                <button onclick="healthBoost()">Potion +20!</button>
+                <button onclick="emotionalDMG()">Emontional Damage +100!</button>
+            
+            `;
+            
+            for(let i = 0; i < monster.length; i++){
+                html += /*HTML*/ `
+
+                <div>
+                    <br>
+                    
+                    <h3>${monster[i].Name}</h3>
+                    <p>Health: ${monster[i].Health}</p>
+                    <p>Strength: ${monster[i].Strength}</p>
+                
+                </div>
+                `;
+            }
+            viewApp.innerHTML = html;
+        }
+        
+        updateView();
+
+        function strengthBoost(){
+
+            for(let i = 0; i < monster.length; i++){
+
+                monster[i].Strength += 100;
+
+            }
+            updateView();
+        }
+
+        function healthBoost(){
+
+            for(let i = 0; i < monster.length; i++){
+
+                monster[i].Health += 20;
+            }
+
+            updateView();
+
+        }
+        
+        function emotionalDMG(){
+
+            for(let i = monster.length - 1; i >= 0; i--){
+
+                monster[i].Health -= 20;
+
+                if(monster[i].Health <= 0){
+                    monster.splice(i, 1);
+
+                }
+            }
+
+            updateView();
+        }
+
+    </script>
+
+
+
+
+</body>
+</html>

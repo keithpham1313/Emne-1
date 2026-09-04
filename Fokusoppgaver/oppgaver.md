@@ -312,6 +312,8 @@ Verden er overfylt av monstre, og du må administrere dem!
 Få alle monstre til å bli sinna (if humøret er "glad", endre til "sinna").
 Fjern monstre som er for svake (styrke under 5).
 
+>>> [Husket faktisk hvordan man lager objekter og henter dem, men ikke hvordan man skal legge alle objektene i et array for å vise dem. OG "" på navn. -.-]
+
 **Oppgave 2. Pizzarestaurant**
 Du driver en pizzarestaurant der bestillingene går bananas!
 - Model: Lag en Pizza-liste med navn, ingredienser (array?) og pris.

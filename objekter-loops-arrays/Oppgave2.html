@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 2</h2>
+
+    <div id="app"></div>
+
+<script>
+
+    let pizza = [
+        {
+            navn: "Pepperoni",
+            ingredienser: ["Tomatsaus", "Ost", "Pepperoni"],
+            pris: 149,
+        },
+        
+        {
+            navn: "Hawaii",
+            ingredienser: ["Tomatsaus", "Ost", "Skinke", "Ananas"],
+            pris: 159,
+        },
+
+        {
+            navn: "Kebabpizza",
+            ingredienser: ["Tomatsaus", "Ost", "Kebabkjøtt", "Løk", "Mais"],
+            pris: 179,
+        },
+
+        {
+            navn: "Vegetar",
+            ingredienser: ["Tomatsaus", "Ost", "Paprika", "Sopp", "Løk", "Oliven"],
+            pris: 159,
+        },
+
+        {
+            navn: "Meat Feast",
+            ingredienser: ["Tomatsaus", "Ost", "Pepperoni", "Skinke", "Bacon", "Kjøttdeig"],
+            pris: 189,
+        },
+
+        {
+            navn: "Special Order",
+            ingredienser: ["Tomatsaus", "Ost", "Pepperoni", "Skinke", "Bacon", "Kjøttdeig", "Reinsdyr", "Spekeskinke", "Chorizo", "Cheddar"],
+            pris: 250,
+        },
+    ];
+
+    
+    let appView = document.getElementById('app');
+
+    function updateView(){    
+
+        let html = ``;
+
+            for(let i = 0; i < pizza.length; i++){
+
+                html += /*HTML*/ `
+
+                <br>
+                <h3>${pizza[i].navn}</h3>
+                <p>Ingredienser: ${pizza[i].ingredienser}</p>
+                <p>Pris: ${pizza[i].pris} kr</p>
+
+                `;
+            console.log(`${pizza[i].ingredienser}`);
+            }
+            
+            
+        appView.innerHTML = html;
+    }
+
+    updateView();
+
+</script>
+
+
+</body>
+</html>
