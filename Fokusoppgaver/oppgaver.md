@@ -322,6 +322,8 @@ Du driver en pizzarestaurant der bestillingene går bananas!
 Regne ut totalpris for alle bestillinger.
 Hvis en pizza koster over 200kr, gi advarsel: "Er du sikker på at du vil kjøpe denne luksuspizzaen?!"
 
+>>>[Fant ut av Ingredienser: ${pizza[i].ingredienser[i]} ikke fungerer som jeg tenkte... XD]
+
 **Oppgave 3. Magisamling**
 Du er en trollmann som samler magiske spells!
 - Model: Lag en Spell-liste med navn, kraft (power) og element (ild, vann, jord, luft).

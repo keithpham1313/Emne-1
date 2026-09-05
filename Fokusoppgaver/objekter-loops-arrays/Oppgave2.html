@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 2</h2>
+
+    <div id="app"></div>
+
+<script>
+
+    let pizza = [
+        {
+            navn: "Pepperoni",
+            ingredienser: ["Tomatsaus", "Ost", "Pepperoni"],
+            pris: 149,
+        },
+        
+        {
+            navn: "Hawaii",
+            ingredienser: ["Tomatsaus", "Ost", "Skinke", "Ananas"],
+            pris: 159,
+        },
+
+        {
+            navn: "Kebabpizza",
+            ingredienser: ["Tomatsaus", "Ost", "Kebabkjøtt", "Løk", "Mais"],
+            pris: 179,
+        },
+
+        {
+            navn: "Vegetar",
+            ingredienser: ["Tomatsaus", "Ost", "Paprika", "Sopp", "Løk", "Oliven"],
+            pris: 159,
+        },
+
+        {
+            navn: "Meat Feast",
+            ingredienser: ["Tomatsaus", "Ost", "Pepperoni", "Skinke", "Bacon", "Kjøttdeig"],
+            pris: 189,
+        },
+
+        {
+            navn: "Special Order",
+            ingredienser: ["Tomatsaus", "Ost", "Pepperoni", "Skinke", "Bacon", "Kjøttdeig", "Reinsdyr", "Spekeskinke", "Chorizo", "Cheddar"],
+            pris: 250,
+        },
+    ];
+
+    
+    let appView = document.getElementById('app');
+    
+    let kjøpListeVar = 0;
+
+    let valgtePizzaer = [];
+
+
+    function updateView(){    
+
+        let sumPris = 0;
+
+        let html = ``;
+
+        ///////////////////////////////////////////////
+        //TEGNE OPP PIZZAMENYEN
+        ///////////////////////////////////////////////
+
+            for(let i = 0; i < pizza.length; i++){
+
+                // sumPris += Number(pizza[i].pris);
+                // Denne var bare summen på alle pizzaene i menyen
+
+                html += /*HTML*/ `
+
+                <br>
+                <h3>${pizza[i].navn}</h3>
+                <p>Ingredienser: ${pizza[i].ingredienser}</p>
+                <p>Pris: ${pizza[i].pris} kr</p>
+                <button onclick="kjøpKnapp(${i})">Kjøp</button>
+                
+                `;
+                
+                //var tidligere onclick="kjøpKnapp(${pizza[i].pris})
+                //Vi sender med 'i' (indeksen) i stedet for bare prisen"
+
+            // console.log(`${pizza[i].ingredienser}`);
+            }
+        
+        ///////////////////////////////////////////////
+        //OVERSIKT PÅ VALGTE PIZZAER (HANDLEKURV)
+        ///////////////////////////////////////////////
+
+            html += /*HTML*/`
+                <br><br><br>
+                <h2>Mine bestillinger</h2>
+
+                `;
+
+                ///////////////////////////////////////////////
+                //TEGNE OPP VALGTE PIZZAER
+                ///////////////////////////////////////////////
+
+
+            for(let p = 0; p < valgtePizzaer.length; p++){
+
+                html += /*HTML*/`
+                <li>
+                <h3>${valgtePizzaer[p].navn}</h3>
+                <p>Pris: ${valgtePizzaer[p].pris} kr</p>
+                </li>
+                `;
+            }
+
+            html += /*HTML*/`
+
+            <h3>Totalpris: ${kjøpListeVar} kr</h3>
+                
+            `;
+        
+        appView.innerHTML = html;
+    }
+
+    updateView();
+    
+    function kjøpKnapp(paraPris){
+
+        let valgtPizza = pizza[paraPris];
+
+            // Hvis de trykker "Avbryt" i confirm-boksen, stopper vi funksjonen her med 'return'
+            // Denne må legges øverst, ellers blir Special Order lagt til arrayet og dermed i handlekurven selv om du har trykket på cancel
+            if(valgtPizza.pris > 200){
+                if (!confirm("Er du sikker på at du vil kjøpe denne luksuspizzaen?")){
+                    return;
+                }
+            }
+        
+        kjøpListeVar += valgtPizza.pris;
+
+        //Legge til hele pizza-objektet inn i handlekurv-arrayet
+        valgtePizzaer.push(valgtPizza);
+        
+        /*
+        > valgtePizzaer er variabelen med det tomme arrayet (se øverst)
+        > push er en innebygd funksjon, som legger objektet valgtPizza bakerst i listen (se nedenfor)
+            det motsatte av push() er unshift(), som legger et element foran
+            pop() = fjerner den siste
+            shift() = fjerner den første
+            
+        > (valgtPizza) er den pizzaen med navn og pris som vi akkurat har trykket på
+        
+        Prosessen:
+        1) Starter med et tomt array:
+            let valgtePizzaer = [];
+
+        2) Velger Kebabpizza:
+            let valgtePizzaer = [ { navn: "Kebabpizza", pris: 179 ... } ];
+        
+        3) Vi velger Hawaiipizza etterpå:
+            let valgtePizzaer = [ 
+                { navn: "Kebabpizza", pris: 179 ... }, 
+                { navn: "Hawaii", pris: 159 ... } // <-- Lagt til bakerst!
+                ];
+
+
+
+        */
+
+        console.log("kjøpListeVar");
+
+        updateView();
+    }
+
+
+
+</script>
+
+
+</body>
+</html>
