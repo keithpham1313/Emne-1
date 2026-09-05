@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .darkmode {
+            background-color: black;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body id="bakgrunn" class="darkmode">
+    
+    <h2>OPPGAVE 3</h2>
+
+    <div id="app"></div>
+
+    <script>
+        let spellType = [
+            {
+                name: "Fireball",
+                element: "fire",
+                power: 550,
+
+            },
+            {
+                name: "Pyroclast",
+                element: "fire",
+                power: 500,
+
+            },
+            {
+                name: "Waterbeam",
+                element: "water",
+                power: 450,
+
+            },
+            {
+                name: "Waterfall",
+                element: "water",
+                power: 400,
+
+            },
+            {
+                name: "Earthquake",
+                element: "earth",
+                power: 350,
+
+            },
+            {
+                name: "Rockslam",
+                element: "earth",
+                power: 300,
+
+            },
+            {
+                name: "Cyclone",
+                element: "wind",
+                power: 250,
+
+            },
+            {
+                name: "Tornado",
+                element: "wind",
+                power: 200,
+
+            },
+        ];
+
+        let appView = document.getElementById('app');
+
+        let spellName = "";
+        let elementName = "";
+        let powerValue = 0;
+
+        function updateView(){
+            let html = /*HTML*/ `
+                
+                <h3>Create your own spell!</h3>
+                <input onchange="spellName = this.value" type="text" placeholder="Name">
+                <input onchange="elementName = this.value" type="text" placeholder="Element">
+                <input onchange="powerValue = Number(this.value)" type="number" placeholder="Power">
+                <button onclick="createSpell()">Create Spell</button>
+                
+                <br><br>
+                <h3>List of Spells</h3>
+                <button onclick="sortElement()">Sort by element</button>
+            `;
+
+            for(let i = 0; i < spellType.length; i++){
+                html += /*HTML*/ `
+                    <br>
+                    
+                    <h4>Name: ${spellType[i].name}</h4>
+                    <p>Element: ${spellType[i].element}</p>
+                    <p>Power: ${spellType[i].power}</p>
+                    <button onclick="castSpell()">Cast Spell!</button>
+                    
+                    <br><br>
+                `;
+
+            }
+            appView.innerHTML = html;
+
+        }
+
+        updateView();
+
+        function sortElement(){
+            spellType.sort(function(a, b){         //sammenligningsfunksjon
+                if(a.element < b.element){
+                    return -1; //sorter 'a' før 'b'
+                }
+                if(a.element > b.element){
+                    return 1; //sorter 'b' før 'a'
+                }
+                return 0; // de er like, behold rekkefølgen
+                //bytt ut a med b, så får blir elementene sortert fra Å til A
+
+            });
+
+            updateView();
+        }
+
+        function createSpell(){
+            let newSpell = {
+                name: spellName,
+                element: elementName,
+                power: powerValue,
+            };
+
+            spellType.unshift(newSpell);
+
+            updateView();
+
+        }
+
+        function castSpell(useSpell){
+            let valgtSpell = spellType[useSpell];
+
+            spellType.splice(useSpell, 1);
+
+            updateView();
+
+        }
+    </script>
+
+
+
+</body>
+</html>

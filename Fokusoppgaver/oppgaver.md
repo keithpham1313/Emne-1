@@ -332,6 +332,8 @@ Du er en trollmann som samler magiske spells!
 Legge til nye spells.
 Kaste (bruke) en spell: Fjern den fra lista etter bruk.
 
+>>>[Slet med å legge til og fjerne et spell -.-]
+
 **Oppgave 4. Rydderobot Simulator**
 Du styrer en gjeng små roboter som rydder et rotete rom!
 - Model: Lag en Robot-liste med navn, batterinivå og antall gjenstander ryddet.
