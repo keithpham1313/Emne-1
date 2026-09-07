@@ -6,10 +6,57 @@
     <title>Document</title>
     <style>
         .darkmode {
-            background-color: black;
-            color: white;
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            padding: 20px;        
         }
         
+        #app {
+            display: flex;
+            gap: 40px; /* Mellomrom mellom de to kolonnene */
+            align-items: flex-start;
+        }
+
+        .godteri-kort {
+            background-color: #2a2a2a;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+                .godteri-kort h4 {
+            margin: 0 0 10px 0;
+            color: #ffb74d; /* Fin farge på overskriftene */
+        }
+
+        .godteri-kort p {
+            margin: 4px 0;
+        }
+
+        input {
+            margin-top: 8px;
+            padding: 5px;
+            background-color: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #ffb74d;
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffa726;
+        }
+
     </style>
 </head>
 <body id="bakgrunn" class="darkmode">
@@ -99,55 +146,115 @@
     ];
 
     let appView = document.getElementById('app');
-    let antallBytte;
-    let mittAntallBytte;
+    
+    let antallBytte = 0;
+    let mittAntallBytte = 0;
+    let totalBytte = 0;
 
     function updateView(){
-        let html = /*HTML*/`
+
+        appView.innerHTML = "";
+
+        let markedHTML = /*HTML*/`
+        <div class="kolonne">
         <h2>Godteribyttemarked</h2>
         `;
 
         for(let i = 0; i < godteri.length; i++){
-            html += /*HTML*/ `
-                
+            markedHTML += /*HTML*/ `
+                <div class="godteri-kort">
+
                 <h4>${godteri[i].navn}</h4>
                 <p>Type: ${godteri[i].type}</p>
                 <p>Verdi: ${godteri[i].verdi}</p>
                 <p>Antall: ${godteri[i].antall}</p>
 
                 <input onchange="antallBytte = Number(this.value)" placeholder="Angi ønsket antall" type="Number">
-                <button onclick="bytteFunk(${i})">Bytte</button>
+                <button onclick="bytteFunk(${i})">Kjøp</button>
                 <br><br>
+
+                </div>
             `;
         };
+        markedHTML += `</div>`;
 
-        html = /*HTML*/`
+        let mittHTML = /*HTML*/`
+        <div class="kolonne">
         <h2>Mine Godteri</h2>
         `;
 
         for(let p = 0; p < godteri.length; p++){
-            html += /*HTML*/ `
-                
+            mittHTML += /*HTML*/ `
+                <div class="godteri-kort">
+
                 <h4>${mineGodteri[p].navn}</h4>
                 <p>Type: ${mineGodteri[p].type}</p>
                 <p>Verdi: ${mineGodteri[p].verdi}</p>
                 <p>Antall: ${mineGodteri[p].antall}</p>
 
                 <input onchange="mittAntallBytte = Number(this.value)" placeholder="Angi ønsket antall" type="Number">
-                <button onclick="minBytteFunk(${p})">Bytte</button>
+                <button onclick="minBytteFunk(${p})">Selg</button>
                 <br><br>
+
+                </div>
             `;
         };
+        markedHTML += `</div>`;
 
-        appView.innerHTML = html;        
+        appView.innerHTML = markedHTML + mittHTML;
+
     }
+
 
     updateView();
 
-    function bytteFunk(gittAntall){
-        godteri[gittAntall].antall;
+    function bytteFunk(i){
+    // Sjekk 1: Har brukeren skrevet inn et gyldig tall?
+        if(!antallBytte || antallBytte <= 0){
+            alert("Vennligst skriv inn et gydlig antall å bytte!");
+            return;
+        }
 
+    // Sjekk 2: Har butikken nok godteri på lager?
+        if(godteri[i].antall >= antallBytte){
+        
+        // Trekk fra butikken
+            godteri[i].antall -= antallBytte;
 
+        // Legg til i ditt eget godteri (på samme indeks/plass)
+            mineGodteri[i].antall += antallBytte;
+
+        // Nullstill input-variabelen før neste gang
+            antallBytte = 0;
+
+        // Oppdater skjermen så vi ser endringen med en gang
+            updateView();
+        }
+        else{
+            alert("Markedet har ikke nok av dette godteriet på lager!");
+        }
+
+    }
+
+    function minBytteFunk(p){
+        if(!mittAntallBytte || mittAntallBytte <= 0){
+            alert("Vennligst skriv inn et gyldig antall du ønsker å bytte");
+            return;
+        }
+
+        if(mineGodteri[p].antall >= mittAntallBytte){
+
+            mineGodteri[p].antall -= mittAntallBytte;
+
+            godteri[p].antall += mittAntallBytte;
+
+            mittAntallBytte = 0;
+
+            updateView();
+        }
+        else{
+            alert("Du har ikke nok godteri!");
+        }
     }
 
 </script>
