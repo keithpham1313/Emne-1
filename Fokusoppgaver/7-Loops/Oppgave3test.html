@@ -25,6 +25,8 @@
         let inputSvar = 0;
         let antallForsøk = 0;
 
+        let visMelding = "";
+
         updateView()
 
         function updateView(){
@@ -35,7 +37,7 @@
                 <input onchange="inputSvar = Number(this.value)" type="number">
                 <button onclick="gjettSvar()">Gjett</button>
 
-                <div id="visMelding"></div>
+                <div>${visMelding}</div>
 
 
             `;
@@ -43,9 +45,7 @@
             appView.innerHTML = htmlVar;
         }
 
-        function gjettSvar(){
-            let visMeldingVar = document.getElementById('visMelding');
-            
+        function gjettSvar(){            
 
             //while-loop kjører helt til riktig tall er gjettet
             while(Number(inputSvar) !== tilfeldigTall){
@@ -53,10 +53,10 @@
                 antallForsøk++;
 
             if(Number(inputSvar) < tilfeldigTall){
-                visMeldingVar.innerHTML = "For lavt! Prøv igjen!";
+                visMelding = "For lavt! Prøv igjen!";
             }
             else if(Number(inputSvar) > tilfeldigTall){
-                visMeldingVar.innerHTML = "For høyt! Prøv igjen!";
+                visMelding = "For høyt! Prøv igjen!";
                 }
                 break;
             }
@@ -65,7 +65,7 @@
                 
                 antallForsøk++
 
-                visMeldingVar.innerHTML = `
+                visMelding = `
                 Riktig svar! Det hemmelige tallet var ${tilfeldigTall}. 
                 <br> 
                 Du brukte ${antallForsøk} forsøk!`
@@ -76,6 +76,7 @@
 
                 // console.log(tilfeldigTall);
             }
+            updateView();
         }
 
 

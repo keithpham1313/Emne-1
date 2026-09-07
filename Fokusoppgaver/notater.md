@@ -86,6 +86,14 @@ function tempMelding(temp){
 
 >[Kan brukes til å sende en melding]
 
+    let tilfeldigTall = rngFunk()
+
+    function rngFunk(){
+        return Math.floor(Math.random()*10) +1;
+    }
+
+>[Lager et tilfeldig tall mellom 1 og 10. Lage en variabel for funksjonen]
+
 ///////////////////////////
 > setInterval()
 ///////////////////////////
