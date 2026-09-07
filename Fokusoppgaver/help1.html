@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="dynaknapp">
+
+<script>
+
+// model
+let buttonThing = 0;
+
+let dynaknapp = document.getElementById('dynaknapp');
+
+
+// view
+function updateView() {
+  document.getElementById("dynaknapp").innerHTML = /*HTML*/ `
+    <p>test</p>
+    <button onclick="summonButton()">Start test</button>
+    <div id="knappID">
+    <button onclick="buttonColorchange(this)">endre farge</button>
+    </div>
+  `;
+}
+
+updateView();
+
+function buttonColorchange(shift) {
+  if (buttonThing === 0) {
+    shift.style.backgroundColor = "red";
+    shift.innerHTML = "Red";
+
+    buttonThing = 1;
+
+    summonButton();
+  }
+
+  else if(buttonThing === 1){
+    shift.style.backgroundColor = "green";
+    shift.innerHTML = "Green"
+
+    buttonThing = 0;
+
+    summonButton();
+  }
+}
+
+function summonButton() {
+    let kloneKnappVar = document.getElementById('knappID').innerHTML;
+        
+    dynaknapp.innerHTML += kloneKnappVar;
+    
+}
+</script>
+
+</body>
+</html>

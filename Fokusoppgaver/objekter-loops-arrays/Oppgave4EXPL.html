@@ -76,8 +76,31 @@
         appView.innerHTML = html;
 
     }
-
+    
     updateView();
+    
+    /* FORKLARING PÅ ${i}
+
+    <button onclick="ryddFunk(${i})">Rydde</button>
+    1) <button onclick="ryddFunk(0)">Rydde</button>
+    2) <button onclick="ryddFunk(1)">Rydde</button>...
+
+    Her skriver vi ${i} for at funksjonen ryddFunk() skal vite hvilken 
+    robot vi trykket på. 
+
+    Hvis vi trykket på robot 3, så blir ryddFunk(2).
+    Altså parameteren batteribruk blir satt til 2:
+        batteriBruk = 2
+    
+    Og dermed blir:
+        iRobot[batteriBruk].batterinivå -= 10;
+    
+    Til detter:
+        iRobot[2].batterinivå -= 10;
+
+    Og 10% blir trukket fra batterinivået til robot nummer 3. 
+    */
+
 
     function ryddFunk(batteriBruk){
         if(iRobot[batteriBruk].batterinivå >= 0){
@@ -92,23 +115,36 @@
         iRobot[batteriBruk].antallRydd++;
 
         updateView();
-
-
-                
-        console.log(batteriBruk);
-
+       
+        // console.log(batteriBruk);
     }
 
     function ladeFunk(batteriLade){
         if(iRobot[batteriLade].batterinivå < 100){
 
         ladeIntervaller[batteriLade] = setInterval(
-            function (){intervalFunk(batteriLade)}, 100);
-        
-    }        
-
-
+            function (){
+                intervalFunk(batteriLade)
+            }, 100);        
+        };        
     }
+
+    /* Hvorfor har vi en funksjonen inni en funksjon?
+    Hvis vi hadde dette, så hadde funksjonen kjørt med en gang:
+        
+        setInterval(intervalFunk(batteriLade), 100);
+
+    Denne funksjonen blir ikke kjørt med en gang:
+    
+        function (){
+            intervalFunk(batteriLade)
+        }
+    
+    Funksjonen inni setInterval() er der fordi setInterval trenger å vite 
+    hva den skal gjøre hver gang intervallet går ut (altså etter hvert 100 millisekund)
+    
+    
+    */
 
     function intervalFunk(batteriLade){
         iRobot[batteriLade].batterinivå++;
@@ -116,16 +152,14 @@
         if(iRobot[batteriLade].batterinivå >= 100){
             
                 if(iRobot[batteriLade].batterinivå == 100){
-                    alert("Din robot er ferdig ladet!")
+                    alert(`Din robot ${iRobot[batteriLade].navn} er ferdig ladet!`);
                 }
 
             clearInterval(ladeIntervaller[batteriLade]);
 
             ladeIntervaller[batteriLade] = null;
         }
-
         updateView();
-
     }
 
 
