@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+
+        let viewApp = document.getElementById('app');
+
+        let points = 0;
+
+        let antallKlikk = 0;
+
+
+
+        function updateView(){
+            let html = /*HTML*/`
+            ${generateButton(2)}
+            ${generateButton(3)}
+            ${generateButton(9)}
+
+            <p>Points: ${points}</p>
+            <p>Antall Klikk: ${antallKlikk}</p>
+            ${melding()}
+            `;
+
+            viewApp.innerHTML = html;
+        }
+        
+        updateView();
+        
+        function generateButton(number){
+            return `<button onclick="plussKnapp(${number})">+${number}</button>`;
+
+        }
+
+        function plussKnapp(etTall){
+
+            points += etTall;
+
+
+            antallKlikk++;
+            // console.log(points);
+
+            updateView();
+
+            
+        }
+
+        function melding(){
+            if(points === 55){
+                // console.log(points);
+                return ("Winner!");
+            }
+            else if(points >= 55){
+                return ("GAME OVER!");
+            }
+            return "";
+        }
+
+
+    </script>
+    
+</body>
+</html>
