@@ -105,6 +105,18 @@ function rngFunk(){
 ## ⏱️ 6. TIMERE (setInterval)
 ---
 ```javascript
+// Standard:
+    let sekunderInput; //Knyttet til et input-felt.
+
+    function startClick(){
+        setInterval(nedtelling, 1000);
+    }
+
+    function nedtelling(){
+        let melding = returMelding(sekunderInput);
+        sekunderInput --;
+
+
 // Starter med en gang programmet kjører
 setInterval(intervalFunk(batteriLade), 100);
 ```
@@ -135,7 +147,7 @@ for(let i = 0; i < variabel.length; i++){
 
 ```html
 <!-- Sender med telleren (i) så funksjonen vet hvilken rad som trykkes på -->
-<button onclick="loopKnapp(\${i})">LoopKnapp</button>
+<button onclick="loopKnapp(${i})">LoopKnapp</button>
 ```
 
 ```javascript
@@ -246,3 +258,6 @@ function kjøpKnapp(paraPris){
     updateView();
 }
 ```
+---
+## ⚠️ 12. INCLUDE()
+---
