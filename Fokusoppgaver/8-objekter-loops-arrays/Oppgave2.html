@@ -65,10 +65,9 @@
 
     let valgtePizzaer = [];
 
-
+    
     function updateView(){    
 
-        let sumPris = 0;
 
         let html = ``;
 
@@ -85,7 +84,7 @@
 
                 <br>
                 <h3>${pizza[i].navn}</h3>
-                <p>Ingredienser: ${pizza[i].ingredienser}</p>
+                <p>Ingredienser: ${ingrediensFun(pizza[i].ingredienser)}</p>
                 <p>Pris: ${pizza[i].pris} kr</p>
                 <button onclick="kjøpKnapp(${i})">Kjøp</button>
                 
@@ -132,6 +131,36 @@
     }
 
     updateView();
+
+    function ingrediensFun(list){
+        let html = ``;
+            for(let i = 0; i < list.length; i++){
+                if (i === list.length -1){
+                    html += /*HTML*/`
+                        <span>${list[i]}</span>
+                    `;
+                }
+                else{
+                    html += /*HTML*/`
+                        <span>${list[i] + ", "}</span>
+                    `;
+                }
+            }
+    // Vi prøvde dette i plenum for å fjerne ", " på siste ingrediens.
+    
+    // Alternativt: <span>${list[i]}${i < list.length - 1 ? "," : ""}</span>
+
+    //   let html = ""; 
+    //      for(let item of list){
+    //          html += /*HTML*/`
+    //              <span>${item}, </span>
+    //          `;
+    //      };
+
+    // Denne for-loopen viser ", " på den siste ingrediensen.
+
+        return html;
+    }
     
     function kjøpKnapp(paraPris){
 
