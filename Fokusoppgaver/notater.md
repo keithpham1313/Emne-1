@@ -307,3 +307,11 @@ new Date().getTime()
 ```
 
 >**NB** funksjonen kan bare brukes til å regne ut tid i bakgrunnen. Vi kan ikke bruke denne funksjonen for å vise det visuelt på en nettside. Bruk heller setInterval() for å lage en teller for å få en visuell illusjon om at der knyttet sammen, selv om de ikke gjør det teknisk sett.
+
+
+Q-unit
+
+// How to test:
+// 1. Arrange - Set model values   to test values
+ // 2. Act - Run the function
+// 3. Assert - Did the function output the expected values?
