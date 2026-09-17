@@ -6,60 +6,244 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="app"></div>
+    
     <script>
 
-        let kontrollsjanse = 30;
+//View greier
+let boxTest = null;
+let itemTest = null;
+let coolMeter = 0;
+let numberSquirrelKill = 0;
+let randomEncounter = "";
+let message = ""
 
-let bortforklaring;
-let stikkeAv;
-let resultat = "";
 
-//Sjanse for å bli vinket inn til kontroll.
+// Politi greier
+let kontrollsjanse = 30;
+let result = "";
+let makeExcuse;
+let flee;
+let choice;
 
-function policeControl(){
-    if(rngMathRandom() >= kontrollsjanse){
-        return "Du kjører forbi politikontrollen. Du prøver å se så uskyldig ut at du nesten blir mistenkelig. 👀";
-    }
-    else{
-        resultat = "🚨 Du blir vinket inn til kontrollen."
-        return resultat + politiOppdagelse();
-    }
+
+let items = [
+  {
+    Item: "Solbriller",
+    Points: 15,
+  },
+  {
+    Item: "spoiler",
+    Points: 25,
+  },
+  {
+    Item: "Kvikklunsj",
+    Points: 5,
+  },
+  {
+    Item: "Fete felger",
+    Points: 25,
+  },
+  {
+    Item: "Neon lys",
+    Points: 22,
+  },
+  {
+    Item: "Flammer på sidene",
+    Points: 17,
+  },
+  {
+    Item: "Rolls Royce figur",
+    Points: 20,
+  },
+  {
+    Item: "Sota ruter",
+    Points: 10,
+  },
+  {
+    Item: "Bamse",
+    Points: 8,
+  },
+  {
+    Item: "Gammel sko",
+    Points: -2,
+  },
+  {
+    Item: "Brukt plaster",
+    Points: -5,
+  },
+  {
+    Item: "Vått avispapir",
+    Points: -15,
+  },
+  {
+    Item: "Pinne",
+    Points: -10,
+  },
+  {
+    Item: "Bananskall",
+    Points: -15,
+  },
+];
+
+
+
+updateView();
+function updateView() {
+  html = /*HTML*/ `
+        <h1>test</h1>
+        <div>Kul-o-meter😎🔥: ${coolMeter}</div>
+        <div>Antall ekorn påkjørt: ${numberSquirrelKill}</div>
+        <section id="item-grid">${spawnItems()}</section>
+        <button onclick="setRandomEncounter()">Ekkort Test</button>
+        <div>${message}</div>
+    `;
+
+  document.getElementById("appOppgave3").innerHTML = html;
 }
 
-//Hva oppdager politiet?
-
-function politiOppdagelse(){
-
-    let oppdagelse = rngMathRandom();
-
-    if(oppdagelse < 30){
-        resultat = "👮 Politimannen lener seg inn mot vinduet... og sier “Hm. Hva er den lukta?” Du later som du ikke hørte spørsmålet. 👀"
+function spawnItems() {
+  let html = "";
+  for (let i = 0; i < 16; i++) {
+    boxTest = Math.floor(Math.random() * 16);
+    itemNum = Math.floor(Math.random() * items.length);
+    if (boxTest > 4) {
+      html += /*HTML*/ `<div class="rute"></div>`;
+    } else {
+      html += /*HTML*/ `<div style="cursor: pointer" class="rute" onclick="takeItem(items[${itemNum}])">${items[itemNum].Item}</div>`;
     }
-    else if(oppdagelse < 60){
-        resultat = "👮 Politimannen ser på deg. Så på øynene dine. Så på deg igjen. Har du drukket?";
-        return resultat + weedValg();
-    }
-    else{
-        resultat = "👮 Politimannen kikker inn i bilen. Han finner ingenting mistenkelig. Kjør forsiktig. Du nikker alvorlig og kjører av gårde som om ingenting har skjedd.";
-    }
+  }
+
+  return html;
 }
 
-function weedValg(valg){
-    if(valg === "bortforklare"){
-        resultat = "Det er bare en ny type luftfrisker. Den heter Jamaica Breeze. 🌿😎";
-        coolMeter += 100;
-
-    }
-    else if (valg ==="stikkeAv"){
-
-    }
-
+function takeItem(item) {
+  console.log(item.Points)
+  coolMeter += item.Points
+  updateView()
 
 }
+
+function setRandomEncounter(){
+  //randomEncounter = Math.floor(Math.random()*5)
+  randomEncounter = 1
+  if (randomEncounter === 0){
+    squirrelRoadkill()
+  } else if (randomEncounter === 1) {
+    policeControl()
+  }
+}
+
+function chance(percent){
+    return rngMathRandom() <= percent;
+}
+
 //RNG funksjon
 function rngMathRandom(){
     return Math.floor(Math.random()*100)+1;
 }
+
+
+
+//Sjanse for å bli vinket inn til kontroll.
+
+function policeControl(){
+    
+    if(rngMathRandom() >= kontrollsjanse){
+        message = "Du kjører forbi politikontrollen. Du prøver å se så uskyldig ut at du nesten blir mistenkelig. 👀";
+    }
+    else{
+        message = "🚨 Du blir vinket inn til kontrollen."
+        
+        message += policeDetection();
+    }
+    updateView();
+}
+
+//Hva oppdager politiet?
+
+function policeDetection(){
+
+    let detection = rngMathRandom();
+
+    if(detection <= 30){
+        message = "👮 Politimannen lener seg inn mot vinduet... og sier “Hm. Hva er den lukta?” Du later som du ikke hørte spørsmålet. 👀"
+        
+        choice = /*HTML*/ `
+            <button onclick="weedChoice('makeExcuse')">Bortforklar 😎</button>
+            <button onclick="weedChoice('flee')">Stikke av 👀</button>
+        `;
+
+        message += choice;
+
+        return message;
+    }
+    else if(detection <= 60){
+        message = "👮 Politimannen ser på deg. Så på øynene dine. Så på deg igjen, og spurte “Har du drukket?”";
+        
+        choice = /*HTML*/`
+            <button onclick="weedChoice('makeExcuse')">Bortforklar 😎</button>
+            <button onclick="weedChoice('flee')">Stikke av 👀 🚗🚓</button>       
+         `;
+
+         message += choice;
+
+         return message;
+    }
+    else{
+        message = "👮 Politimannen kikker inn i bilen. Han finner ingenting mistenkelig. “Kjør forsiktig” sa han. Du nikker, smiler og kjører av gårde som om ingenting har skjedd.";
+
+        return message;
+    }
+}
+
+function weedChoice(choice){
+    if(choice === "makeExcuse"){
+        
+        message = "Det er bare en ny type luftfrisker. Den heter Jamaica Breeze. 🌿😎";
+
+        if(chance(50)){
+        
+            result = `
+                Politimannen tror på forklaringen din! Du slapp unna! 😎
+            `;
+
+            coolMeter += 100;
+        }
+        else{
+
+            result = `
+                👮 "Den kjøper jeg ikke!" Du får en bot. 
+            `;
+
+            coolMeter -= 100;
+        }
+    }
+
+    else if (choice ==="flee"){
+        
+        if(chance(20)){
+            result = `
+                Du kom deg unna! 🚗 <br>+500 cool 😎</br>
+            `;
+
+            coolMeter += 500;
+
+        }
+        else{
+            result = `
+                Du blir tatt! Dette var en dårlig idé. <br>-500 cool 😢🚓</br>
+            `;
+
+            coolMeter -= 500;
+        }
+
+    }
+    updateView();
+
+}
+
+
 
 /*
 Politi kontroll:
@@ -81,6 +265,39 @@ Politi kontroll:
 
 
 */
+
+
+
+
+function squirrelRoadkill(){
+    if(chance(50)){
+        numberSquirrelKill++;
+
+        message = `
+            BANG! Du kjørte på et ekorn! 🐿️💥🚗
+            <br>
+            -10 cool 😵‍💫
+            <br>
+        `;
+
+        coolMeter -= 10;
+    }
+    else if(chance(75)){
+        message = `
+            🚗 Et ekorn løp over veien. Du klarte akkurat å unngå det! 🐿️
+            <br>
+            +10 cool 😎
+        `;
+
+        coolMeter += 10;
+    }
+    else{
+        message = `
+            Veien er ekornfri... foreløpig. 🐿️👀
+        `;
+    }
+    updateView();
+}
     </script>
 </body>
 </html>
