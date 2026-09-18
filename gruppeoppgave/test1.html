@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+#item-grid {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.rute {
+    height: 80px;
+    width: 80px;
+}
+
+/* Popup */
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popupBox {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script>
+
+
+let boxTest = null;
+let itemTest = null;
+
+let coolMeter = 0;
+let numberSquirrelKill = 0;
+
+let randomEncounter = "";
+let message = "";
+
+// Politi greier
+let kontrollsjanse = 30;
+let result = "";
+
+// Bestemmer hva som skal skje etter OK-knappen
+let nextFunction;
+
+
+// ITEMS
+let items = [
+    { Item: "Solbriller", Points: 15 },
+    { Item: "Spoiler", Points: 25 },
+    { Item: "Kvikklunsj", Points: 5 },
+    { Item: "Fete felger", Points: 25 },
+    { Item: "Neon lys", Points: 22 },
+    { Item: "Flammer på sidene", Points: 17 },
+    { Item: "Rolls Royce figur", Points: 20 },
+    { Item: "Sota ruter", Points: 10 },
+    { Item: "Bamse", Points: 8 },
+    { Item: "Gammel sko", Points: -2 },
+    { Item: "Brukt plaster", Points: -5 },
+    { Item: "Vått avispapir", Points: -15 },
+    { Item: "Pinne", Points: -10 },
+    { Item: "Bananskall", Points: -15 }
+];
+
+
+// OPPDATERER SIDEN
+function updateView() {
+    html = /*HTML*/ `
+        <h1>test</h1>
+
+        <div>Kul-o-meter😎🔥: ${coolMeter}</div>
+        <div>Antall ekorn påkjørt: ${numberSquirrelKill}</div>
+
+        <section id="item-grid">
+            ${spawnItems()}
+        </section>
+
+        <button onclick="setRandomEncounter()">
+            Ekkort Test
+        </button>
+
+        <div>${message}</div>
+
+
+        <!-- POPUP -->
+        <div id="popup" style="display: none;">
+            <div id="popupBox">
+
+                <div id="popupMessage"></div>
+
+                <div id="popupButtons"></div>
+
+            </div>
+        </div>
+    `;
+
+    document.getElementById("app").innerHTML = html;
+}
+
+
+// LAGER ITEMS
+function spawnItems() {
+    let result = "";
+
+    for (let i = 0; i < 16; i++) {
+
+        let randomBox = Math.floor(Math.random() * 16);
+        let randomItem = Math.floor(Math.random() * items.length);
+
+        result += `
+            <div class="rute" onclick="takeItem(${randomItem})">
+                ${items[randomItem].Item}
+            </div>
+        `;
+    }
+
+    return result;
+}
+
+
+// TAR ITEM
+function takeItem(item) {
+
+    coolMeter += items[item].Points;
+
+    updateView();
+}
+
+
+// RANDOM ENCOUNTER
+function setRandomEncounter() {
+
+    randomEncounter = 1;
+
+    if (randomEncounter == 1) {
+        policeControl();
+    }
+}
+
+
+// POLITIKONTROLL
+function policeControl() {
+
+    if (rngMathRandom() >= kontrollsjanse) {
+
+        showPopup(
+            "🚨 Det er en politikontroll!"
+        );
+
+    } else {
+
+        showPopup(
+            "🚨 Det er en politikontroll!",
+            policeControlStopped
+        );
+    }
+}
+
+
+// DU BLIR VINKET INN
+function policeControlStopped() {
+
+    showPopup(
+        "🚨 Du blir vinket inn til kontrollen.",
+        policeDetection
+    );
+}
+
+
+function policeDetection() {
+
+    let detection = rngMathRandom();
+
+    if (detection <= 30) {
+
+        showPopup(
+            "👮 Politimannen lener seg inn mot vinduet... og sier «Hm. Hva er den lukta?» 👀",
+            showPoliceChoices
+        );
+
+    } else if (detection <= 60) {
+
+        showPopup(
+            "👮 Politimannen ser på deg. Så på øynene dine. Så på deg igjen, og spør: «Har du drukket?»",
+            showPoliceChoices
+        );
+
+    } else {
+
+        showPopup(
+            "👮 Politimannen kikker inn i bilen. Han finner ingenting mistenkelig. «Kjør forsiktig», sier han."
+        );
+    }
+}
+
+
+function showPoliceChoices() {
+
+    document.getElementById("popupMessage").innerHTML = `
+        👮 Hva vil du gjøre?
+    `;
+
+    document.getElementById("popupButtons").innerHTML = `
+        <button onclick="weedChoice('makeExcuse')">
+            Bortforklar 😎
+        </button>
+
+        <button onclick="weedChoice('flee')">
+            Stikke av 👀 🚗🚓
+        </button>
+    `;
+
+    // Pass på at popupen fortsatt vises
+    document.getElementById("popup").style.display = "flex";
+}
+
+// VALG HOS POLITIET
+function weedChoice(choice) {
+
+    if (choice === "makeExcuse") {
+
+        result = "Det er bare en ny type luftfrisker. Den heter Jamaica Breeze. 🌿😎";
+
+    } else if (choice === "flee") {
+
+        result = "Du prøver å stikke av fra politiet! 🚗💨🚓";
+    }
+
+    document.getElementById("popupMessage").innerHTML = result;
+
+    document.getElementById("popupButtons").innerHTML = `
+        <button onclick="closePopup()">
+            OK
+        </button>
+    `;
+}
+
+
+// VISER POPUP
+function showPopup(message, next) {
+
+    document.getElementById("popupMessage").innerHTML = message;
+
+    document.getElementById("popupButtons").innerHTML = `
+        <button onclick="closePopup()">
+            OK
+        </button>
+    `;
+
+    document.getElementById("popup").style.display = "flex";
+
+    nextFunction = next;
+}
+
+
+// LUKKER POPUP
+function closePopup() {
+
+    document.getElementById("popup").style.display = "none";
+
+    if (nextFunction) {
+
+        let functionToRun = nextFunction;
+
+        nextFunction = null;
+
+        functionToRun();
+    }
+}
+
+
+// RANDOM TALL FRA 1-100
+function rngMathRandom() {
+
+    return Math.floor(Math.random() * 100) + 1;
+}
+
+
+// STARTER SIDEN
+updateView();
+
+    </script>
+
+</body>
+</html>

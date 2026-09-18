@@ -97,6 +97,13 @@ function updateView() {
         <section id="item-grid">${spawnItems()}</section>
         <button onclick="setRandomEncounter()">Ekkort Test</button>
         <div>${message}</div>
+
+
+
+      <div id="popup" style="display: none;">
+        <div id="popupMessage"></div>
+        <button onclick="closePopup()">OK</button>
+      </div>
     `;
 
   document.getElementById("appOppgave3").innerHTML = html;
@@ -150,10 +157,10 @@ function rngMathRandom(){
 function policeControl(){
     
     if(rngMathRandom() >= kontrollsjanse){
-        message = "Du kjører forbi politikontrollen. Du prøver å se så uskyldig ut at du nesten blir mistenkelig. 👀";
+        showPopup("Du kjører forbi politikontrollen. Du prøver å se så uskyldig ut at du nesten blir mistenkelig. 👀");
     }
     else{
-        message = "🚨 Du blir vinket inn til kontrollen."
+        showPopup("🚨 Du blir vinket inn til kontrollen.");
         
         message += policeDetection();
     }
@@ -243,32 +250,6 @@ function weedChoice(choice){
 
 }
 
-
-
-/*
-Politi kontroll:
-    xx% sjanse Du blir vinket inn til kontrollen:
-        30% sjanse at politi lukter rev. 
-            bortforklarer 
-                50% sjanse for at politiet aksepterer bortforklaringen +XX
-                50% sjanse for at politiet gir deg bot -XX
-            stikker av
-                20% sjanse for at du får mange kulhetspoeng (+XXX cool)		
-                80% sjanse for at du mister mange kulhetspoeng (-XXX cool)
-        20% sjanse at politi merker du er beruset på alkohol. 
-            bortforklarer
-                50% sjanse for at politiet aksepterer bortforklaringen +XX
-                50% sjanse for at politiet gir deg bot -XX
-            stikker av        
-                20% sjanse for at du får mange kulhetspoeng (+XXX cool)		
-                80% sjanse for at du mister mange kulhetspoeng (-XXX cool)
-
-
-*/
-
-
-
-
 function squirrelRoadkill(){
     if(chance(50)){
         numberSquirrelKill++;
@@ -298,6 +279,20 @@ function squirrelRoadkill(){
     }
     updateView();
 }
+
+
+
+//Pop-up-melding
+
+function showPopup(message){
+  document.getElementById("popupMessage").innerHTML = message;
+  document.getElementById("popup").style.display = "block";
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display = "none";
+}
+
     </script>
 </body>
 </html>
